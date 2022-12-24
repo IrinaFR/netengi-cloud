@@ -1,0 +1,30 @@
+body{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.v-list-subheader .v-list-subheader__text{
+    text-transform: uppercase;
+}
+
+
+
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: blue #4671F6;
+}
+
+
+*::-webkit-scrollbar {
+    width: 1px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #F3F1F1;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #4671F6;
+    border-radius: 20px;
+}

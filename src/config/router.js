@@ -4,8 +4,7 @@ const routes = [
 	{
 		path: '/',
 		component: () => import('../components/NCIndex'),
-		name: 'home',
-		redirect: '/programs'
+		name: 'home'
 	},
 ]
 

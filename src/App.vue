@@ -1,5 +1,11 @@
 <template>
 	<v-app :theme="theme">
+		<NCSideMenu :rail="rail"/>
+		<v-app-bar>
+			<v-app-bar-nav-icon @click="rail = !rail"></v-app-bar-nav-icon>
+
+			<v-toolbar-title>Application</v-toolbar-title>
+		</v-app-bar>
 		<v-main>
 
 		</v-main>
@@ -7,17 +13,18 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import NCSideMenu from '@/components/NCSideMenu'
 export default {
 	name: 'App',
-	components: {
-		HelloWorld,
-	},
 	data(){
 		return {
-			theme: 'lightTheme'
+			theme: 'lightTheme',
+			rail: true,
 		}
+	},
+	components: {
+		NCSideMenu
 	}
 }
 </script>
+
