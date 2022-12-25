@@ -3,14 +3,16 @@
 		v-model="drawer"
 		:rail="rail"
 		permanent
+		:touchless="true"
+		:border="false"
 	>
 		<div class="listItemLogo d-flex">
 			<v-img src="/images/logo.svg" class="logoMain"></v-img>
 			<v-img src="/images/netengi.svg" class="logoText" nav></v-img>
 		</div>
 
-		<v-list density="compact" nav v-for="(block, index) in menu" :key="index">
-			<v-list-subheader :title="block.title" v-if="block.title" nav></v-list-subheader>
+		<v-list density="compact" :item-title="block.title" nav v-for="(block, index) in menu" :key="index">
+<!--			<v-list-subheader :title="block.title" v-if="block.title" nav></v-list-subheader>-->
 			<v-list-item
 				density="compact"
 				height="32"
@@ -21,7 +23,7 @@
 				:to="link.url"
 				:active="$route.href===link.url">
 				<template v-slot:prepend>
-					<img :src="`/images/menu/${link.icon}.svg`" alt="link.title" class="me-2 menuLinkIcon">
+					<img :src="`/images/menu/${link.icon}.svg`" :alt="link.title" class="me-2 menuLinkIcon">
 				</template>
 				<template v-slot:append v-if="link.links">
 					<v-menu

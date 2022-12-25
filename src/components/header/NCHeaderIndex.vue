@@ -1,0 +1,116 @@
+<template>
+	<v-app-bar>
+		<v-app-bar-nav-icon @click="changeMenu"></v-app-bar-nav-icon>
+
+		<NCHeaderSearch/>
+
+		<template v-slot:append>
+			<div class="d-flex justify-lg-space-between align-center">
+				<img src="/images/app_bar/terminal.svg" class="mx-2">
+				<v-badge
+					class="mx-2"
+					color="error"
+					dot
+					:bordered="true"
+				>
+					<img src="/images/app_bar/notification.svg">
+				</v-badge>
+				<img src="/images/app_bar/help.svg" class="mx-2">
+				<v-menu
+					v-model="menu"
+					:close-on-content-click="false"
+					location="bottom"
+				>
+					<template v-slot:activator="{ props }">
+						<v-list v-bind="props">
+							<v-list-item
+								prepend-avatar="https://cdn.vuetifyjs.com/images/john.jpg"
+								title="John Leider"
+							>
+
+							</v-list-item>
+						</v-list>
+					</template>
+
+					<v-card min-width="300">
+						<v-list density="compact">
+							<v-list-item density="compact" title="Dark mode">
+								<template v-slot:prepend>
+									<img src="/images/app_bar/profile/dark.svg" class="me-2">
+								</template>
+								<template v-slot:append>
+									<v-switch
+										inset
+										v-model="$root.theme"
+										color="info"
+										true-value="darkTheme"
+										false-value="lightTheme"
+										hide-details
+										value="info"
+									></v-switch>
+								</template>
+
+							</v-list-item>
+						</v-list>
+						<v-divider></v-divider>
+						<v-list density="compact">
+							<v-list-item density="compact" title="Account settings">
+								<template v-slot:prepend>
+									<img src="/images/app_bar/profile/settings.svg" class="me-2">
+								</template>
+							</v-list-item>
+							<v-list-item density="compact" title="Clients">
+								<template v-slot:prepend>
+									<img src="/images/app_bar/profile/clients.svg" class="me-2">
+								</template>
+							</v-list-item>
+							<v-list-item density="compact" title="Billing">
+								<template v-slot:prepend>
+									<img src="/images/app_bar/profile/billing.svg" class="me-2">
+								</template>
+							</v-list-item>
+							<v-list-item density="compact" title="Activities logs">
+								<template v-slot:prepend>
+									<img src="/images/app_bar/profile/activities-logs.svg" class="me-2">
+								</template>
+							</v-list-item>
+						</v-list>
+
+						<v-divider></v-divider>
+
+						<v-list density="compact">
+							<v-list-item density="compact" title="Log out">
+								<template v-slot:prepend>
+									<img src="/images/app_bar/profile/logout.svg" class="me-2">
+								</template>
+							</v-list-item>
+						</v-list>
+					</v-card>
+				</v-menu>
+			</div>
+
+		</template>
+	</v-app-bar>
+</template>
+
+<script>
+import NCHeaderSearch from '@/components/header/NCHeaderSearch'
+export default {
+	emits: ['change'],
+	data(){
+		return {
+			rail: true,
+			menu: false,
+		}
+	},
+	components: {
+		NCHeaderSearch
+	},
+	methods: {
+		changeMenu(){
+			this.rail = !this.rail
+			this.$emit('change', this.rail)
+		}
+	}
+}
+</script>

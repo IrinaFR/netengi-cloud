@@ -1,14 +1,39 @@
 <template>
-	<div class="main">
-		<h1>index</h1>
+	<div class="search">
+		<v-autocomplete
+			clearable
+			density="compact"
+			variant="solo"
+			:items="result"
+			bg-color="grey-300"
+			color="grey-800"
+			:hide-details="true"
+		>
+			<template v-slot:prepend-inner>
+				<!--				<v-icon icon="fa-solid fa-magnifying-glass"></v-icon>-->
+				<img src="/images/app_bar/search.svg" class="me-2">
+				<span class="searchPrepend">Search</span>
+			</template>
+			<template v-slot:item="{ props, item }">
+				<v-card :subtitle="item.title">
+					<v-list density="compact">
+						<v-list-item density="compact" v-bind="props" :title="link.title" :to="link.url" v-for="link in item.raw.items" :key="link.title" :active="false">
+							<template v-slot:prepend>
+								<img :src="`/images/menu/${link.icon}.svg`" :alt="link.title" class="me-2 searchLinkImg">
+							</template>
+						</v-list-item>
+						<v-divider></v-divider>
+					</v-list>
+				</v-card>
+			</template>
+		</v-autocomplete>
 	</div>
 </template>
+
 <script>
 export default {
 	data(){
 		return{
-			password: 'Password',
-			show: false,
 			message: 'Hey!',
 			marker: true,
 			iconIndex: 0,
@@ -96,14 +121,19 @@ export default {
 	},
 }
 </script>
+
 <style>
-.main{
-	padding: 100px;
+.search{
+	width: 400px;
 }
 .searchLinkImg{
 	filter: grayscale(100%);
 }
-.main .v-field--variant-solo{
+.search .v-field--variant-solo{
 	box-shadow: none;
+}
+.searchPrepend{
+	font-weight: 500;
+	font-size: 15px;
 }
 </style>
