@@ -8,6 +8,7 @@
 			bg-color="grey-300"
 			color="grey-800"
 			:hide-details="true"
+			placeholder="Products, services, docs"
 		>
 			<template v-slot:prepend-inner>
 				<!--				<v-icon icon="fa-solid fa-magnifying-glass"></v-icon>-->
@@ -124,7 +125,7 @@ export default {
 
 <style>
 .search{
-	width: 400px;
+	width: 40%;
 }
 .searchLinkImg{
 	filter: grayscale(100%);

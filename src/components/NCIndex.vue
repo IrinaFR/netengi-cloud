@@ -1,109 +1,79 @@
 <template>
-	<div class="main">
-		<h1>index</h1>
+	<div>
+		<h1 class="pageTitle">Welcome, Dmitriy!</h1>
+		<v-card variant="text" class="alertCard">
+			<router-link to="/" class="d-flex">
+				<img src="/images/index/document.svg" class="me-3">
+				<div>
+					<div class="alertTitle">Getting started with Netengi</div>
+					<div class="alertInfo">Learn the fundamentals and find valuable information to get the most out of Netengi.</div>
+				</div>
+			</router-link>
+		</v-card>
+		<NCAdditionalQuotes/>
+		<NCIndexServices/>
+		<NCIndexOtherServices/>
+
+		<div class="footerMain">
+			<NCIndexLogs/>
+			<NCIndexGettingStart/>
+		</div>
 	</div>
 </template>
 <script>
-export default {
-	data(){
-		return{
-			password: 'Password',
-			show: false,
-			message: 'Hey!',
-			marker: true,
-			iconIndex: 0,
-			result: [
-				{
-					title: 'Products',
-					items: [
-						{
-							icon: 'instances',
-							title: 'Instance group',
-							url: '/'
-						},
-						{
-							icon: 'instances',
-							title: 'Instances templates',
-							url: '/'
-						}
-					]
-				},
-				{
-					title: 'History',
-					items: [
-						{
-							icon: 'network',
-							title: 'Instance',
-							url: '/'
-						},
-						{
-							icon: 'network',
-							title: 'instance flow',
-							url: '/'
-						}
-					]
-				},
-				{
-					title: 'Tutorials',
-					items: [
-						{
-							icon: 'home',
-							title: 'Create a Compute Engine instance template and managed instance group',
-							url: '/'
-						},
-						{
-							icon: 'home',
-							title: 'Connect to a Cloud SQL for MySQL instance from a Compute Engine virtual machine',
-							url: '/'
-						}
-					]
-				}
-			],
-			people: [
-				{ header: 'Group 1' },
-				{ name: 'Sandra Adams', group: 'Group 1', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' },
-				{ name: 'Ali Connors', group: 'Group 1', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' },
-				{ name: 'Trevor Hansen', group: 'Group 1', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' },
-				{ name: 'Tucker Smith', group: 'Group 1', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' },
-				{ divider: true },
-				{ header: 'Group 2' },
-				{ name: 'Britta Holt', group: 'Group 2', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' },
-				{ name: 'Jane Smith ', group: 'Group 2', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' },
-				{ name: 'John Smith', group: 'Group 2', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' },
-				{ name: 'Sandra Williams', group: 'Group 2', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' },
-			],
-		}
-	},
-	methods: {
-		toggleMarker () {
-			this.marker = !this.marker
+	import NCAdditionalQuotes from '@/components/additional/NCAdditionalQuotas';
+	import NCIndexServices from '@/components/index/NCIndexServices';
+	import NCIndexOtherServices from '@/components/index/NCIndexOtherServices';
+	import NCIndexLogs from '@/components/index/NCIndexLogs';
+	import NCIndexGettingStart from '@/components/index/NCIndexGettingStart';
+	export default {
+		data(){
+			return{
+
+			}
 		},
-		sendMessage () {
-			this.resetIcon()
-			this.clearMessage()
+		components: {
+			NCAdditionalQuotes, NCIndexServices, NCIndexOtherServices,
+			NCIndexLogs, NCIndexGettingStart
 		},
-		clearMessage () {
-			this.message = ''
+		methods: {
+
 		},
-		resetIcon () {
-			this.iconIndex = 0
-		},
-		changeIcon () {
-			this.iconIndex === this.icons.length - 1
-				? this.iconIndex = 0
-				: this.iconIndex++
-		},
-	},
-}
+	}
 </script>
 <style>
-.main{
-	padding: 100px;
+
+.alertCard{
+	background: rgb(var(--v-theme-background));
+	border: 1px solid rgb(var(--v-theme-grey-350));
+	box-shadow: var(--v-theme-shadow-for-blocks);
+	border-radius: 8px;
+	padding: 14px;
+	margin-top: 20px;
 }
-.searchLinkImg{
-	filter: grayscale(100%);
+.alertCard a{
+	text-decoration: none;
+	display: flex;
+	align-items: center;
 }
-.main .v-field--variant-solo{
-	box-shadow: none;
+.alertTitle{
+	font-size: 18px;
+	line-height: 24px;
+	color: #4671F6;
 }
+.alertInfo{
+	font-size: 15px;
+	line-height: 20px;
+	color: rgb(var(--v-theme-grey-600));
+}
+
+
+
+.footerMain{
+	display: flex;
+	justify-content: space-between;
+	gap: 30px;
+	margin-top: 20px;
+}
+
 </style>

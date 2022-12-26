@@ -1,4 +1,4 @@
-export const lightTheme = {
+export const light = {
 	dark: false,
 	colors: {
 		background: '#FFFFFF',
@@ -11,12 +11,25 @@ export const lightTheme = {
 		'grey-700': '#858A94',
 		'grey-800': '#474B53',
 		'grey-900': '#1E1E1E',
-		primary: '#4671F6',
 		success: '#229B61',
+		'primary-25': '#F9FAFE',
+		'primary-50': '#E8EEF9',
+		'primary-100': '#BDCEEE',
+		'primary-200': '#B5CAFD',
+		'primary-300': '#A4BCFD',
+		'primary-400': '#658DFE',
+		'primary-500': '#0F68E9',
+		'primary-600': '#4671F6',
+		'primary-700': '#043F8F',
+		'primary-800': '#083170',
+		'primary-900': '#001E45',
+		'error-100': '#FFE5E5',
+		'error-200': '#FFD2CF',
+		'error-600': '#E85048',
 	}
 }
 
-export const darkTheme = {
+export const dark = {
 	dark: true,
 	colors: {
 		background: '#111111',
@@ -29,9 +42,21 @@ export const darkTheme = {
 		'grey-700': '#A7A7A7',
 		'grey-800': '#E3E3E3',
 		'grey-900': '#FCFBFC',
-		primary: '#4671F6',
 		success: '#229B61',
+		'primary-25': '#F9FAFE',
+		'primary-50': '#E8EEF9',
+		'primary-100': '#BDCEEE',
+		'primary-200': '#B5CAFD',
+		'primary-300': '#A4BCFD',
+		'primary-400': '#658DFE',
+		'primary-500': '#0F68E9',
+		'primary-600': '#4671F6',
+		'primary-700': '#043F8F',
+		'primary-800': '#083170',
+		'primary-900': '#001E45',
+		'error-100': '#FFE5E5',
+		'error-200': '#FFD2CF',
+		'error-600': '#E85048',
 	}
 }
-
 

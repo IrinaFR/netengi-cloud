@@ -4,15 +4,16 @@
 		:rail="rail"
 		permanent
 		:touchless="true"
-		:border="false"
+		:floating="false"
+		class="bg-grey-100"
 	>
 		<div class="listItemLogo d-flex">
 			<v-img src="/images/logo.svg" class="logoMain"></v-img>
 			<v-img src="/images/netengi.svg" class="logoText" nav></v-img>
 		</div>
 
-		<v-list density="compact" :item-title="block.title" nav v-for="(block, index) in menu" :key="index">
-<!--			<v-list-subheader :title="block.title" v-if="block.title" nav></v-list-subheader>-->
+		<v-list density="compact" nav v-for="(block, index) in menu" :key="index">
+			<v-list-subheader :title="block.title" v-if="block.title" nav></v-list-subheader>
 			<v-list-item
 				density="compact"
 				height="32"
@@ -33,7 +34,7 @@
 						nav
 					>
 						<template v-slot:activator="{ props }">
-							<img :src="`/images/menu/right.svg`" v-bind="props">
+							<img :src="`/images/menu/right.svg`" v-bind="props" nav>
 						</template>
 						<v-card max-width="280">
 							<v-list  density="compact" v-for="(innerBlock, innerIndex) in link.links" :key="innerIndex">
@@ -71,22 +72,22 @@ export default {
 					links: [
 						{ title: 'Instances', icon: 'instances', url: '/instances'},
 						{ title: 'Volumes', icon: 'volumes', url: '', links: [
-								{
-									title: 'Category',
-									links: [
-										{ title: 'Overviews', url: '/'},
-										{ title: 'Snapshots', url: '/'},
-										{ title: 'Backups', url: '/'},
-									]
-								},
-								{
-									title: 'Category 2',
-									links: [
-										{ title: 'Item 4', url: '/'},
-										{ title: 'Distribute traffic between multiple Instance PHP web application', url: '/'},
-										{ title: 'Item 6', url: '/'},
-									]
-								},]
+							{
+								title: 'Category',
+								links: [
+									{ title: 'Overviews', url: '/'},
+									{ title: 'Snapshots', url: '/'},
+									{ title: 'Backups', url: '/'},
+								]
+							},
+							{
+								title: 'Category 2',
+								links: [
+									{ title: 'Item 4', url: '/'},
+									{ title: 'Distribute traffic between multiple Instance PHP web application', url: '/'},
+									{ title: 'Item 6', url: '/'},
+								]
+							},]
 						},
 						{ title: 'Images', icon: 'images', url: '/images'},
 						{ title: 'SSH Keys', icon: 'sshKeys', url: '/ssh-keys'},

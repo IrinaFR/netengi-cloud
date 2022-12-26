@@ -1,5 +1,7 @@
 <template>
-	<v-app-bar>
+	<v-app-bar
+	height="80"
+	flat>
 		<v-app-bar-nav-icon @click="changeMenu"></v-app-bar-nav-icon>
 
 		<NCHeaderSearch/>
@@ -41,12 +43,10 @@
 								<template v-slot:append>
 									<v-switch
 										inset
-										v-model="$root.theme"
+										v-model="theme"
 										color="info"
-										true-value="darkTheme"
-										false-value="lightTheme"
+										@change="changeTheme"
 										hide-details
-										value="info"
 									></v-switch>
 								</template>
 
@@ -101,6 +101,7 @@ export default {
 		return {
 			rail: true,
 			menu: false,
+			theme: false
 		}
 	},
 	components: {
@@ -110,6 +111,21 @@ export default {
 		changeMenu(){
 			this.rail = !this.rail
 			this.$emit('change', this.rail)
+			localStorage.setItem('rail', this.rail)
+		},
+		changeTheme(){
+			if(this.theme){
+				this.$root.theme = 'dark'
+				localStorage.setItem('theme', 'dark')
+			} else{
+				this.$root.theme = 'light'
+				localStorage.setItem('theme', 'light')
+			}
+		}
+	},
+	created() {
+		if(localStorage.getItem('theme') === 'dark'){
+			this.theme = true
 		}
 	}
 }

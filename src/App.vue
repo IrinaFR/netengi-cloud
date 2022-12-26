@@ -2,9 +2,10 @@
 	<v-app :theme="theme">
 		<NCSideMenu :rail="rail"/>
 		<NCHeaderIndex :rail="rail" @change="rail=$event"/>
-
-		<v-main>
-			<router-view></router-view>
+		<v-main >
+			<div id="main">
+				<router-view></router-view>
+			</div>
 		</v-main>
 	</v-app>
 </template>
@@ -16,7 +17,7 @@ export default {
 	name: 'App',
 	data(){
 		return {
-			theme: 'lightTheme',
+			theme: 'light',
 			rail: true,
 
 			friends: ['Sandra Adams', 'Britta Holt'],
@@ -38,7 +39,21 @@ export default {
 	},
 	components: {
 		NCSideMenu, NCHeaderIndex
+	},
+	created() {
+		if(localStorage.getItem('theme')){
+			this.theme = localStorage.getItem('theme')
+		}
+		if(localStorage.getItem('rail')){
+			this.rail = localStorage.getItem('rail')
+		}
 	}
 }
 </script>
+
+<style>
+#main{
+	padding: 10px 30px;
+}
+</style>
 
