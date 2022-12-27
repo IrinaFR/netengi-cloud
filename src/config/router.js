@@ -7,6 +7,11 @@ const routes = [
 		name: 'home'
 	},
 	{
+		path: '/instances',
+		component: () => import('../components/instances/NCInstancesIndex'),
+		name: 'instances'
+	},
+	{
 		path: '/authorization',
 		component: () => import('../components/authorization/NCAuthorizationIndex'),
 		name: 'auth',
