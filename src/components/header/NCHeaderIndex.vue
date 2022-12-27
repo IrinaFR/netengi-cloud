@@ -8,6 +8,9 @@
 
 		<template v-slot:append>
 			<div class="d-flex justify-lg-space-between align-center">
+				<v-btn to="/authorization">
+					Auth
+				</v-btn>
 				<img src="/images/app_bar/terminal.svg" class="mx-2">
 				<v-badge
 					class="mx-2"
@@ -95,6 +98,7 @@
 
 <script>
 import NCHeaderSearch from '@/components/header/NCHeaderSearch'
+import {defineAsyncComponent} from "vue";
 export default {
 	emits: ['change'],
 	data(){
@@ -105,7 +109,8 @@ export default {
 		}
 	},
 	components: {
-		NCHeaderSearch
+		NCHeaderSearch,
+		'NCAuthorizationIndex': defineAsyncComponent(() => import('@/components/authorization/NCAuthorizationIndex'))
 	},
 	methods: {
 		changeMenu(){

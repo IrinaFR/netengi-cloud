@@ -1,7 +1,7 @@
 <template>
 	<v-app :theme="theme">
-		<NCSideMenu :rail="rail"/>
-		<NCHeaderIndex :rail="rail" @change="rail=$event"/>
+		<NCSideMenu :rail="rail" v-if="currentPage()"/>
+		<NCHeaderIndex :rail="rail" @change="rail=$event" v-if="currentPage()"/>
 		<v-main >
 			<div id="main">
 				<router-view></router-view>
@@ -47,13 +47,20 @@ export default {
 		if(localStorage.getItem('rail')){
 			this.rail = localStorage.getItem('rail')
 		}
+	},
+	methods: {
+		currentPage(){
+			switch(this.$route.name) {
+				case 'auth': return false
+				case 'registration': return false
+				case 'forgot': return false
+				default: return true
+			}
+		}
 	}
 }
 </script>
 
 <style>
-#main{
-	padding: 10px 30px;
-}
 </style>
 

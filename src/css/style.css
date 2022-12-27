@@ -10,6 +10,8 @@ body{
 
 a{
     color: rgb(var(--v-theme-primary-600));
+    text-decoration: none;
+    font-weight: 400;
 }
 a:hover{
     color: rgb(var(--v-theme-primary-400));
@@ -18,6 +20,27 @@ a:focus{
     color: rgb(var(--v-theme-primary-700));
 }
 
+button.v-btn.v-btn--variant-tonal{
+    background: rgb(var(--v-theme-primary-600));
+    color: rgb(var(--v-theme-background));
+    height: 40px;
+    text-transform: none;
+}
+.form-group{
+    margin-bottom: 5px;
+}
+.smallText-12{
+    font-size: 12px;
+}
+.smallText-13{
+    font-size: 13px;
+}
+.smallText-14{
+    font-size: 14px;
+}
+.smallText-15{
+    font-size: 15px;
+}
 h1{
     font-weight: 500;
     font-size: 26px;
@@ -35,6 +58,12 @@ h3{
     font-size: 18px;
     line-height: 24px;
     color: rgb(var(--v-theme-grey-900));
+}
+label{
+    font-size: 15px;
+    margin-bottom: 4px;
+    font-weight: 700;
+    color: rgb(var(--v-theme-grey-800));
 }
 
 .v-list-subheader .v-list-subheader__text{

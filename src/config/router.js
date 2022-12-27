@@ -6,6 +6,24 @@ const routes = [
 		component: () => import('../components/NCIndex'),
 		name: 'home'
 	},
+	{
+		path: '/authorization',
+		component: () => import('../components/authorization/NCAuthorizationIndex'),
+		name: 'auth',
+		children: [
+			{
+				path: 'forgot',
+				component: () => import('../components/authorization/NCAuthorizationForgotPass'),
+				name: 'forgot'
+			},
+		]
+	},
+	{
+		path: '/registration',
+		component: () => import('../components/authorization/NCAuthorizationSignUp'),
+		name: 'registration'
+	},
+
 ]
 
 const router = createRouter({
