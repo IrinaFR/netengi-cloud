@@ -26,6 +26,15 @@ button.v-btn.v-btn--variant-tonal{
     height: 40px;
     text-transform: none;
 }
+button.v-btn--variant-outlined{
+    min-width: 40px;
+    width: 40px;
+    height: 40px !important;
+    border: 1px solid #DBDBDB;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
 .form-group{
     margin-bottom: 5px;
 }

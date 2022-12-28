@@ -8,15 +8,24 @@
 		</div>
 	</div>
 	<NCAdditionalQuotes/>
-	<NCInstancesNone/>
+	<NCInstancesTable v-if="showTable"/>
+	<NCInstancesNone v-else/>
+	<br>
+	<button @click="showTable=!showTable">Нажать</button>
 </div>
 </template>
 
 <script>
 import NCAdditionalQuotes from '@/components/additional/NCAdditionalQuotas';
 import NCInstancesNone from '@/components/instances/NCInstancesNone';
+import NCInstancesTable from '@/components/instances/NCInstancesTable';
 export default {
-	components: {NCAdditionalQuotes,NCInstancesNone}
+	components: {NCAdditionalQuotes,NCInstancesNone,NCInstancesTable},
+	data(){
+		return{
+			showTable:false
+		}
+	}
 }
 </script>
 
