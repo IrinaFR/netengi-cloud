@@ -50,6 +50,7 @@ export default {
 	},
 	methods: {
 		currentPage(){
+			// это временно
 			switch(this.$route.name) {
 				case 'auth': return false
 				case 'registration': return false

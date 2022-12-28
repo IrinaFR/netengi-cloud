@@ -1,5 +1,5 @@
 <template>
-	<div class="mainIndex">
+	<div class="mainPage">
 		<h1 class="pageTitle">Welcome, Dmitriy!</h1>
 		<v-card variant="text" class="alertCard">
 			<router-link to="/" class="d-flex">
@@ -42,9 +42,7 @@
 	}
 </script>
 <style>
-.mainIndex{
-	padding: 10px 30px;
-}
+
 .alertCard{
 	background: rgb(var(--v-theme-background));
 	border: 1px solid rgb(var(--v-theme-grey-350));
@@ -68,14 +66,10 @@
 	line-height: 20px;
 	color: rgb(var(--v-theme-grey-600));
 }
-
-
-
 .footerMain{
 	display: flex;
 	justify-content: space-between;
 	gap: 30px;
 	margin-top: 20px;
 }
-
 </style>

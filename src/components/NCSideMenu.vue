@@ -1,4 +1,5 @@
 <template>
+
 	<v-navigation-drawer
 		v-model="drawer"
 		:rail="rail"
@@ -6,46 +7,48 @@
 		:touchless="true"
 		:floating="false"
 		class="bg-grey-100"
+		width="280"
 	>
 		<div class="listItemLogo d-flex">
 			<v-img src="/images/logo.svg" class="logoMain"></v-img>
 			<v-img src="/images/netengi.svg" class="logoText" nav></v-img>
 		</div>
-
 		<v-list density="compact" nav v-for="(block, index) in menu" :key="index">
-			<v-list-subheader :title="block.title" v-if="block.title" nav></v-list-subheader>
-			<v-list-item
-				density="compact"
-				height="32"
-				min-height="32"
+			<v-list-subheader :title="block.title" v-if="block.title&&!rail"></v-list-subheader>
+			<v-divider color="grey-400" length="12" class="w-100 mt-4" v-else-if="block.title&&rail"/>
+			<v-menu
+				:close-on-content-click="false"
+				location="end"
+				open-on-hover
 				v-for="(link, idx) in block.links"
 				:key="idx"
-				:title="link.title"
-				:to="link.url"
-				:active="$route.href===link.url">
-				<template v-slot:prepend>
-					<img :src="`/images/menu/${link.icon}.svg`" :alt="link.title" class="me-2 menuLinkIcon">
-				</template>
-				<template v-slot:append v-if="link.links">
-					<v-menu
-						v-model="dropdown"
-						:close-on-content-click="false"
-						location="end"
-						nav
-					>
-						<template v-slot:activator="{ props }">
-							<img :src="`/images/menu/right.svg`" v-bind="props" nav>
+			>
+				<template v-slot:activator="{ props }">
+					<v-list-item
+						v-bind="props"
+						density="compact"
+						height="32"
+						min-height="32"
+						:title="link.title"
+						:to="link.url"
+						:active="$route.href===link.url">
+						<template v-slot:prepend>
+							<img :src="`/images/menu/${link.icon}.svg`" :alt="link.title" class="me-2 menuLinkIcon">
 						</template>
-						<v-card max-width="280">
-							<v-list  density="compact" v-for="(innerBlock, innerIndex) in link.links" :key="innerIndex">
-								<v-list-subheader :title="innerBlock.title" v-if="innerBlock.title" nav></v-list-subheader>
-								<v-list-item :to="innerLink.url" v-for="innerLink in innerBlock.links" :key="innerLink" :active="false">{{innerLink.title}}</v-list-item>
-								<v-divider></v-divider>
-							</v-list>
-						</v-card>
-					</v-menu>
+						<template v-slot:append v-if="link.links">
+							<img :src="`/images/menu/right.svg`">
+						</template>
+					</v-list-item>
 				</template>
-			</v-list-item>
+				<v-card max-width="280">
+					<v-list  density="compact" v-for="(innerBlock, innerIndex) in link.links" :key="innerIndex">
+						<v-list-subheader :title="innerBlock.title" v-if="innerBlock.title" nav></v-list-subheader>
+						<v-list-item :to="innerLink.url" v-for="innerLink in innerBlock.links" :key="innerLink" :active="false">{{innerLink.title}}</v-list-item>
+						<v-divider></v-divider>
+					</v-list>
+				</v-card>
+			</v-menu>
+
 		</v-list>
 	</v-navigation-drawer>
 </template>
@@ -59,7 +62,7 @@ export default {
 	data(){
 		return {
 			drawer: true,
-			dropdown: false,
+			dropdown: [],
 			menu: [
 				{
 					title: '',
@@ -71,7 +74,7 @@ export default {
 					title: 'Cloud Compute',
 					links: [
 						{ title: 'Instances', icon: 'instances', url: '/instances'},
-						{ title: 'Volumes', icon: 'volumes', url: '', links: [
+						{ title: 'Volumes', icon: 'volumes', url: '/volumes', links: [
 							{
 								title: 'Category',
 								links: [

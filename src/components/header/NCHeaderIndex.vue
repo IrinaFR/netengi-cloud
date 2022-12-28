@@ -2,7 +2,11 @@
 	<v-app-bar
 	height="80"
 	flat>
-		<v-app-bar-nav-icon @click="changeMenu"></v-app-bar-nav-icon>
+		<template v-slot:prepend>
+			<div class="btnClose" @click="changeMenu">
+				<img src="/images/arrowLeft.svg">
+			</div>
+		</template>
 
 		<NCHeaderSearch/>
 
@@ -98,7 +102,6 @@
 
 <script>
 import NCHeaderSearch from '@/components/header/NCHeaderSearch'
-import {defineAsyncComponent} from "vue";
 export default {
 	emits: ['change'],
 	data(){
@@ -109,8 +112,7 @@ export default {
 		}
 	},
 	components: {
-		NCHeaderSearch,
-		'NCAuthorizationIndex': defineAsyncComponent(() => import('@/components/authorization/NCAuthorizationIndex'))
+		NCHeaderSearch
 	},
 	methods: {
 		changeMenu(){
@@ -135,3 +137,20 @@ export default {
 	}
 }
 </script>
+
+<style>
+	.btnClose{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		border: 1px solid rgb(var(--v-theme-grey-300));;
+		background: rgb(var(--v-theme-background));
+		box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+	}
+	.btnClose img{
+		width: 10px;
+	}
+</style>

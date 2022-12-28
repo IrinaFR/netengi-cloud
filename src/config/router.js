@@ -28,6 +28,18 @@ const routes = [
 		component: () => import('../components/authorization/NCAuthorizationSignUp'),
 		name: 'registration'
 	},
+	{
+		path: '/volumes',
+		component: () => import('../components/volumes/NCVolumesIndex'),
+		name: 'volumes',
+		children: [
+			{
+				path: 'create',
+				component: () => import('../components/volumes/NCVolumesCreate'),
+				name: 'createVolumes'
+			},
+		]
+	},
 
 ]
 

@@ -124,6 +124,7 @@ export default {
 </script>
 
 <style>
+
 .search{
 	width: 40%;
 }

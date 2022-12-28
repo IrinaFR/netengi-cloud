@@ -51,7 +51,9 @@
 				</v-form>
 			</div>
 			<div class="authForm" v-if="step===4">
-				<img src="" alt="">
+				<div class="authFormImg">
+					<img src="/images/authorization/load.svg" class="mb-5">
+				</div>
 				<div class="authFormTitle text-start">Password successfully updated</div>
 			</div>
 		</div>
@@ -70,7 +72,7 @@
 	export default {
 		data(){
 			return{
-				step: 3
+				step: 1
 			}
 		}
 	}
@@ -99,7 +101,7 @@
 	width: 360px;
 	margin-bottom: 20px;
 }
-.authFormLink{
+.authFormLink, .authFormImg{
 	width: 360px;
 }
 .authForm{
@@ -121,5 +123,11 @@
 	border-radius: 30px;
 	overflow: hidden;
 	height: 100%;
+}
+button.v-btn.v-btn--variant-tonal{
+	background: rgb(var(--v-theme-primary-600));
+	color: rgb(var(--v-theme-background));
+	height: 40px;
+	text-transform: none;
 }
 </style>
