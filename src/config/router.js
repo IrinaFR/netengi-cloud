@@ -7,11 +7,6 @@ const routes = [
 		name: 'home'
 	},
 	{
-		path: '/instances',
-		component: () => import('../components/instances/NCInstancesIndex'),
-		name: 'instances'
-	},
-	{
 		path: '/authorization',
 		component: () => import('../components/authorization/NCAuthorizationIndex'),
 		name: 'auth',
@@ -29,6 +24,11 @@ const routes = [
 		name: 'registration'
 	},
 	{
+		path: '/instances',
+		component: () => import('../components/instances/NCInstancesIndex'),
+		name: 'instances'
+	},
+	{
 		path: '/volumes',
 		component: () => import('../components/volumes/NCVolumesIndex'),
 		name: 'volumes',
@@ -39,6 +39,41 @@ const routes = [
 				name: 'createVolumes'
 			},
 		]
+	},
+	{
+		path: '/images',
+		component: () => import('../components/images/NCImagesIndex'),
+		name: 'images'
+	},
+	{
+		path: '/ports',
+		component: () => import('../components/ports/NCPortsIndex'),
+		name: 'ports'
+	},
+	{
+		path: '/ssh-keys',
+		component: () => import('../components/ssh/NCSshKeysIndex'),
+		name: 'sshKeys'
+	},
+	{
+		path: '/networks',
+		component: () => import('../components/networks/NCNetworksIndex'),
+		name: 'networks'
+	},
+	{
+		path: '/floating',
+		component: () => import('../components/floating/NCFloatingIndex'),
+		name: 'floating'
+	},
+	{
+		path: '/security',
+		component: () => import('../components/security/NCSecurityIndex'),
+		name: 'security'
+	},
+	{
+		path: '/balancer',
+		component: () => import('../components/loadBalancer/NCloadBalancerIndex'),
+		name: 'balancer'
 	},
 
 ]

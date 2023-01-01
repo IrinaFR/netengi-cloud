@@ -1,40 +1,31 @@
 <template>
-<div class="infoCreateInstance">
-	<div class="blockWithBtn">
-		<div class="title">You have no instances right now.</div>
-		<v-btn density="default" variant="tonal">Create Instance</v-btn>
-		<div class="btnLern">
-			<v-img src="/images/instances/link.svg"></v-img>
-			<span>Learn more about instances</span>
+	<div class="infoCreateInstance">
+		<div class="blockWithBtn">
+			<div class="title">You have no SSH keys right now.</div>
+			<div class="btnLern">
+				<v-img src="/images/general/link.svg"></v-img>
+				<span>Learn more about ssh keys</span>
+			</div>
 		</div>
+		<v-card class="blockBanner">
+			<v-img class="close" src="/images/instances/close.svg"></v-img>
+			<div class="player">
+				<v-img src="/images/instances/play.svg"></v-img>
+			</div>
+			<div class="banner">
+				<v-img class="lineBlock" src="/images/ssh/key.svg"></v-img>
+				<v-img class="whiteBox" src="/images/instances/whiteBox.svg"></v-img>
+			</div>
+			<div class="textBanner">
+				<div class="greyTitle">Video Instruction</div>
+				<div class="request">How create my first a SSH key?</div>
+			</div>
+		</v-card>
 	</div>
-	<v-card class="blockBanner">
-		<v-img class="close" src="/images/instances/close.svg"></v-img>
-		<div class="player">
-			<v-img src="/images/instances/play.svg"></v-img>
-		</div>
-		<div class="banner">
-			<v-img class="lineBlock" src="/images/instances/blueBlock.svg"></v-img>
-			<v-img class="lineBlock" src="/images/instances/blueBlockEmpty.svg"></v-img>
-			<v-img class="lineBlock" src="/images/instances/blueBlock.svg"></v-img>
-			<v-img class="lineBlock" src="/images/instances/blueShadow.svg"></v-img>
-			<v-img class="whiteBox" src="/images/instances/whiteBox.svg"></v-img>
-		</div>
-		<div class="textBanner">
-			<div class="greyTitle">Video Instruction</div>
-			<div class="request">How create my first an instance?</div>
-		</div>
-	</v-card>
-</div>
 </template>
 
-<script>
-export default {
+<style>
 
-}
-</script>
-
-<style scoped>
 	.infoCreateInstance{
 		display: flex;
 		width: 100%;
@@ -86,25 +77,12 @@ export default {
 		width: 192px;
 	}
 	.lineBlock{
-		height: 90px;
-		right: 9px;
+		height: 70px;
+		bottom: 100px;
+		right: 17px;
 		z-index: 1;
 		position: absolute;
 		width: 221px;
-	}
-	.lineBlock:first-child{
-		bottom: 75px
-	}
-	.lineBlock:nth-child(2){
-		bottom: 100px;
-	}
-	.lineBlock:nth-child(3){
-		bottom: 125px;
-	}
-	.lineBlock:nth-child(4){
-		width: 53px;
-		right: 96px;
-		top: -14px;
 	}
 	.textBanner{
 		z-index: 2;

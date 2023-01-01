@@ -1,40 +1,41 @@
 <template>
-<div class="infoCreateInstance">
-	<div class="blockWithBtn">
-		<div class="title">You have no instances right now.</div>
-		<v-btn density="default" variant="tonal">Create Instance</v-btn>
-		<div class="btnLern">
-			<v-img src="/images/instances/link.svg"></v-img>
-			<span>Learn more about instances</span>
+	<div class="infoCreateInstance">
+		<div class="blockWithBtn">
+			<div class="title">You have no volumes right now.</div>
+			<div class="listBtn">
+				<v-btn density="default" to="/volumes/create" variant="tonal">Create Volumes</v-btn>
+				<v-btn density="default" variant="outlined">
+					<v-img src="/images/general/delete.svg"></v-img>
+				</v-btn>
+			</div>
+
+			<div class="btnLern">
+				<v-img src="/images/general/link.svg"></v-img>
+				<span>Learn more about volumes</span>
+			</div>
 		</div>
+		<v-card class="blockBanner">
+			<v-img class="close" src="/images/instances/close.svg"></v-img>
+			<div class="player">
+				<v-img src="/images/instances/play.svg"></v-img>
+			</div>
+			<div class="banner">
+				<v-img class="lineBlock" src="/images/volumes/block.svg"></v-img>
+				<v-img class="whiteBox" src="/images/instances/whiteBox.svg"></v-img>
+			</div>
+			<div class="textBanner">
+				<div class="greyTitle">Video Instruction</div>
+				<div class="request">How create my first an volume?</div>
+			</div>
+		</v-card>
 	</div>
-	<v-card class="blockBanner">
-		<v-img class="close" src="/images/instances/close.svg"></v-img>
-		<div class="player">
-			<v-img src="/images/instances/play.svg"></v-img>
-		</div>
-		<div class="banner">
-			<v-img class="lineBlock" src="/images/instances/blueBlock.svg"></v-img>
-			<v-img class="lineBlock" src="/images/instances/blueBlockEmpty.svg"></v-img>
-			<v-img class="lineBlock" src="/images/instances/blueBlock.svg"></v-img>
-			<v-img class="lineBlock" src="/images/instances/blueShadow.svg"></v-img>
-			<v-img class="whiteBox" src="/images/instances/whiteBox.svg"></v-img>
-		</div>
-		<div class="textBanner">
-			<div class="greyTitle">Video Instruction</div>
-			<div class="request">How create my first an instance?</div>
-		</div>
-	</v-card>
-</div>
 </template>
 
-<script>
-export default {
-
-}
-</script>
-
-<style scoped>
+<style>
+	.listBtn{
+		display: flex;
+		margin-bottom: 10px;
+	}
 	.infoCreateInstance{
 		display: flex;
 		width: 100%;
@@ -86,25 +87,12 @@ export default {
 		width: 192px;
 	}
 	.lineBlock{
-		height: 90px;
+		height: 180px;
+		bottom: 75px;
 		right: 9px;
 		z-index: 1;
 		position: absolute;
 		width: 221px;
-	}
-	.lineBlock:first-child{
-		bottom: 75px
-	}
-	.lineBlock:nth-child(2){
-		bottom: 100px;
-	}
-	.lineBlock:nth-child(3){
-		bottom: 125px;
-	}
-	.lineBlock:nth-child(4){
-		width: 53px;
-		right: 96px;
-		top: -14px;
 	}
 	.textBanner{
 		z-index: 2;

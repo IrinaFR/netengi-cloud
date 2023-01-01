@@ -1,21 +1,20 @@
 <template>
-
 	<v-navigation-drawer
 		v-model="drawer"
 		:rail="rail"
 		permanent
 		:touchless="true"
-		:floating="false"
+		floating
 		class="bg-grey-100"
 		width="280"
 	>
-		<div class="listItemLogo d-flex">
+		<v-card variant="flat" to="/" class="listItemLogo d-flex bg-grey-100">
 			<v-img src="/images/logo.svg" class="logoMain"></v-img>
 			<v-img src="/images/netengi.svg" class="logoText" nav></v-img>
-		</div>
+		</v-card>
 		<v-list density="compact" nav v-for="(block, index) in menu" :key="index">
 			<v-list-subheader :title="block.title" v-if="block.title&&!rail"></v-list-subheader>
-			<v-divider color="grey-400" length="12" class="w-100 mt-4" v-else-if="block.title&&rail"/>
+			<v-list-subheader class="text-center w-100 px-0" v-else-if="block.title&&rail">—</v-list-subheader>
 			<v-menu
 				:close-on-content-click="false"
 				location="end"
@@ -35,8 +34,8 @@
 						<template v-slot:prepend>
 							<img :src="`/images/menu/${link.icon}.svg`" :alt="link.title" class="me-2 menuLinkIcon">
 						</template>
-						<template v-slot:append v-if="link.links">
-							<img :src="`/images/menu/right.svg`">
+						<template v-slot:append v-if="link.links&&!rail">
+							<img :src="`/images/arrows/right.svg`">
 						</template>
 					</v-list-item>
 				</template>
@@ -105,7 +104,7 @@ export default {
 				{
 					title: 'Network',
 					links: [
-						{ title: 'Networks', icon: 'network', url: '/network'},
+						{ title: 'Networks', icon: 'network', url: '/networks'},
 						{ title: 'Subnet pools', icon: 'home', url: '/subnet'},
 						{ title: 'Ports', icon: 'home', url: '/ports'},
 						{ title: 'Routers', icon: 'home', url: '/routes'},
@@ -123,11 +122,32 @@ export default {
 				}
 			],
 		}
+	},
+	methods: {
+		changeMenu(){
+			this.localRail = !this.localRail
+			this.$emit('change', this.localRail)
+			localStorage.setItem('rail', this.localRail)
+		},
 	}
 }
 </script>
 
 <style>
+.btnClose{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	border: 1px solid rgb(var(--v-theme-grey-300));;
+	background: rgb(var(--v-theme-background));
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+.btnClose img{
+	width: 10px;
+}
 .listItemLogo{
 	margin: 30px 0 40px ;
 	height: 27px;

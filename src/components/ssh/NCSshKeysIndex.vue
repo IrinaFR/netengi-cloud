@@ -1,7 +1,7 @@
 <template>
-	<div class="mainPage" v-if="$route.name==='volumes'">
+	<div class="mainPage" v-if="$route.name==='sshKeys'">
 		<div class="titleWithBtn">
-			<h1 class="pageTitle">Volumes</h1>
+			<h1 class="pageTitle">SSH Keys</h1>
 			<div class="btnHide" @click="hideQuotas=!hideQuotas">
 				<v-img src="/images/instances/hide-quotas.svg"></v-img>
 				{{hideQuotas ? 'show' : 'hide'}} quotas
@@ -10,8 +10,15 @@
 		<div :class="['blockQuotas', {hide:hideQuotas}]">
 			<NCAdditionalQuotas/>
 		</div>
-		<NCVolumesTable v-if="showTable"/>
-		<NCVolumesNone v-else/>
+		<div class="listBtn">
+			<v-btn density="default" to="/ssh-keys/create" variant="tonal">Create SSH Key</v-btn>
+			<v-btn density="default" variant="outlined">
+				<v-img src="/images/general/import.svg"></v-img>
+				<span>Import</span>
+			</v-btn>
+		</div>
+		<NCSshKeysTable v-if="showTable"/>
+		<NCSshKeysNone v-else/>
 		<br>
 		<button @click="showTable=!showTable">Сменить дизайн</button>
 	</div>
@@ -20,8 +27,8 @@
 
 <script>
 	import NCAdditionalQuotas from '@/components/additional/NCAdditionalQuotas'
-	import NCVolumesNone from '@/components/volumes/NCVolumesNone';
-	import NCVolumesTable from '@/components/volumes/NCVolumesTable';
+	import NCSshKeysNone from '@/components/ssh/NCSshKeysNone';
+	import NCSshKeysTable from '@/components/ssh/NCSshKeysTable';
 	export default {
 		data(){
 			return{
@@ -30,7 +37,7 @@
 			}
 		},
 		components: {
-			NCAdditionalQuotas, NCVolumesNone, NCVolumesTable
+			NCAdditionalQuotas, NCSshKeysNone, NCSshKeysTable
 		}
 	}
 </script>
@@ -44,6 +51,10 @@
 	}
 	.blockQuotas.hide{
 		height: 0;
+	}
+	.listBtn{
+		display: flex;
+		margin-bottom: 10px;
 	}
 	.titleWithBtn{
 		display: flex;

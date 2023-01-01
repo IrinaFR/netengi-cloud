@@ -1,37 +1,46 @@
 <template>
-<div class="container">
-	<div class="titleWithBtn">
-		<h1>Instances</h1>
-		<div class="btnHide">
-			<v-img src="/images/instances/hide-quotas.svg"></v-img>
-			hide quotas
+	<div class="mainPage" v-if="$route.name==='instances'">
+		<div class="titleWithBtn">
+			<h1 class="pageTitle">Instances</h1>
+			<div class="btnHide" @click="hideQuotas=!hideQuotas">
+				<v-img src="/images/instances/hide-quotas.svg"></v-img>
+				{{hideQuotas ? 'show' : 'hide'}} quotas
+			</div>
 		</div>
+		<div :class="['blockQuotas', {hide:hideQuotas}]">
+			<NCAdditionalQuotas/>
+		</div>
+		<NCInstancesTable v-if="showTable"/>
+		<NCInstancesNone v-else/>
+		<br>
+		<button @click="showTable=!showTable">Сменить дизайн</button>
 	</div>
-	<NCAdditionalQuotes/>
-	<NCInstancesTable v-if="showTable"/>
-	<NCInstancesNone v-else/>
-	<br>
-	<button @click="showTable=!showTable">Нажать</button>
-</div>
 </template>
 
 <script>
-import NCAdditionalQuotes from '@/components/additional/NCAdditionalQuotas';
+import NCAdditionalQuotas from '@/components/additional/NCAdditionalQuotas';
 import NCInstancesNone from '@/components/instances/NCInstancesNone';
 import NCInstancesTable from '@/components/instances/NCInstancesTable';
 export default {
-	components: {NCAdditionalQuotes,NCInstancesNone,NCInstancesTable},
 	data(){
-		return{
-			showTable:false
+		return {
+			showTable:false,
+			hideQuotas: false
 		}
-	}
+	},
+	components: {NCAdditionalQuotas,NCInstancesNone,NCInstancesTable},
 }
 </script>
 
 <style scoped>
-	.container{
-		padding: 0 24px 0 48px;
+	.blockQuotas{
+		height: 230px;
+		overflow: hidden;
+		margin-bottom: 30px;
+		transition: height .3s ease-out;
+	}
+	.blockQuotas.hide{
+		height: 0;
 	}
 	.titleWithBtn{
 		display: flex;

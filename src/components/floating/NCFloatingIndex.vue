@@ -1,17 +1,10 @@
 <template>
-	<div class="mainPage" v-if="$route.name==='volumes'">
+	<div class="mainPage" v-if="$route.name==='floating'">
 		<div class="titleWithBtn">
-			<h1 class="pageTitle">Volumes</h1>
-			<div class="btnHide" @click="hideQuotas=!hideQuotas">
-				<v-img src="/images/instances/hide-quotas.svg"></v-img>
-				{{hideQuotas ? 'show' : 'hide'}} quotas
-			</div>
+			<h1 class="pageTitle">Floating IPs</h1>
 		</div>
-		<div :class="['blockQuotas', {hide:hideQuotas}]">
-			<NCAdditionalQuotas/>
-		</div>
-		<NCVolumesTable v-if="showTable"/>
-		<NCVolumesNone v-else/>
+		<NCFloatingTable v-if="showTable"/>
+		<NCFloatingNone class="mt-5" v-else/>
 		<br>
 		<button @click="showTable=!showTable">Сменить дизайн</button>
 	</div>
@@ -19,9 +12,8 @@
 </template>
 
 <script>
-	import NCAdditionalQuotas from '@/components/additional/NCAdditionalQuotas'
-	import NCVolumesNone from '@/components/volumes/NCVolumesNone';
-	import NCVolumesTable from '@/components/volumes/NCVolumesTable';
+	import NCFloatingNone from '@/components/floating/NCFloatingNone';
+	import NCFloatingTable from '@/components/floating/NCFloatingTable';
 	export default {
 		data(){
 			return{
@@ -30,7 +22,7 @@
 			}
 		},
 		components: {
-			NCAdditionalQuotas, NCVolumesNone, NCVolumesTable
+			NCFloatingNone, NCFloatingTable
 		}
 	}
 </script>

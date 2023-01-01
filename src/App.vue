@@ -18,7 +18,7 @@ export default {
 	data(){
 		return {
 			theme: 'light',
-			rail: true,
+			rail: false,
 
 			friends: ['Sandra Adams', 'Britta Holt'],
 			isUpdating: false,

@@ -1,7 +1,7 @@
 <template>
-	<div class="mainPage" v-if="$route.name==='volumes'">
+	<div class="mainPage" v-if="$route.name==='ports'">
 		<div class="titleWithBtn">
-			<h1 class="pageTitle">Volumes</h1>
+			<h1 class="pageTitle">Ports</h1>
 			<div class="btnHide" @click="hideQuotas=!hideQuotas">
 				<v-img src="/images/instances/hide-quotas.svg"></v-img>
 				{{hideQuotas ? 'show' : 'hide'}} quotas
@@ -10,8 +10,8 @@
 		<div :class="['blockQuotas', {hide:hideQuotas}]">
 			<NCAdditionalQuotas/>
 		</div>
-		<NCVolumesTable v-if="showTable"/>
-		<NCVolumesNone v-else/>
+		<NCPortsTable v-if="showTable"/>
+		<NCPortsNone v-else/>
 		<br>
 		<button @click="showTable=!showTable">Сменить дизайн</button>
 	</div>
@@ -20,8 +20,8 @@
 
 <script>
 	import NCAdditionalQuotas from '@/components/additional/NCAdditionalQuotas'
-	import NCVolumesNone from '@/components/volumes/NCVolumesNone';
-	import NCVolumesTable from '@/components/volumes/NCVolumesTable';
+	import NCPortsNone from '@/components/ports/NCPortsNone';
+	import NCPortsTable from '@/components/ports/NCPortsTable';
 	export default {
 		data(){
 			return{
@@ -30,7 +30,7 @@
 			}
 		},
 		components: {
-			NCAdditionalQuotas, NCVolumesNone, NCVolumesTable
+			NCAdditionalQuotas, NCPortsNone, NCPortsTable
 		}
 	}
 </script>
