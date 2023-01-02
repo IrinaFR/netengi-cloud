@@ -38,12 +38,29 @@ const routes = [
 				component: () => import('../components/volumes/NCVolumesCreate'),
 				name: 'createVolumes'
 			},
+			{
+				path: ':id',
+				component: () => import('../components/volumes/NCVolumesPage'),
+				name: 'volumesPage'
+			},
 		]
 	},
 	{
 		path: '/images',
 		component: () => import('../components/images/NCImagesIndex'),
-		name: 'images'
+		name: 'images',
+		children: [
+			{
+				path: 'create',
+				component: () => import('../components/images/NCImagesCreate'),
+				name: 'createImages'
+			},
+			{
+				path: ':id',
+				component: () => import('../components/images/NCImagesPage'),
+				name: 'imagesPage'
+			},
+		]
 	},
 	{
 		path: '/ports',

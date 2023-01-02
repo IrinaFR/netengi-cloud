@@ -9,10 +9,10 @@
 			color="grey-800"
 			focused
 			:hide-details="true"
+			hide-selected
 			placeholder="Products, services, docs"
 		>
 			<template v-slot:prepend-inner>
-				<!--				<v-icon icon="fa-solid fa-magnifying-glass"></v-icon>-->
 				<img src="/images/app_bar/search.svg" class="me-2">
 				<span class="searchPrepend">Search</span>
 			</template>
@@ -129,5 +129,8 @@
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
+	}
+	.search .v-field__append-inner{
+		display: none;
 	}
 </style>

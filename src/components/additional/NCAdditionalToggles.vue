@@ -1,16 +1,16 @@
 <template>
-	<div>
-		<v-btn-toggle
-			v-model="source"
-			rounded="2"
-			color="activeToggle"
-			group
-			:multiple="multiple"
-			selected-class="activeToggle"
-			mandatory
-		>
-			<v-btn v-for="(item, idx) in localItems" :key="idx" density="compact" variant="flat" active :value="item[value]">{{item[label]}}</v-btn>
-		</v-btn-toggle>
+	<div class="listToggles">
+		<div class="btnToggle" v-for="(item, idx) in items" :key="item">
+			<input
+				v-model="select"
+				:id="`itemToggle-${count}${idx}`"
+				:name="`itemToggle${count}`"
+				:type="multiple ? 'checkbox' : 'radio'"
+				class="d-none btnToggleInput"
+				:value="item[value]"
+				@change="$emit('update:modelValue', select)">
+			<label :for="`itemToggle-${count}${idx}`" class="btnToggleName">{{item[label]}}</label>
+		</div>
 	</div>
 </template>
 
@@ -18,7 +18,7 @@
 	export default {
 		emits: ['update:modelValue'],
 		props: {
-			modelValue: [Number, String],
+			modelValue: [Number, String, Array],
 			items: Array,
 			multiple: {
 				type: Boolean,
@@ -26,38 +26,51 @@
 			},
 			label: String,
 			value: String,
+			count: {
+				type: String,
+				default: ''
+			},
 		},
 		data() {
 			return{
-				localItems: this.$props.items,
-				source: ''
+				select: '',
 			}
 		},
+		created() {
+			if (this.multiple){
+				this.select = [this.items[0][this.value]]
+			} else this.select = this.items[0][this.value]
+			this.$emit('update:modelValue', this.select)
+		}
 	}
 </script>
 
 <style scoped>
-	.v-btn-group--density-default.v-btn-group{
-		height: 40px;
+	.listToggles{
+		display: flex;
+		align-items: center;
+		width: fit-content;
+		background: rgb(var(--v-theme-grey-300));
 		padding: 2px;
-		margin: 5px 0;
-		background: rgb(var(--v-theme-grey-300));
+		border-radius: 4px;
+		column-gap: 4px;
+		height: 40px;
 	}
-	/*.v-btn__overlay{*/
-	/*	opacity: 0;*/
-	/*}*/
-	.v-btn-group .v-btn{
-		text-transform: none;
-		padding: 0 30px;
-		background: rgb(var(--v-theme-grey-300));
+	.btnToggleName{
+		padding: 8px 23px;
+		border-radius: 4px;
+		background: none;
+		color: rgb(var(--v-theme-grey-800));
+		font-weight: 400;
+		cursor: pointer;
+		transition: background .15s ease-out;
 	}
-	.v-btn-group .v-btn .v-btn__overlay{
-		display: none !important;
+	.btnToggleName:hover{
+		color:  rgb(var(--v-theme-grey-900));
 	}
-	.v-btn-group .v-btn.activeToggle{
-		background: rgb(var(--v-theme-background)) ;
+	.btnToggleInput:checked ~ .btnToggleName{
+		background: rgb(var(--v-theme-background));
 		color:  rgb(var(--v-theme-primary-600));
 		box-shadow: var(--shadow-for-blocks);
-		border-radius: 4px;
 	}
 </style>

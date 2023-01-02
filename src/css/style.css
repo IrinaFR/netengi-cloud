@@ -5,7 +5,8 @@
 body{
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;;
+    font-family: 'Inter', sans-serif;
+    color: rgb(var(--v-theme-grey-900));
 }
 
 a{
@@ -29,12 +30,17 @@ a.v-btn.v-btn--variant-tonal{
 }
 button.v-btn--variant-outlined,
 a.v-btn--variant-outlined{
+    background: rgb(var(--v-theme-background));
     min-width: 40px;
     height: 40px !important;
     border: 1px solid #DBDBDB;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
+    text-transform: none;
     box-sizing: border-box;
+}
+.v-btn--active > .v-btn__overlay{
+    opacity: 0 !important;
 }
 .form-group{
     margin-bottom: 5px;
@@ -51,20 +57,29 @@ a.v-btn--variant-outlined{
 .smallText-15{
     font-size: 15px;
 }
+.color-grey-600{
+    color: rgb(var(--v-theme-grey-600));
+}
+.color-grey-700{
+    color: rgb(var(--v-theme-grey-700));
+}
+.color-primary-600{
+    color: rgb(var(--v-theme-primary-600));
+}
 h1{
-    font-weight: 500;
+    font-weight: 700;
     font-size: 26px;
     line-height: 31px;
     color: rgb(var(--v-theme-grey-900));
 }
 h2{
-    font-weight: 500;
+    font-weight: 700;
     font-size: 20px;
     line-height: 24px;
     color: rgb(var(--v-theme-grey-900));
 }
 h3{
-    font-weight: 500;
+    font-weight: 700;
     font-size: 18px;
     line-height: 24px;
     color: rgb(var(--v-theme-grey-900));
@@ -77,6 +92,9 @@ label{
 }
 .v-list-subheader .v-list-subheader__text{
     text-transform: uppercase;
+}
+ul.v-pagination__list{
+    justify-content: end;
 }
 .cursor-pointer{
     cursor: pointer;
@@ -99,7 +117,9 @@ label{
 .mainPage{
     padding: 10px 30px;
 }
-
+.container{
+    padding: 0 30px;
+}
 .form-select{
     margin: 0 7px;
     padding: 2px 20px 2px 6px;
@@ -112,7 +132,19 @@ label{
     background-size: 16px 12px;
 }
 
-
+/*link back page*/
+.backPage{
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    color: rgb(var(--v-theme-primary-600));
+}
+.backPageIcon{
+    width: 16px;
+    margin-right: 10px;
+}
+/*checkbox*/
 .form-check-input{
     width: 16px;
     height: 16px;
@@ -138,7 +170,14 @@ label{
     border: none;
 }
 
+/*tables*/
+.instanceRunning{
+    font-weight: 700;
+    color: rgb(var(--v-theme-success));
+    font-size: 15px;
+}
 
+/*scroll*/
 * {
     scrollbar-width: thin;
     scrollbar-color: blue #4671F6;
@@ -155,4 +194,12 @@ label{
 *::-webkit-scrollbar-thumb {
     background-color: #4671F6;
     border-radius: 20px;
+}
+
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .3s ease-in-out;
+}
+.fade-enter-from, .fade-leave-to{
+    opacity: 0;
 }

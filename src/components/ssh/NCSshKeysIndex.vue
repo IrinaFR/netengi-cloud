@@ -16,6 +16,9 @@
 				<v-img src="/images/general/import.svg"></v-img>
 				<span>Import</span>
 			</v-btn>
+			<v-btn density="default" variant="outlined">
+				<v-img src="/images/general/delete.svg"></v-img>
+			</v-btn>
 		</div>
 		<NCSshKeysTable v-if="showTable"/>
 		<NCSshKeysNone v-else/>
