@@ -7,7 +7,7 @@
 		<div class="pageTitle my-4">Create a new Image</div>
 		<v-form class="mt-10">
 			<div class="form-group">
-				<label for="">Name Volume</label>
+				<label for="">Name Image</label>
 				<v-text-field density="compact" hide-details class="input" variant="outlined"/>
 			</div>
 			<div class="form-group">
@@ -74,7 +74,7 @@
 					<div class="d-flex justify-space-between">
 						<img src="/images/index/document.svg" class="me-2">
 						<div class="loadedFileName flex-grow-1">
-							<div class="small-text-14">28-10-2022-sshkey-for-project.ssh</div>
+							<b class="small-text-14">28-10-2022-sshkey-for-project.ssh</b>
 							<div class="small-text-12 color-grey-600">140.2 KB</div>
 						</div>
 						<img src="/images/general/close.svg" class="removeLoaded" @click="files.splice(idx, 1)">
@@ -151,8 +151,8 @@
 		</transition>
 
 		<div class="mt-7">
-			<v-btn density="default" to="/volumes/create" variant="tonal">Create</v-btn>
-			<v-btn density="default" class="ms-3" variant="outlined" to="/volumes/create">Cancel</v-btn>
+			<v-btn density="default" variant="tonal">Create</v-btn>
+			<v-btn density="default" class="ms-3" variant="outlined" to="/images">Cancel</v-btn>
 		</div>
 	</div>
 </template>
@@ -199,12 +199,6 @@ export default {
 </script>
 
 <style scoped>
-.input{
-	width: 360px;
-}
-.form-group{
-	margin-bottom: 15px;
-}
 .imageLoadFile{
 	padding: 20px 10px;
 	max-width: 50%;

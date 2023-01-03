@@ -65,22 +65,65 @@ const routes = [
 	{
 		path: '/ports',
 		component: () => import('../components/ports/NCPortsIndex'),
-		name: 'ports'
+		name: 'ports',
+		children: [
+			{
+				path: 'create',
+				component: () => import('../components/ports/NCPortsCreate'),
+				name: 'createPort'
+			},
+			{
+				path: ':id',
+				component: () => import('../components/ports/NCPortsPage'),
+				name: 'pagePort'
+			},
+		]
 	},
 	{
 		path: '/ssh-keys',
 		component: () => import('../components/ssh/NCSshKeysIndex'),
-		name: 'sshKeys'
+		name: 'sshKeys',
+		children: [
+			{
+				path: 'create',
+				component: () => import('../components/ssh/NCSshCreate'),
+				name: 'createSSH'
+			},
+			{
+				path: 'import',
+				component: () => import('../components/ssh/NCSshImport'),
+				name: 'importSSH'
+			},
+			{
+				path: ':id',
+				component: () => import('../components/ssh/NCSshPage'),
+				name: 'sshPage'
+			},
+		]
 	},
 	{
 		path: '/networks',
 		component: () => import('../components/networks/NCNetworksIndex'),
-		name: 'networks'
+		name: 'networks',
+		children: [
+			{
+				path: ':id',
+				component: () => import('../components/networks/NCNetworksPage'),
+				name: 'pageNetworks'
+			},
+		]
 	},
 	{
 		path: '/floating',
 		component: () => import('../components/floating/NCFloatingIndex'),
-		name: 'floating'
+		name: 'floating',
+		children: [
+			{
+				path: 'create',
+				component: () => import('../components/floating/NCFloatingCreate'),
+				name: 'createFloatingIP'
+			},
+		]
 	},
 	{
 		path: '/security',

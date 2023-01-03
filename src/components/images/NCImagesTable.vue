@@ -81,7 +81,7 @@
 			<v-pagination
 				density="comfortable"
 				v-model="page"
-				:length="15"
+				:length="Math.ceil(table.length / sizeList)"
 				active-color="primary-600"
 			></v-pagination>
 		</div>
@@ -123,9 +123,6 @@ export default {
 .tableMain{
 	border-radius: 4px;
 	border: solid 1px rgb(var(--v-theme-grey-300));
-}
-.tableCheck{
-	width: fit-content;
 }
 .tableName{
 	overflow: hidden;

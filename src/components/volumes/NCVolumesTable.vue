@@ -1,10 +1,4 @@
 <template>
-	<div class="listBtn">
-		<v-btn density="default" variant="tonal">Create Instance</v-btn>
-		<v-btn density="default" variant="outlined">
-			<v-img src="/images/instances/delete.svg"></v-img>
-		</v-btn>
-	</div>
 	<v-table density="compact" class="tableMain">
 		<thead class="bg-grey-200">
 		<tr>
@@ -63,7 +57,7 @@
 			<v-pagination
 				density="comfortable"
 				v-model="page"
-				:length="15"
+				:length="Math.ceil(table.length / sizeList)"
 				active-color="primary-600"
 			></v-pagination>
 		</div>
@@ -72,18 +66,16 @@
 
 <script>
 export default {
-	name: "NCInstancesTable",
+	props: {
+		table: {
+			type: Array,
+			default(){
+				return []
+			}
+		}
+	},
 	data(){
 		return{
-			table: [
-				{id: 1, check: false, name: 'netengi-instance-1', zone: 'nova', size: '1GB', region: {country: 'ua', name: 'ua-central-1'}},
-				{id: 2, check: false, name: 'netengi-instance-2', zone: 'nova', size: '4GB', region: {country: 'ua', name: 'ua-central-1'}},
-				{id: 3, check: false, name: 'netengi-instance-3', zone: 'nova', size: '1GB', region: {country: 'ua', name: 'ua-central-1'}},
-				{id: 4, check: false, name: 'netengi-instance-4', zone: 'nova', size: '8GB', region: {country: 'ua', name: 'ua-central-1'}},
-				{id: 5, check: false, name: 'netengi-instance-5', zone: 'nova', size: '8GB', region: {country: 'ua', name: 'ua-central-1'}},
-				{id: 6, check: false, name: 'netengi-instance-6', zone: 'nova', size: '4GB', region: {country: 'ua', name: 'ua-central-1'}},
-				{id: 7, check: false, name: 'netengi-instance-7', zone: 'nova', size: '1GB', region: {country: 'ua', name: 'ua-central-1'}}
-			],
 			sizeList: 10,
 			page: 1,
 		}
@@ -105,9 +97,6 @@ export default {
 .tableMain{
 	border-radius: 4px;
 	border: solid 1px rgb(var(--v-theme-grey-300));
-}
-.tableCheck{
-	width: fit-content;
 }
 .tableName{
 	overflow: hidden;

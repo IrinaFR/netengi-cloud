@@ -2,13 +2,6 @@
 	<div class="infoCreateInstance">
 		<div class="blockWithBtn">
 			<div class="title">You have no volumes right now.</div>
-			<div class="listBtn">
-				<v-btn density="default" to="/volumes/create" variant="tonal">Create Volumes</v-btn>
-				<v-btn density="default" variant="outlined">
-					<v-img src="/images/general/delete.svg"></v-img>
-				</v-btn>
-			</div>
-
 			<div class="btnLern">
 				<v-img src="/images/general/link.svg"></v-img>
 				<span>Learn more about volumes</span>

@@ -71,8 +71,8 @@
 				</v-card>
 			</div>
 			<div class="mt-7">
-				<v-btn density="default" to="/volumes/create" variant="tonal">Create</v-btn>
-				<v-btn density="default" class="ms-3" variant="outlined" to="/volumes/create">Cancel</v-btn>
+				<v-btn density="default" variant="tonal">Create</v-btn>
+				<v-btn density="default" class="ms-3" variant="outlined" to="/volumes">Cancel</v-btn>
 			</div>
 		</v-form>
 	</div>

@@ -12,15 +12,15 @@
 		</div>
 		<div class="listBtn">
 			<v-btn density="default" to="/ssh-keys/create" variant="tonal">Create SSH Key</v-btn>
-			<v-btn density="default" variant="outlined">
+			<v-btn density="default" to="/ssh-keys/import" variant="outlined">
 				<v-img src="/images/general/import.svg"></v-img>
 				<span>Import</span>
 			</v-btn>
-			<v-btn density="default" variant="outlined">
+			<v-btn density="default" variant="outlined" v-if="table.length">
 				<v-img src="/images/general/delete.svg"></v-img>
 			</v-btn>
 		</div>
-		<NCSshKeysTable v-if="showTable"/>
+		<NCSshKeysTable v-if="showTable" :table="table"/>
 		<NCSshKeysNone v-else/>
 		<br>
 		<button @click="showTable=!showTable">Сменить дизайн</button>
@@ -36,7 +36,16 @@
 		data(){
 			return{
 				showTable:false,
-				hideQuotas: false
+				hideQuotas: false,
+				table: [
+					{id: 1, check: false, name: 'netengi-sshkey-1'},
+					{id: 2, check: false, name: 'netengi-sshkey-2'},
+					{id: 3, check: false, name: 'netengi-sshkey-3'},
+					{id: 4, check: false, name: 'netengi-sshkey-4'},
+					{id: 5, check: false, name: 'netengi-sshkey-5'},
+					{id: 6, check: false, name: 'netengi-sshkey-6'},
+					{id: 7, check: false, name: 'netengi-sshkey-7'}
+				],
 			}
 		},
 		components: {

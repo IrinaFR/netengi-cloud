@@ -43,7 +43,10 @@ a.v-btn--variant-outlined{
     opacity: 0 !important;
 }
 .form-group{
-    margin-bottom: 5px;
+    margin-bottom: 15px;
+}
+.input{
+    width: 360px;
 }
 .smallText-12{
     font-size: 12px;
@@ -120,6 +123,9 @@ ul.v-pagination__list{
 .container{
     padding: 0 30px;
 }
+.gap-15{
+    gap: 15px;
+}
 .form-select{
     margin: 0 7px;
     padding: 2px 20px 2px 6px;
@@ -148,7 +154,6 @@ ul.v-pagination__list{
 .form-check-input{
     width: 16px;
     height: 16px;
-    margin-top: 0.25em;
     vertical-align: top;
     background-color: #fff;
     background-repeat: no-repeat;
@@ -171,12 +176,39 @@ ul.v-pagination__list{
 }
 
 /*tables*/
+.tableCheck{
+    width: 50px;
+}
 .instanceRunning{
     font-weight: 700;
     color: rgb(var(--v-theme-success));
     font-size: 15px;
 }
 
+/*blockInfo*/
+.infoCard{
+    background: rgb(var(--v-theme-grey-100));
+    width: 250px;
+    height: fit-content;
+    margin-bottom: 20px;
+}
+.iconInfoCard{
+    border-radius: 4px;
+    background: rgb(var(--v-theme-background));
+    width: 20px;
+    height: 20px;
+    box-shadow: var(--shadow-for-blocks);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*.iconCountry{*/
+/*    width: 16px;*/
+/*    height: 16px;*/
+/*    min-width: 16px !important;*/
+/*}*/
 /*scroll*/
 * {
     scrollbar-width: thin;

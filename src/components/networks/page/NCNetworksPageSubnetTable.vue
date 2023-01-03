@@ -8,6 +8,15 @@
 			<th class="text-left">Name
 				<img src="/images/arrows/down.svg" class="ms-1">
 			</th>
+			<th class="text-left">Network Address
+				<img src="/images/arrows/down.svg" class="ms-1">
+			</th>
+			<th class="text-left">IP Version
+				<img src="/images/arrows/down.svg" class="ms-1">
+			</th>
+			<th class="text-left">Gateway IP
+				<img src="/images/arrows/down.svg" class="ms-1">
+			</th>
 			<th class="text-left"></th>
 		</tr>
 		</thead>
@@ -20,8 +29,11 @@
 				<input type="checkbox" v-model="item.check" class="form-check-input">
 			</td>
 			<td class="tableName">
-				<router-link :to="`/ssh-keys/${item.id}`">{{ item.name }}</router-link>
+				<router-link :to="`/volumes/${item.id}`">{{ item.name }}</router-link>
 			</td>
+			<td>{{item.address}}</td>
+			<td>{{item.ipVersion}}</td>
+			<td>{{item.gateway}}</td>
 			<td class="text-end cursor-pointer"><img src="/images/table/more.svg"></td>
 		</tr>
 		</tbody>
@@ -31,6 +43,7 @@
 			<span>Show items</span>
 			<select name="tableListInstance" class="tableSizeList form-select" v-model="sizeList" id="tableListInstance">
 				<option value="10">10</option>
+				<option value="5">5</option>
 				<option value="30">30</option>
 				<option value="50">50</option>
 			</select>
@@ -38,6 +51,7 @@
 		</div>
 		<div class="tablePage">
 			<v-pagination
+				class="justify-end"
 				density="comfortable"
 				v-model="page"
 				:length="Math.ceil(table.length / sizeList)"
@@ -49,16 +63,12 @@
 
 <script>
 export default {
-	props: {
-		table: {
-			type: Array,
-			default(){
-				return []
-			}
-		}
-	},
 	data(){
 		return{
+			table: [
+				{id: 0, check: false, name: 'net-subnet1', address: '95.163.248.0/22', ipVersion: '4', gateway: '2.59.220.1'},
+				{id: 0, check: false, name: 'net-subnet20', address: '37.139.40.0/22', ipVersion: '4', gateway: '213.219.215.254'},
+			],
 			sizeList: 10,
 			page: 1,
 		}
@@ -85,23 +95,13 @@ export default {
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-	max-width: 100%;
+	max-width: 230px;
 }
 tr:not(:last-child){
 	border-bottom: solid 1px rgb(var(--v-theme-grey-300));
 }
 tr:nth-child(2n){
 	background: rgb(var(--v-theme-grey-100));
-}
-.instanceRunning{
-	font-weight: 700;
-	color: rgb(var(--v-theme-success));
-	font-size: 15px;
-}
-.instancePause{
-	font-weight: 700;
-	color: #D69F12;
-	font-size: 15px;
 }
 .settingTable{
 	display: flex;

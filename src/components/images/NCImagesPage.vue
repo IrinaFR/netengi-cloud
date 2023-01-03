@@ -22,10 +22,10 @@
 				</v-btn>
 			</div>
 		</div>
-		<span class="instanceRunning d-block mb-4">
+		<div class="instanceRunning mb-4">
 			<img src="/images/table/running.svg" class="me-2">
 			Running
-		</span>
+		</div>
 		<div class="listInfoMain">
 			<v-card variant="flat" class="overviewTab">
 				<h3>Image Specifications</h3>
@@ -175,7 +175,7 @@ export default {
 .overviewList li{
 	margin: 6px 0;
 }
-.overviewList li :first-child{
+.overviewList li span:first-child{
 	min-width: 200px;
 }
 .iconCollapse{

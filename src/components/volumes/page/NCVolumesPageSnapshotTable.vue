@@ -92,9 +92,6 @@ export default {
 	border-radius: 4px;
 	border: solid 1px rgb(var(--v-theme-grey-300));
 }
-.tableCheck{
-	width: fit-content;
-}
 .tableName{
 	overflow: hidden;
 	white-space: nowrap;
