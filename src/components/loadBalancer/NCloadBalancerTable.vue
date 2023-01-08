@@ -2,7 +2,7 @@
 	<div class="listBtn">
 		<v-btn density="default" variant="tonal">Create Instance</v-btn>
 		<v-btn density="default" variant="outlined">
-			<v-img src="/images/instances/delete.svg"></v-img>
+			<v-img src="/images/general/delete.svg"></v-img>
 		</v-btn>
 	</div>
 	<v-table density="compact" class="tableMain">
@@ -90,7 +90,6 @@
 
 <script>
 export default {
-	name: "NCInstancesTable",
 	data(){
 		return{
 			table: [

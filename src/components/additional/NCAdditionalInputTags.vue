@@ -11,7 +11,7 @@
 			<v-list-item density="compact" variant="flat" rounded class="bg-grey-200 py-3 mb-1" v-for="(tag, idx) in tags" :key="idx">
 				<label for="">{{label}}</label>
 				<div class="form-group d-flex">
-					<v-text-field v-model="tags[idx]" density="compact" @change="$emit('update:modelValue', this.tags)" bg-color="background" hide-details class="input mr-1" variant="outlined"/>
+					<v-text-field v-model="tags[idx]" density="compact" @change="$emit('update:modelValue', tags)" bg-color="background" hide-details class="input mr-1" variant="outlined"/>
 					<v-btn density="default" variant="outlined" @click="tags.splice(idx,1)">
 						<v-img src="/images/general/delete.svg"></v-img>
 					</v-btn>

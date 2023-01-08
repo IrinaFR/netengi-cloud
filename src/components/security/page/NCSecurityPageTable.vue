@@ -1,6 +1,6 @@
 <template>
 	<div class="listBtn mt-5">
-		<v-btn density="default" variant="tonal" to="/security/create">Create Security Group</v-btn>
+		<v-btn density="default" variant="tonal" to="/security/create-rules">Create Rule</v-btn>
 		<v-btn density="default" variant="outlined">
 			<v-img src="/images/general/delete.svg"></v-img>
 		</v-btn>
@@ -11,16 +11,19 @@
 			<th class="text-left">
 				<input type="checkbox" class="form-check-input">
 			</th>
-			<th class="text-left">Name
+			<th class="text-left">Direction
 				<img src="/images/arrows/down.svg" class="ms-1">
 			</th>
-			<th class="text-left">Description
+			<th class="text-left">Type
 				<img src="/images/arrows/down.svg" class="ms-1">
 			</th>
-			<th class="text-left">Placement Region
+			<th class="text-left">Protocol
 				<img src="/images/arrows/down.svg" class="ms-1">
 			</th>
-			<th class="text-left">Created at
+			<th class="text-left">Ports
+				<img src="/images/arrows/down.svg" class="ms-1">
+			</th>
+			<th class="text-left">CIDR
 				<img src="/images/arrows/down.svg" class="ms-1">
 			</th>
 			<th class="text-left"></th>
@@ -34,17 +37,11 @@
 			<td class="tableCheck">
 				<input type="checkbox" v-model="item.check" class="form-check-input">
 			</td>
-			<td class="tableName">
-				<router-link :to="`/security/${item.id}`">{{item.name}}</router-link>
-			</td>
-			<td>{{item.description}}</td>
-			<td>
-				<span>
-					<img :src="`/images/flags/${item.region.country}.svg`" class="me-2">
-					{{item.region.name}}
-				</span>
-			</td>
-			<td>{{item.created}}</td>
+			<td class="tableName">{{item.direction}}</td>
+			<td>{{item.type}}</td>
+			<td>{{item.protocol}}</td>
+			<td>{{item.ports}}</td>
+			<td>{{item.cidr}}</td>
 			<td class="text-end cursor-pointer"><img src="/images/table/more.svg"></td>
 		</tr>
 		</tbody>
@@ -76,13 +73,10 @@ export default {
 	data(){
 		return{
 			table: [
-				{id: 1, check: false, name: 'netengi-security-group1', description: '-', created: 'Oct 29, 2022, 9:22:01 PM', region: {country: 'ua', name: 'ua-central-1'}},
-				{id: 2, check: false, name: 'netengi-security-group2', description: '-', created: 'Oct 29, 2022, 9:22:01 PM', region: {country: 'ua', name: 'ua-central-1'}},
-				{id: 3, check: false, name: 'netengi-security-group3', description: '-', created: 'Oct 29, 2022, 9:22:01 PM', region: {country: 'pl', name: 'pl-central-23'}},
-				{id: 4, check: false, name: 'netengi-security-group4', description: '-', created: 'Oct 29, 2022, 9:22:01 PM', region: {country: 'ua', name: 'ua-central-1'}},
-				{id: 5, check: false, name: 'netengi-security-group5', description: '-', created: 'Oct 29, 2022, 9:22:01 PM', region: {country: 'pl', name: 'pl-central-23'}},
-				{id: 6, check: false, name: 'netengi-security-group6', description: '-', created: 'Oct 29, 2022, 9:22:01 PM', region: {country: 'pl', name: 'pl-central-23'}},
-				{id: 7, check: false, name: 'netengi-security-group7', description: '-', created: 'Oct 29, 2022, 9:22:01 PM', region: {country: 'ua', name: 'ua-central-1'}}
+				{id: 1, check: false, direction: 'Egress', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0'},
+				{id: 2, check: false, direction: 'Egress', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0'},
+				{id: 3, check: false, direction: 'Egress', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0'},
+				{id: 4, check: false, direction: 'Egress', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0'},
 			],
 			sizeList: 10,
 			page: 1,

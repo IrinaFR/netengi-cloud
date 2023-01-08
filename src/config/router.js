@@ -107,6 +107,11 @@ const routes = [
 		name: 'networks',
 		children: [
 			{
+				path: 'create',
+				component: () => import('../components/networks/NCNetworksCreate'),
+				name: 'createNetworks'
+			},
+			{
 				path: ':id',
 				component: () => import('../components/networks/NCNetworksPage'),
 				name: 'pageNetworks'
@@ -128,12 +133,36 @@ const routes = [
 	{
 		path: '/security',
 		component: () => import('../components/security/NCSecurityIndex'),
-		name: 'security'
+		name: 'security',
+		children: [
+			{
+				path: 'create',
+				component: () => import('../components/security/NCSecurityCreate'),
+				name: 'createSecurity'
+			},
+			{
+				path: ':id',
+				component: () => import('../components/security/NCSecurityPage'),
+				name: 'pageSecurity'
+			},
+			{
+				path: 'create-rules',
+				component: () => import('../components/security/NCSecurityCreateRules'),
+				name: 'createSecurityRules'
+			},
+		]
 	},
 	{
 		path: '/balancer',
 		component: () => import('../components/loadBalancer/NCloadBalancerIndex'),
-		name: 'balancer'
+		name: 'balancer',
+		children: [
+			{
+				path: 'create',
+				component: () => import('../components/loadBalancer/NCloadBalancerCreate'),
+				name: 'createBalancer'
+			},
+		]
 	},
 
 ]
