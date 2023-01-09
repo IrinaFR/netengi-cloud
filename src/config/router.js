@@ -164,6 +164,42 @@ const routes = [
 			},
 		]
 	},
+	{
+		path: '/account',
+		component: () => import('../components/account/NCAccountIndex'),
+		name: 'account',
+		children: [
+			{
+				path: 'key',
+				component: () => import('../components/account/NCAccountAuthenticator'),
+				name: 'authenticator'
+			},
+		]
+	},
+	{
+		path: '/clients',
+		component: () => import('../components/clients/NCClientsIndex'),
+		name: 'clients',
+		children: [
+			{
+				path: ':id',
+				component: () => import('../components/clients/NCClientsPage'),
+				name: 'pageClients'
+			},
+		]
+	},
+	{
+		path: '/notification',
+		component: () => import('../components/notification/NCNotificationIndex'),
+		name: 'notification',
+		children: [
+			{
+				path: ':id',
+				component: () => import('../components/notification/NCNotificationPage'),
+				name: 'pageClients'
+			},
+		]
+	},
 
 ]
 

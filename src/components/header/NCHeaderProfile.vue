@@ -36,12 +36,12 @@
 			</v-list>
 			<v-divider></v-divider>
 			<v-list density="compact">
-				<v-list-item density="compact" title="Account settings">
+				<v-list-item density="compact" to="/account" title="Account settings">
 					<template v-slot:prepend>
 						<img src="/images/app_bar/profile/settings.svg" class="me-2">
 					</template>
 				</v-list-item>
-				<v-list-item density="compact" title="Clients">
+				<v-list-item density="compact" to="/clients" title="Clients">
 					<template v-slot:prepend>
 						<img src="/images/app_bar/profile/clients.svg" class="me-2">
 					</template>
