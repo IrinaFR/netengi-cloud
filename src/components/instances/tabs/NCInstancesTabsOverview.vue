@@ -72,6 +72,9 @@
 			</ul>
 		</v-card>
 	</div>
+	<v-card variant="flat" class="overviewTab">
+		<h3>Network Details</h3>
+	</v-card>
 </template>
 
 <script>
@@ -83,14 +86,18 @@ export default {
 	.listInfoMain{
 		display: flex;
 		justify-content: space-between;
-		gap: 20px;
+		gap: 10px;
+		margin-bottom: 20px;
 	}
 	.overviewTab{
 		flex: 1;
-		border-radius: 4px;
+		border-radius: 8px;
 		box-shadow: var(--shadow-for-blocks);
 		padding: 16px 20px;
 		border: solid 1px rgb(var(--v-theme-grey-350));
+	}
+	.overviewTab h3{
+		margin-bottom: 10px;
 	}
 	.greyText{
 		color: rgb(var(--v-theme-grey-700));
