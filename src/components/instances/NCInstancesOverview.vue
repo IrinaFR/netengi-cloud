@@ -70,18 +70,23 @@
 			<v-tab value="one">Overview</v-tab>
 			<v-tab value="two">Networking</v-tab>
 			<v-tab value="three">Console</v-tab>
-			<v-tab value="three">System Log</v-tab>
-			<v-tab value="three">Backups</v-tab>
+			<v-tab value="four">System Log</v-tab>
+			<v-tab value="five">Backups</v-tab>
 		</v-tabs>
+		<NCInstancesTabsOverview v-if="tab==='one'"/>
 	</div>
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue'
 export default {
 	data(){
 		return{
 			tab:'one'
 		}
+	},
+	components: {
+		'NCInstancesTabsOverview': defineAsyncComponent(() => import('@/components/instances/tabs/NCInstancesTabsOverview.vue'))
 	}
 }
 </script>
@@ -204,5 +209,8 @@ export default {
 		font-size: 14px;
 		line-height: 20px;
 		color: rgb(var(--v-theme-grey-900));
+	}
+	.v-slide-group{
+		margin-bottom: 20px;
 	}
 </style>
