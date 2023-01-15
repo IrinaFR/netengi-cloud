@@ -75,6 +75,63 @@
 	<v-card variant="flat" class="overviewTab">
 		<h3>Network Details</h3>
 	</v-card>
+	<v-card variant="flat" class="overviewTab additionalMargin">
+		<h3>Volume Details</h3>
+		<v-table class="tableVolume">
+			<thead>
+			<tr>
+				<th>Name</th>
+				<th>Status</th>
+				<th>Size</th>
+				<th>Has Snapshot</th>
+				<th></th>
+			</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<span class="blueText">snapshot1</span>
+					</td>
+					<td>
+						<span :class="true?'instanceRunning':'instancePause'">In Use</span>
+					</td>
+					<td>
+						<span class="boldText">1GB</span>
+					</td>
+					<td>Yes</td>
+					<td>
+						<v-menu>
+							<template v-slot:activator="{ props }">
+								<v-img class="moreRow" src="/images/instances/more.svg" v-bind="props"></v-img>
+							</template>
+							<v-list class="listMenu">
+								<v-list-item>
+									<v-list-item-title class="dropDownItemMenu">
+										<v-img src="/images/instances/menu/edit.svg"/>
+										Edit
+									</v-list-item-title>
+									<v-list-item-title class="dropDownItemMenu">
+										<v-img src="/images/instances/menu/delete.svg"/>
+										Delete
+									</v-list-item-title>
+								</v-list-item>
+							</v-list>
+						</v-menu>
+					</td>
+				</tr>
+			</tbody>
+		</v-table>
+	</v-card>
+	<div class="listInfoMain additionalMargin">
+		<v-card variant="flat" class="overviewTab">
+			<h3>Network Metric</h3>
+
+		</v-card>
+		<v-card variant="flat" class="overviewTab">
+			<h3>CPU Usage</h3>
+
+		</v-card>
+	</div>
 </template>
 
 <script>
@@ -137,5 +194,70 @@ export default {
 		height: 16px;
 		position: absolute;
 		bottom: -3px;
+	}
+	.tableVolume{
+		border: 1px solid #E8E8E8;
+		border-radius: 4px;
+	}
+	.v-table .v-table__wrapper > table > thead > tr:last-child > th{
+		background: rgb(var(--v-theme-grey-200));
+		border-radius: 0;
+		border: none;
+		padding: 0 10px;
+		font-weight: 400;
+		font-size: 12px;
+		line-height: 15px;
+		color: rgb(var(--v-theme-grey-900));
+		height: 34px;
+	}
+	.v-table--density-default > .v-table__wrapper > table > tbody > tr > td, .v-table--density-default > .v-table__wrapper > table > thead > tr > td, .v-table--density-default > .v-table__wrapper > table > tfoot > tr > td{
+		height: 42px;
+	}
+	.moreRow{
+		width: 20px;
+		height: 20px;
+		margin-left: auto;
+		cursor: pointer;
+	}
+	.blueText{
+		font-weight: 400;
+		color: rgb(var(--v-theme-primary-600));
+	}
+	.instanceRunning{
+		font-weight: 500;
+		color: rgb(var(--v-theme-success));
+	}
+	.instancePause{
+		color: #D69F12;
+		font-weight: 500;
+	}
+	.listMenu, .listMenu .v-list-item{
+		padding: 0 !important;
+	}
+	.dropDownItemMenu{
+		display: flex;
+		height: 36px;
+		font-weight: 400;
+		font-size: 15px;
+		color: rgb(var(--v-theme-grey-900));
+		cursor: pointer;
+		width: 150px;
+		line-height: 36px;
+		padding-left: 12px;
+	}
+	.dropDownItemMenu:hover{
+		background: #FCFBFC;
+	}
+	.dropDownItemMenu:active{
+		background: rgb(var(--v-theme-grey-200));
+	}
+	.dropDownItemMenu .v-img{
+		width: 20px;
+		height: 20px;
+		flex: none;
+		margin: auto 8px auto 0;
+	}
+	.additionalMargin{
+		margin: 20px 0;
 	}
 </style>

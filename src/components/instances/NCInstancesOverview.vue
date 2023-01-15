@@ -140,7 +140,7 @@ export default {
 		background: #FCFBFC;
 	}
 	.dropDownItemMenu:active{
-		background: #F7F7F7
+		background: rgb(var(--v-theme-grey-600))
 	}
 	.dropDownItemMenu .v-img{
 		width: 20px;
