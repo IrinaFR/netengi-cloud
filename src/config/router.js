@@ -196,9 +196,21 @@ const routes = [
 			{
 				path: ':id',
 				component: () => import('../components/notification/NCNotificationPage'),
-				name: 'pageClients'
+				name: 'pageNotification'
 			},
 		]
+	},
+	{
+		path: '/kubernetes',
+		component: () => import('../components/kubernetes/NCKubernetesIndex'),
+		name: 'kubernetes',
+		// children: [
+		// 	{
+		// 		path: ':id',
+		// 		component: () => import('../components/notification/NCNotificationPage'),
+		// 		name: 'pageNotification'
+		// 	},
+		// ]
 	},
 
 ]

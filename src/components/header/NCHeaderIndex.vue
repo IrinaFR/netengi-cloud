@@ -16,7 +16,9 @@
 					dot
 					:bordered="true"
 				>
-					<img src="/images/app_bar/notification.svg">
+					<router-link to="/notification">
+						<img src="/images/app_bar/notification.svg">
+					</router-link>
 				</v-badge>
 				<img src="/images/app_bar/help.svg" class="mx-2">
 				<NCHeaderProfile/>

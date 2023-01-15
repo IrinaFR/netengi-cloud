@@ -66,7 +66,7 @@ export default {
 	data(){
 		return{
 			table: [
-				{id: 976466, name: 'Dmitriy Babanov', roles: ['Owner', 'Developer'], create: 'Apr 29, 2022, 4:19:46 PM'},
+				{id: 976465, name: 'Dmitriy Babanov', roles: ['Owner', 'Developer'], create: 'Apr 29, 2022, 4:19:46 PM'},
 				{id: 976466, name: 'Dmitriy Babanov', roles: ['Owner', 'Developer'], create: 'Apr 29, 2022, 4:19:46 PM'},
 			],
 			sizeList: 10,
