@@ -15,6 +15,7 @@
 		<br>
 		<button @click="showTable=!showTable">Сменить дизайн</button>
 	</div>
+	<router-view/>
 </template>
 
 <script>

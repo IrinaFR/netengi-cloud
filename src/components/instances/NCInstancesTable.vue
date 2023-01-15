@@ -41,7 +41,7 @@
 					<input type="checkbox" v-model="item.check" class="form-check-input">
 				</td>
 				<td class="tableName">
-					<router-link :to="`/instance/${item.id}`">{{ item.name }}</router-link>
+					<router-link :to="`/instances/${item.id}`">{{ item.name }}</router-link>
 				</td>
 				<td>
 					<span class="instanceRunning" v-if="item.state===1">

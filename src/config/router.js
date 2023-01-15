@@ -26,7 +26,14 @@ const routes = [
 	{
 		path: '/instances',
 		component: () => import('../components/instances/NCInstancesIndex'),
-		name: 'instances'
+		name: 'instances',
+		children:[
+			{
+				path: ':id',
+				component: () => import('../components/instances/NCInstancesOverview'),
+				name: 'overview'
+			},
+		]
 	},
 	{
 		path: '/volumes',
