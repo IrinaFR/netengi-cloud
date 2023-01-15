@@ -1,64 +1,91 @@
 <template>
 	<div class="listBtn">
-		<v-btn density="default" variant="tonal">Create Instance</v-btn>
+		<v-btn density="default" variant="tonal" to="/kubernetes/create">Create Instance</v-btn>
+		<v-btn density="default" variant="outlined">Get Kubeconfig</v-btn>
 		<v-btn density="default" variant="outlined">
 			<v-img src="/images/general/delete.svg"></v-img>
+		</v-btn>
+		<v-btn density="default" variant="outlined">
+			<v-img src="/images/general/pause.svg"></v-img>
+		</v-btn>
+		<v-btn density="default" variant="outlined">
+			<v-img src="/images/general/playBtn.svg"></v-img>
+		</v-btn>
+		<v-btn density="default" variant="outlined">
+			<v-img src="/images/general/stop.svg"></v-img>
 		</v-btn>
 	</div>
 	<v-table density="compact" class="tableMain">
 		<thead class="bg-grey-200">
-		<tr>
-			<th class="text-left">
-				<input type="checkbox" class="form-check-input">
-			</th>
-			<th class="text-left">Name
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left">Number of nodes
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left">Type
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left">Price
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left"></th>
-		</tr>
+			<tr>
+				<th class="text-left">
+					<input type="checkbox" class="form-check-input">
+				</th>
+				<th class="text-left">Name
+					<img src="/images/arrows/down.svg" class="ms-1">
+				</th>
+				<th class="text-left">Number of nodes
+					<img src="/images/arrows/down.svg" class="ms-1">
+				</th>
+				<th class="text-left">Type
+					<img src="/images/arrows/down.svg" class="ms-1">
+				</th>
+				<th class="text-left">Price
+					<img src="/images/arrows/down.svg" class="ms-1">
+				</th>
+				<th class="text-left"></th>
+			</tr>
 		</thead>
 		<tbody>
-		<tr
-			v-for="item in table"
-			:key="item.id"
-		>
-			<td class="tableCheck">
-				<input type="checkbox" v-model="item.check" class="form-check-input">
-			</td>
-			<td class="tableName">
-				<router-link :to="`/images/${item.id}`">{{ item.name }}</router-link>
-			</td>
-			<td>
-					<span class="instanceRunning" v-if="item.state===1">
-						<img src="/images/table/running.svg" class="me-2">
-						Running
-					</span>
-				<span class="instancePause" v-else>
-						<img src="/images/table/pause.svg" class="me-2">
-						Pause
-					</span>
-
-			</td>
-			<td>{{item.protected}}</td>
-			<td>
-				<span>
-					<img :src="`/images/flags/${item.region.country}.svg`" class="me-2">
-					{{item.region.name}}
-				</span>
-			</td>
-			<td>{{item.create}}</td>
-			<td>{{item.size}}</td>
-			<td class="text-end cursor-pointer"><img src="/images/table/more.svg"></td>
-		</tr>
+			<tr v-for="item in table" :key="item.id">
+				<td class="text-left">
+					<input type="checkbox" class="form-check-input">
+				</td>
+				<td class="text-left">{{item.name}}</td>
+				<td class="text-left">{{item.nodes}}</td>
+				<td class="text-left">{{item.type}}</td>
+				<td class="text-left">
+					{{item.price.price}}
+					<span class="color-grey-700"> / {{item.price.period}}</span>
+				</td>
+				<td class="text-end cursor-pointer">
+					<v-menu
+						:close-on-content-click="false"
+						location="end"
+						open-on-hover
+					>
+						<template v-slot:activator="{ props }">
+							<img src="/images/info.svg" class="me-2" v-bind="props">
+						</template>
+						<v-card class="pa-5 smallText-15">
+							<h3>Options</h3>
+							<ul class="smallText-15 mt-3 overviewList">
+								<li class="d-flex">
+									<span class="color-grey-700">RAM</span>
+									<span>{{item.options.ram}}</span>
+								</li>
+								<li class="d-flex">
+									<span class="color-grey-700">CPU</span>
+									<span>{{item.options.cpu}} vCPU</span>
+								</li>
+								<li class="d-flex">
+									<span class="color-grey-700">Number of Master nodes</span>
+									<span>{{item.options.master_nodes}}</span>
+								</li>
+								<li class="d-flex">
+									<span class="color-grey-700">Number of nodes</span>
+									<span>{{item.options.number_nodes}}</span>
+								</li>
+								<li class="d-flex">
+									<span class="color-grey-700">Placement Region</span>
+									<span>{{item.options.region}}</span>
+								</li>
+							</ul>
+						</v-card>
+					</v-menu>
+					<img src="/images/table/more.svg">
+				</td>
+			</tr>
 		</tbody>
 	</v-table>
 	<div class="settingTable">
@@ -110,7 +137,7 @@ export default {
 					nodes:2,
 					type: 'Netengi-Basic2',
 					price: {price: 163.48, period: 'month' },
-					options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'},
+					options: {ram: '128GB', cpu: 42, master_nodes: 3, number_nodes: 3, region: 'ua-central-2'},
 					clusters: [
 						{id: 3, name: 'cluster1',
 							nodes:2,
@@ -134,6 +161,12 @@ export default {
 </script>
 
 <style>
+.overviewList li{
+	margin: 6px 0;
+}
+.overviewList li span:first-child{
+	min-width: 200px;
+}
 .listBtn{
 	display: flex;
 	margin-bottom: 10px;

@@ -211,13 +211,13 @@ const routes = [
 		path: '/kubernetes',
 		component: () => import('../components/kubernetes/NCKubernetesIndex'),
 		name: 'kubernetes',
-		// children: [
-		// 	{
-		// 		path: ':id',
-		// 		component: () => import('../components/notification/NCNotificationPage'),
-		// 		name: 'pageNotification'
-		// 	},
-		// ]
+		children: [
+			{
+				path: 'create',
+				component: () => import('../components/kubernetes/NCKubernetesCreate'),
+				name: 'createKubernetes'
+			},
+		]
 	},
 
 ]
