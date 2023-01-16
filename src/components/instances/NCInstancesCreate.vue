@@ -17,8 +17,8 @@
 			</div>
 		</div>
 		<suspense>
-			<div class="d-flex justify-space-between">
-				<div class="mt-10">
+			<div class="d-flex gap-30 justify-space-between">
+				<div class="w-100">
 					<keep-alive>
 						<NCInstancesCreateConfigure v-model="configure" v-if="!activeTab" @change="changeTab"/>
 						<NCInstancesCreateNetwork v-else-if="activeTab===1" @change="changeTab"/>

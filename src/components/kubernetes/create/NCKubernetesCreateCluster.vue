@@ -154,7 +154,10 @@
 	import NCKubernetesAdditionalLabelss from "@/components/kubernetes/additional/NCKubernetesAdditionalLabelss";
 	import NCKubernetesAdditionalTaints from "@/components/kubernetes/additional/NCKubernetesAdditionalTaints";
 	export default {
-		emits: ['change'],
+		emits: ['change', 'update:modelValue'],
+		props: {
+			modelValue: Object
+		},
 		data(){
 			return{
 				formatDisk: '',

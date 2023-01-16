@@ -11,7 +11,7 @@
 	<v-card class="blockBanner">
 		<v-img class="close" src="/images/instances/close.svg"></v-img>
 		<div class="player">
-			<v-img src="/images/instances/play.svg"></v-img>
+			<v-img src="/images/general/play.svg"></v-img>
 		</div>
 		<div class="banner">
 			<v-img class="lineBlock" src="/images/instances/blueBlock.svg"></v-img>

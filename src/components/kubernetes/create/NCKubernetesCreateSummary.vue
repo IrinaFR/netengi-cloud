@@ -220,7 +220,10 @@
 
 <script>
 export default {
-	emits: ['change'],
+	emits: ['change', 'update:modelValue'],
+	props: {
+		modelValue: Object
+	},
 }
 </script>
 
