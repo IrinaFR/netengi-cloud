@@ -74,6 +74,7 @@
 			<v-tab value="five">Backups</v-tab>
 		</v-tabs>
 		<NCInstancesTabsOverview v-if="tab==='one'"/>
+		<NCInstancesTabsNetworking v-if="tab==='two'"/>
 	</div>
 </template>
 
@@ -86,7 +87,8 @@ export default {
 		}
 	},
 	components: {
-		'NCInstancesTabsOverview': defineAsyncComponent(() => import('@/components/instances/tabs/NCInstancesTabsOverview.vue'))
+		'NCInstancesTabsOverview': defineAsyncComponent(() => import('@/components/instances/tabs/NCInstancesTabsOverview.vue')),
+		'NCInstancesTabsNetworking': defineAsyncComponent(() => import('@/components/instances/tabs/NCInstancesTabsNetworking.vue'))
 	}
 }
 </script>
