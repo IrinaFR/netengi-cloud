@@ -10,16 +10,7 @@
 		<template v-slot:append>
 			<div class="d-flex justify-lg-space-between align-center">
 				<img src="/images/app_bar/terminal.svg" class="mx-2">
-				<v-badge
-					class="mx-2"
-					color="error"
-					dot
-					:bordered="true"
-				>
-					<router-link to="/notification">
-						<img src="/images/app_bar/notification.svg">
-					</router-link>
-				</v-badge>
+				<NCHeaderNotification/>
 				<img src="/images/app_bar/help.svg" class="mx-2">
 				<NCHeaderProfile/>
 			</div>
@@ -30,6 +21,7 @@
 
 <script>
 import NCHeaderSearch from '@/components/header/NCHeaderSearch'
+import NCHeaderNotification from '@/components/header/NCHeaderNotification'
 import NCHeaderProfile from '@/components/header/NCHeaderProfile'
 export default {
 	emits: ['change'],
@@ -41,7 +33,7 @@ export default {
 		}
 	},
 	components: {
-		NCHeaderSearch, NCHeaderProfile
+		NCHeaderSearch, NCHeaderProfile, NCHeaderNotification
 	},
 	methods: {
 		changeMenu(){
