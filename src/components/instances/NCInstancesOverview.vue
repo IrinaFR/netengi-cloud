@@ -75,6 +75,8 @@
 		</v-tabs>
 		<NCInstancesTabsOverview v-if="tab==='one'"/>
 		<NCInstancesTabsNetworking v-if="tab==='two'"/>
+		<NCInstancesTabsConsole v-if="tab==='three'"/>
+		<NCInstancesTabsLogs v-if="tab==='four'"/>
 	</div>
 </template>
 
@@ -88,7 +90,9 @@ export default {
 	},
 	components: {
 		'NCInstancesTabsOverview': defineAsyncComponent(() => import('@/components/instances/tabs/NCInstancesTabsOverview.vue')),
-		'NCInstancesTabsNetworking': defineAsyncComponent(() => import('@/components/instances/tabs/NCInstancesTabsNetworking.vue'))
+		'NCInstancesTabsNetworking': defineAsyncComponent(() => import('@/components/instances/tabs/NCInstancesTabsNetworking.vue')),
+		'NCInstancesTabsConsole': defineAsyncComponent(() => import('@/components/instances/tabs/NCInstancesTabsConsole.vue')),
+		'NCInstancesTabsLogs': defineAsyncComponent(() => import('@/components/instances/tabs/NCInstancesTabsLogs.vue'))
 	}
 }
 </script>
