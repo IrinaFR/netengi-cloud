@@ -29,6 +29,11 @@ const routes = [
 		name: 'instances',
 		children:[
 			{
+				path: 'create',
+				component: () => import('../components/instances/NCInstancesCreate'),
+				name: 'createInstances'
+			},
+			{
 				path: ':id',
 				component: () => import('../components/instances/NCInstancesOverview'),
 				name: 'overview'

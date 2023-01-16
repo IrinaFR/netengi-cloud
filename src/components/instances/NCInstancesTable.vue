@@ -1,6 +1,6 @@
 <template>
 	<div class="listBtn">
-		<v-btn density="default" variant="tonal">Create Instance</v-btn>
+		<v-btn density="default" variant="tonal" to="/instances/create">Create Instance</v-btn>
 		<v-btn density="default" variant="outlined">
 			<v-img src="/images/general/delete.svg"></v-img>
 		</v-btn>

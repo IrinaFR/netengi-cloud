@@ -2,7 +2,7 @@
 <div class="infoCreateInstance">
 	<div class="blockWithBtn">
 		<div class="title">You have no instances right now.</div>
-		<v-btn density="default" variant="tonal">Create Instance</v-btn>
+		<v-btn density="default" variant="tonal" to="/instances/create">Create Instance</v-btn>
 		<div class="btnLern">
 			<v-img src="/images/instances/link.svg"></v-img>
 			<span>Learn more about instances</span>
