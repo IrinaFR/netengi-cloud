@@ -135,28 +135,49 @@
 			</div>
 			<div class="smallGreyText">Period</div>
 			<NCAdditionalToggles v-model="periodMetric" :items="listTypeMetric" label="name" value="value"/>
-
+			<div class="additionalMarginGraphic"></div>
+			<NCAdditionalGraphicLine :dataSet="dataOne"/>
 		</v-card>
 		<v-card variant="flat" class="overviewTab">
 			<h3>CPU Usage</h3>
+			<div class="smallGreyText">Period</div>
+			<NCAdditionalToggles v-model="periodMetricTwo" :items="listTypeMetric" label="name" value="value"/>
+			<div class="additionalMarginGraphic"></div>
+			<NCAdditionalGraphicLine :dataSet="dataTwo"/>
 		</v-card>
 	</div>
 </template>
 
 <script>
 import NCAdditionalToggles from "@/components/additional/NCAdditionalToggles";
+import NCAdditionalGraphicLine from "@/components/additional/NCAdditionalGraphicLine";
 export default {
-	components: {NCAdditionalToggles},
+	components: {NCAdditionalGraphicLine, NCAdditionalToggles},
 	data(){
 		return{
 			typeMetric:0,
 			periodMetric:0,
+			periodMetricTwo:0,
 			listTypeMetric:[
 				{name:'Last hour',value:0},
 				{name:'24 hours',value:1},
 				{name:'7 days',value:2},
 				{name:'30 days',value:3},
-			]
+			],
+			dataOne:[
+				{
+					borderColor: '#4671F6',
+					data: [12, 8, 28, 12],
+				},
+				{
+					borderColor: '#081D42',
+					data: [6, 4, 14, 6],
+				},
+			],
+			dataTwo:[{
+				borderColor: '#4671F6',
+				data: [3, 4, 2, 5],
+			}],
 		}
 	}
 }
@@ -317,5 +338,8 @@ export default {
 		color: rgb(var(--v-theme-grey-900));
 		box-shadow: none;
 		outline: none;
+	}
+	.additionalMarginGraphic{
+		margin-bottom: 12px;
 	}
 </style>
