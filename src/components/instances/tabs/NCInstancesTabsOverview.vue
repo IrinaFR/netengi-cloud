@@ -124,18 +124,41 @@
 	</v-card>
 	<div class="listInfoMain additionalMargin">
 		<v-card variant="flat" class="overviewTab">
-			<h3>Network Metric</h3>
+			<div class="blockTitleCard">
+				<h3>Network Metric</h3>
+				<div class="customSelect">
+					<select v-model="typeMetric">
+						<option value="0">Packets</option>
+					</select>
+					<v-img src="/images/instances/downTriangle.svg"/>
+				</div>
+			</div>
+			<div class="smallGreyText">Period</div>
+			<NCAdditionalToggles v-model="periodMetric" :items="listTypeMetric" label="name" value="value"/>
 
 		</v-card>
 		<v-card variant="flat" class="overviewTab">
 			<h3>CPU Usage</h3>
-
 		</v-card>
 	</div>
 </template>
 
 <script>
+import NCAdditionalToggles from "@/components/additional/NCAdditionalToggles";
 export default {
+	components: {NCAdditionalToggles},
+	data(){
+		return{
+			typeMetric:0,
+			periodMetric:0,
+			listTypeMetric:[
+				{name:'Last hour',value:0},
+				{name:'24 hours',value:1},
+				{name:'7 days',value:2},
+				{name:'30 days',value:3},
+			]
+		}
+	}
 }
 </script>
 
@@ -259,5 +282,40 @@ export default {
 	}
 	.additionalMargin{
 		margin: 20px 0;
+	}
+	.smallGreyText{
+		font-weight: 400;
+		font-size: 12px;
+		line-height: 15px;
+		color: rgb(var(--v-theme-grey-700));
+		margin-bottom: 8px;
+	}
+	.blockTitleCard{
+		display: flex;
+	}
+	.customSelect{
+		position: relative;
+		height: fit-content;
+		margin-left: auto;
+	}
+	.customSelect .v-img{
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		top: 0;
+		right: 4px;
+		bottom: 0;
+		margin: auto 0;
+	}
+	.customSelect select{
+		padding: 2px 23px 2px 6px;
+		border: 1px solid rgb(var(--v-theme-grey-350));
+		border-radius: 4px;
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 20px;
+		color: rgb(var(--v-theme-grey-900));
+		box-shadow: none;
+		outline: none;
 	}
 </style>
