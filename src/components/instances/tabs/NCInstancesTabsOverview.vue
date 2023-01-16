@@ -74,6 +74,7 @@
 	</div>
 	<v-card variant="flat" class="overviewTab">
 		<h3>Network Details</h3>
+		<NCAdditionalTree/>
 	</v-card>
 	<v-card variant="flat" class="overviewTab additionalMargin">
 		<h3>Volume Details</h3>
@@ -151,8 +152,9 @@
 <script>
 import NCAdditionalToggles from "@/components/additional/NCAdditionalToggles";
 import NCAdditionalGraphicLine from "@/components/additional/NCAdditionalGraphicLine";
+import NCAdditionalTree from "@/components/additional/tree/NCAdditionalTree";
 export default {
-	components: {NCAdditionalGraphicLine, NCAdditionalToggles},
+	components: {NCAdditionalTree, NCAdditionalGraphicLine, NCAdditionalToggles},
 	data(){
 		return{
 			typeMetric:0,
