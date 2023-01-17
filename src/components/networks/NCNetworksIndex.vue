@@ -7,9 +7,13 @@
 				{{hideQuotas ? 'show' : 'hide'}} quotas
 			</div>
 		</div>
-		<div :class="['blockQuotas', {hide:hideQuotas}]">
-			<NCAdditionalQuotas/>
-		</div>
+		<v-expansion-panels v-model="hideQuotas" variant="popout" class="quotasAccordion mt-3 pa-0">
+			<v-expansion-panel bg-color="background" :value="true">
+				<v-expansion-panel-text>
+					<NCAdditionalQuotas/>
+				</v-expansion-panel-text>
+			</v-expansion-panel>
+		</v-expansion-panels>
 		<NCNetworksTable v-if="showTable"/>
 		<NCNetworksNone v-else/>
 		<br>
@@ -26,7 +30,7 @@
 		data(){
 			return{
 				showTable:false,
-				hideQuotas: false
+				hideQuotas: true
 			}
 		},
 		components: {
@@ -36,15 +40,6 @@
 </script>
 
 <style scoped>
-	.blockQuotas{
-		height: 230px;
-		overflow: hidden;
-		margin-bottom: 30px;
-		transition: height .3s ease-out;
-	}
-	.blockQuotas.hide{
-		height: 0;
-	}
 	.titleWithBtn{
 		display: flex;
 		height: 51px;

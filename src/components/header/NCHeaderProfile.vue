@@ -25,6 +25,8 @@
 					<template v-slot:append>
 						<v-switch
 							inset
+							true-value="dark"
+							false-value="light"
 							v-model="theme"
 							color="info"
 							@change="changeTheme"
@@ -76,18 +78,13 @@
 		data(){
 			return{
 				menu: false,
-				theme: false
+				theme: this.$root.theme
 			}
 		},
 		methods: {
 			changeTheme(){
-				if(this.theme){
-					this.$root.theme = 'dark'
-					localStorage.setItem('theme', 'dark')
-				} else{
-					this.$root.theme = 'light'
-					localStorage.setItem('theme', 'light')
-				}
+				this.$root.theme = this.theme
+				localStorage.setItem('theme', this.theme)
 			}
 		}
 	}

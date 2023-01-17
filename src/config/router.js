@@ -34,7 +34,7 @@ const routes = [
 				name: 'createInstances'
 			},
 			{
-				path: ':id',
+				path: ':id/:tab?',
 				component: () => import('../components/instances/NCInstancesOverview'),
 				name: 'overview'
 			},
@@ -223,6 +223,21 @@ const routes = [
 				name: 'createKubernetes'
 			},
 		]
+	},
+	{
+		path: '/search',
+		component: () => import('../components/search/NCSearchIndex'),
+		name: 'search'
+	},
+	{
+		path: '/access-denied',
+		component: () => import('../components/NCAccessDenied'),
+		name: 'access-denied'
+	},
+	{
+		path: '/:path(.*)*',
+		component: () => import('../components/NCNotFound'),
+		name: 'notFound'
 	},
 
 ]

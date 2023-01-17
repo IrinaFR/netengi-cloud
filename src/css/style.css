@@ -215,6 +215,13 @@ ul.v-pagination__list{
     align-items: center;
 }
 
+/*quotas diagram accordion*/
+.quotasAccordion .v-expansion-panel-text__wrapper{
+    padding: 0;
+}
+.quotasAccordion .v-expansion-panel__shadow{
+    display: none;
+}
 
 /*.iconCountry{*/
 /*    width: 16px;*/

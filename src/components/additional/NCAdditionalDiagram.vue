@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Doughnut :data="{datasets}" :options="options" width="60px" :style="style" />
+		<Doughnut :data="{datasets}" :options="options" :style="style" />
 	</div>
 	<div v-if="label">
 		<p>{{label}}
@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
+import { Chart as ChartJS, ArcElement } from 'chart.js'
 import { Doughnut } from 'vue-chartjs'
 
-ChartJS.register(ArcElement, Tooltip, Legend)
+ChartJS.register(ArcElement)
 
 export default {
 	props: {

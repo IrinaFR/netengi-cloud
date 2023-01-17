@@ -18,7 +18,7 @@
 		data(){
 			return{
 				showTable:false,
-				hideQuotas: false
+				hideQuotas: true
 			}
 		},
 		components: {

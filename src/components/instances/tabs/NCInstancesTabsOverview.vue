@@ -214,8 +214,11 @@ export default {
 		line-height: 20px;
 		color: rgb(var(--v-theme-grey-900));
 	}
+	.overviewList li{
+		margin: 6px 0;
+	}
 	.overviewList li span:first-child{
-		margin-right: 30px;
+		min-width: 250px;
 	}
 	.btnCopy{
 		border-radius: 4px;

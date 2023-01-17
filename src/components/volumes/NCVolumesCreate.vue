@@ -24,51 +24,39 @@
 				</label>
 				<NCAdditionalToggles v-model="disk" :items="diskType" label="name" value="value" count="disk"/>
 			</div>
-			<div class="createInfo">
-				<v-card variant="flat" color="grey-100" class="infoCard smallText-15">
-					<span>Bandwidth</span>
-					<span class="color-grey-600 ms-1">(MB/s)</span>
-					<div class="infoList">
-						<div class="infoListItem">
-							<img src="/images/volumes/graph1.svg">
-							<span class="d-flex align-center smallText-14">
-								Reading
-								<img src="/images/info.svg" class="ms-2">
-							</span>
-							<b>31</b>
+			<div class="d-flex gap-30">
+				<div class="form-group">
+					<v-card variant="flat" max-width="500" class="bg-grey-100 pa-5 smallText-15">
+						<div class="mb-2">
+							<span>Bandwidth</span>
+							<span class="color-grey-600">(MB/s)</span>
 						</div>
-						<div class="infoListItem">
-							<img src="/images/volumes/graph2.svg">
-							<span class="d-flex align-center smallText-14">
-								Record
-								<img src="/images/info.svg" class="ms-2">
-							</span>
-							<b>16</b>
+						<div class="d-flex gap-30">
+							<div>
+								<NCAdditionalDiagram :datasets="bandwidth.reading" label="Reading" count="31"/>
+							</div>
+							<div>
+								<NCAdditionalDiagram :datasets="bandwidth.record" label="Record" count="16"/>
+							</div>
 						</div>
-					</div>
-				</v-card>
-				<v-card variant="flat" color="grey-100" class="infoCard smallText-15">
-					<span>Operations per second</span>
-					<span class="color-grey-600 ms-1">(IOPS)</span>
-					<div class="infoList">
-						<div class="infoListItem">
-							<img src="/images/volumes/graph1.svg">
-							<span class="d-flex align-center smallText-14">
-								Reading
-								<img src="/images/info.svg" class="ms-2">
-							</span>
-							<b>1000</b>
+					</v-card>
+				</div>
+				<div class="form-group">
+					<v-card variant="flat" max-width="500" class="bg-grey-100 pa-5 smallText-15">
+						<div class="mb-2">
+							<span>Operations per second</span>
+							<span class="color-grey-600">(IOPS)</span>
 						</div>
-						<div class="infoListItem">
-							<img src="/images/volumes/graph2.svg">
-							<span class="d-flex align-center smallText-14">
-								Record
-								<img src="/images/info.svg" class="ms-2">
-							</span>
-							<b>300</b>
+						<div class="d-flex gap-30">
+							<div>
+								<NCAdditionalDiagram :datasets="bandwidth.reading" label="Reading" count="1000"/>
+							</div>
+							<div>
+								<NCAdditionalDiagram :datasets="bandwidth.record" label="Record" count="300"/>
+							</div>
 						</div>
-					</div>
-				</v-card>
+					</v-card>
+				</div>
 			</div>
 			<div class="mt-7">
 				<v-btn density="default" variant="tonal">Create</v-btn>
@@ -80,6 +68,7 @@
 
 <script>
 	import NCAdditionalToggles from "@/components/additional/NCAdditionalToggles";
+	import NCAdditionalDiagram from "@/components/additional/NCAdditionalDiagram";
 	export default {
 		data() {
 			return{
@@ -94,11 +83,25 @@
 				diskType: [
 					{value: 'HDD', name: 'HDD'},
 					{value: 'SSD', name: 'SSD'},
-				]
+				],
+				bandwidth: {
+					reading: [
+						{
+							backgroundColor: ['#9BD0B7', '#229B61', '#E8E8E8'],
+							data: [20, 10, 100]
+						}
+					],
+					record: [
+						{
+							backgroundColor: ['#8BABF8', '#193E8A', '#E8E8E8'],
+							data: [20, 10, 100]
+						}
+					],
+				},
 			}
 		},
 		components: {
-			NCAdditionalToggles
+			NCAdditionalToggles, NCAdditionalDiagram
 		}
 	}
 </script>

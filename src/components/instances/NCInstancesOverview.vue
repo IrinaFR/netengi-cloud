@@ -67,16 +67,16 @@
 			</div>
 		</div>
 		<v-tabs v-model="tab" bg-color="background" color="primary-600">
-			<v-tab value="one">Overview</v-tab>
-			<v-tab value="two">Networking</v-tab>
-			<v-tab value="three">Console</v-tab>
-			<v-tab value="four">System Log</v-tab>
-			<v-tab value="five">Backups</v-tab>
+			<v-tab value="1">Overview</v-tab>
+			<v-tab value="2">Networking</v-tab>
+			<v-tab value="3">Console</v-tab>
+			<v-tab value="4">System Log</v-tab>
+			<v-tab value="5">Backups</v-tab>
 		</v-tabs>
-		<NCInstancesTabsOverview v-if="tab==='one'"/>
-		<NCInstancesTabsNetworking v-if="tab==='two'"/>
-		<NCInstancesTabsConsole v-if="tab==='three'"/>
-		<NCInstancesTabsLogs v-if="tab==='four'"/>
+		<NCInstancesTabsOverview v-if="tab==='1'"/>
+		<NCInstancesTabsNetworking v-if="tab==='2'"/>
+		<NCInstancesTabsConsole v-if="tab==='3'"/>
+		<NCInstancesTabsLogs v-if="tab==='4'"/>
 	</div>
 </template>
 
@@ -93,6 +93,9 @@ export default {
 		'NCInstancesTabsNetworking': defineAsyncComponent(() => import('@/components/instances/tabs/NCInstancesTabsNetworking.vue')),
 		'NCInstancesTabsConsole': defineAsyncComponent(() => import('@/components/instances/tabs/NCInstancesTabsConsole.vue')),
 		'NCInstancesTabsLogs': defineAsyncComponent(() => import('@/components/instances/tabs/NCInstancesTabsLogs.vue'))
+	},
+	created() {
+		if(this.$route.params.tab) this.tab = this.$route.params.tab
 	}
 }
 </script>

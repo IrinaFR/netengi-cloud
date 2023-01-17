@@ -7,9 +7,13 @@
 				{{hideQuotas ? 'show' : 'hide'}} quotas
 			</div>
 		</div>
-		<div :class="['blockQuotas', {hide:hideQuotas}]">
-			<NCAdditionalQuotas/>
-		</div>
+		<v-expansion-panels v-model="hideQuotas" variant="popout" class="quotasAccordion mt-3 pa-0">
+			<v-expansion-panel bg-color="background" :value="true">
+				<v-expansion-panel-text>
+					<NCAdditionalQuotas/>
+				</v-expansion-panel-text>
+			</v-expansion-panel>
+		</v-expansion-panels>
 		<div class="listBtn">
 			<v-btn density="default" to="/volumes/create" variant="tonal">Create Volumes</v-btn>
 			<v-btn density="default" variant="outlined" v-if="table.length">
@@ -32,7 +36,7 @@
 		data(){
 			return{
 				showTable:false,
-				hideQuotas: false,
+				hideQuotas: true,
 				table: [
 					{id: 1, check: false, name: 'netengi-instance-1', zone: 'nova', size: '1GB', region: {country: 'ua', name: 'ua-central-1'}},
 					{id: 2, check: false, name: 'netengi-instance-2', zone: 'nova', size: '4GB', region: {country: 'ua', name: 'ua-central-1'}},
@@ -51,15 +55,6 @@
 </script>
 
 <style scoped>
-	.blockQuotas{
-		height: 230px;
-		overflow: hidden;
-		margin-bottom: 30px;
-		transition: height .3s ease-out;
-	}
-	.blockQuotas.hide{
-		height: 0;
-	}
 	.titleWithBtn{
 		display: flex;
 		height: 51px;
