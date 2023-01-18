@@ -10,11 +10,19 @@
 						class="flex-grow-0 me-2"
 					></v-switch>
 					<b>Enable DHCP</b>
-					<img src="/images/info.svg" class="ms-2">
+					<v-menu open-on-hover>
+						<template v-slot:activator="{ props }">
+							<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+						<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+					</v-menu>
 				</div>
 				<div class="form-group">
 					<label for="">DNS Server Name
-						<img src="/images/info.svg" class="ms-2">
+						<v-menu open-on-hover>
+							<template v-slot:activator="{ props }">
+								<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+							<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+						</v-menu>
 					</label>
 					<v-textarea variant="outlined" class="input"></v-textarea>
 				</div>
@@ -27,7 +35,11 @@
 				<div class="customCardOutline">
 					<div class="form-group">
 						<label for="">Host route
-							<img src="/images/info.svg" class="ms-2">
+							<v-menu open-on-hover>
+								<template v-slot:activator="{ props }">
+									<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+								<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+							</v-menu>
 						</label>
 						<v-textarea variant="outlined" class="input"></v-textarea>
 					</div>
@@ -37,7 +49,12 @@
 		<v-card variant="flat" class="infoCard">
 			<v-card-title>
 					<span class="iconInfoCard me-2">
-						<img src="/images/info.svg">
+						<v-menu open-on-hover>
+							<template v-slot:activator="{ props }">
+								<img v-bind="props" src="/images/info.svg">
+							</template>
+							<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+						</v-menu>
 					</span>
 				<h3 class="d-inline-block">Information</h3>
 			</v-card-title>

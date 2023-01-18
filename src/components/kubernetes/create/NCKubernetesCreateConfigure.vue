@@ -8,7 +8,11 @@
 					<div class="clusterTypeItem">
 						<h3>
 							Dev Cluster
-							<img src="/images/info.svg" class="ms-2">
+							<v-menu open-on-hover>
+								<template v-slot:activator="{ props }">
+									<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+								<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+							</v-menu>
 						</h3>
 					</div>
 					<div class="clusterTypeItem">
@@ -40,7 +44,11 @@
 				<div class="clusterTypeVersion pa-7">
 					<div class="form-group">
 						<label for="">Version Kubernetes
-							<img src="/images/info.svg" class="ms-2">
+							<v-menu open-on-hover>
+								<template v-slot:activator="{ props }">
+									<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+								<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+							</v-menu>
 						</label>
 						<v-select
 							bg-color="background"
@@ -63,7 +71,11 @@
 					<div class="clusterTypeItem">
 						<h3>
 							Staging Cluster
-							<img src="/images/info.svg" class="ms-2">
+							<v-menu open-on-hover>
+								<template v-slot:activator="{ props }">
+									<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+								<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+							</v-menu>
 						</h3>
 					</div>
 					<div class="clusterTypeItem">
@@ -97,7 +109,11 @@
 				<div class="clusterTypeVersion pa-7">
 					<div class="form-group">
 						<label for="">Version Kubernetes
-							<img src="/images/info.svg" class="ms-2">
+							<v-menu open-on-hover>
+								<template v-slot:activator="{ props }">
+									<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+								<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+							</v-menu>
 						</label>
 						<v-select
 							bg-color="background"
@@ -120,7 +136,11 @@
 					<div class="clusterTypeItem">
 						<h3>
 							Production Cluster
-							<img src="/images/info.svg" class="ms-2">
+							<v-menu open-on-hover>
+								<template v-slot:activator="{ props }">
+									<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+								<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+							</v-menu>
 						</h3>
 					</div>
 					<div class="clusterTypeItem">
@@ -156,7 +176,11 @@
 				<div class="clusterTypeVersion pa-7">
 					<div class="form-group">
 						<label for="">Version Kubernetes
-							<img src="/images/info.svg" class="ms-2">
+							<v-menu open-on-hover>
+								<template v-slot:activator="{ props }">
+									<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+								<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+							</v-menu>
 						</label>
 						<v-select
 							bg-color="background"
@@ -179,7 +203,11 @@
 					<div class="clusterTypeItem">
 						<h3>
 							Other
-							<img src="/images/info.svg" class="ms-2">
+							<v-menu open-on-hover>
+								<template v-slot:activator="{ props }">
+									<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+								<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+							</v-menu>
 						</h3>
 					</div>
 					<div class="clusterTypeItem">
@@ -215,7 +243,11 @@
 				<div class="clusterTypeVersion pa-7">
 					<div class="form-group">
 						<label for="">Version Kubernetes
-							<img src="/images/info.svg" class="ms-2">
+							<v-menu open-on-hover>
+								<template v-slot:activator="{ props }">
+									<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+								<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+							</v-menu>
 						</label>
 						<v-select
 							bg-color="background"

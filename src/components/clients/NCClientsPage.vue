@@ -13,15 +13,15 @@
 				bg-color="background"
 				color="primary-600"
 			>
-				<v-tab value="one">Details</v-tab>
-				<v-tab value="two">Users</v-tab>
-				<v-tab value="three">Email Log</v-tab>
+				<v-tab value="1">Details</v-tab>
+				<v-tab value="2">Users</v-tab>
+				<v-tab value="3">Email Log</v-tab>
 			</v-tabs>
 		</div>
 		<v-divider></v-divider>
 		<div class="mainPage">
 			<v-window v-model="tab">
-				<v-window-item value="one">
+				<v-window-item value="1">
 					<div class="listInfoMain">
 						<v-card variant="flat" class="overviewTab">
 							<h3>Client Info</h3>
@@ -83,8 +83,8 @@
 						</v-card>
 					</div>
 				</v-window-item>
-				<v-window-item value="two">
-					<v-btn density="default" variant="tonal" class="my-3">
+				<v-window-item value="2">
+					<v-btn density="default" variant="tonal" class="my-3" @click="dialogInvite=true">
 						Invite User
 					</v-btn>
 					<v-table density="compact" class="tableMain">
@@ -139,12 +139,80 @@
 						</div>
 					</div>
 				</v-window-item>
-				<v-window-item value="three">
+				<v-window-item value="3">
 
 				</v-window-item>
 			</v-window>
 		</div>
 	</v-card>
+	<v-dialog v-model="dialogInvite" width="400">
+		<v-card color="background">
+			<v-card-text>
+				<v-toolbar density="comfortable" rounded color="background">
+					<v-toolbar-title class="ml-0">
+						<h3>Invite user for client Dmitriy Babanovlongfamily</h3>
+					</v-toolbar-title>
+					<v-btn icon dark density="compact" class="me-0" @click="dialogInvite = false">
+						<v-icon>mdi-close</v-icon>
+					</v-btn>
+				</v-toolbar>
+				<div class="form-group">
+					<label for="">User Email
+						<v-menu open-on-hover>
+							<template v-slot:activator="{ props }">
+								<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+							<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+						</v-menu>
+					</label>
+					<v-text-field density="compact" hide-details variant="outlined"/>
+				</div>
+				<v-divider class="my-4"></v-divider>
+				<div class="mt-3">
+					<b class="smallText-15 mb-3">Select user roles</b>
+					<v-card variant="flat" class="smallText-15 bg-grey-200 pa-2 mb-1">
+						<input type="checkbox" id="owner" name="roles" class="form-check-input mt-1 me-2">
+						<label for="owner">Owner</label>
+					</v-card>
+					<v-card variant="flat" class="smallText-15 bg-grey-200 pa-2 mb-1">
+						<input type="checkbox" id="programmer" name="roles" class="form-check-input mt-1 me-2">
+						<label for="programmer">Programmer</label>
+					</v-card>
+					<v-card variant="flat" class="smallText-15 bg-grey-200 pa-2 mb-1">
+						<input type="checkbox" id="accounter" name="roles" class="form-check-input mt-1 me-2">
+						<label for="accounter">Accounter</label>
+					</v-card>
+					<v-card variant="flat" class="smallText-15 bg-grey-200 pa-2 mb-1">
+						<input type="checkbox" id="member" name="roles" class="form-check-input mt-1 me-2">
+						<label for="member">Member</label>
+					</v-card>
+					<v-card variant="flat" class="smallText-15 bg-grey-200 pa-2">
+						<input type="checkbox" id="onlyNotif" name="roles" class="form-check-input mt-1 me-2">
+						<label for="onlyNotif">Only Notifications</label>
+					</v-card>
+				</div>
+				<div class="mt-4">
+					<b class="smallText-15">Select notifications settings</b>
+					<p class="my-3">User won't receive client related notifications until invitation is accepted.</p>
+					<div class="form-group">
+						<input type="checkbox" id="generalAnnouncements" class="form-check-input mt-1 me-2">
+						<label for="generalAnnouncements">General announcements</label>
+					</div>
+					<div class="form-group">
+						<input type="checkbox" id="notifications" class="form-check-input mt-1 me-2">
+						<label for="notifications">Billing and service related notifications</label>
+					</div>
+					<div class="form-group">
+						<input type="checkbox" id="techAnnouncements" class="form-check-input mt-1 me-2">
+						<label for="techAnnouncements">Technical announcements</label>
+					</div>
+				</div>
+				<div class="d-flex gap-15 justify-space-between mt-6 mb-2">
+					<v-btn variant="outlined" class="flex-grow-1" @click="dialogInvite=false">Cancel</v-btn>
+					<v-btn variant="tonal" class="flex-grow-1" color="grey-400" @click="dialogInvite=false">Invite User</v-btn>
+				</div>
+			</v-card-text>
+		</v-card>
+	</v-dialog>
 </template>
 
 <script>
@@ -152,14 +220,15 @@
 		data(){
 			return{
 				ownerId: 1,
-				tab: 'one',
+				tab: '1',
 				table: [
 					{id: 1, email: 'mymail@mail.com', roles: ['Owner'], invited: true},
 					{id: 2, email: 'programmer@mail.ru', roles: ['Developer'], invited: false},
 					{id: 3, email: 'accountant@mail.ru', roles: ['Accountant', 'Role2', 'Role3'], invited: true},
 				],
 				sizeList: 10,
-				page: 1
+				page: 1,
+				dialogInvite: false,
 			}
 		},
 

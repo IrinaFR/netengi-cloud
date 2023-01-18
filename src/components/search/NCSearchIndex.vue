@@ -114,6 +114,9 @@
 				countTutorials: 2,
 			}
 		},
+		created() {
+			if(this.$route.params.tab) this.tab = this.$route.params.tab
+		}
 	}
 </script>
 

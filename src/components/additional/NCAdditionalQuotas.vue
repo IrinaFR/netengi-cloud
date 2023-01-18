@@ -3,12 +3,12 @@
 		<v-card variant="outlined" class="quoteCard border-grey-200" v-for="(quote, idx) in qoutas" :key="idx">
 			<div class="d-flex justify-center">
 				<div class="qouteDiagram">
-					<Pie :data="{datasets:[{backgroundColor, data:[quote.used, quote.all], borderColor, borderWidth: 4}]}" :options="options" :style="style"/>
+					<Pie :data="{datasets:[{backgroundColor, data:[quote.used, (quote.all-quote.used)], borderColor, borderWidth: 4}]}" :options="options" :style="style"/>
 				</div>
 			</div>
 			<div class="mt-2">
 				<div class="quoteTitle colo-grey-800">{{quote.title}}</div>
-				<div class="quoteInfo color-grey-700">{{quote.info}}</div>
+				<div class="quoteInfo color-grey-700">Used {{quote.used + quote.type}} of {{quote.all + quote.type}}</div>
 			</div>
 		</v-card>
 	</div>
@@ -23,12 +23,12 @@
 		data(){
 			return{
 				qoutas: [
-					{title: 'Instances',  info: 'Used 4 of 10', used: 4, all: 10},
-					{title: 'vCPUs', info: 'Used 1 of 10', used: 1, all: 10},
-					{title: 'RAM', info: 'Used 13.8GB of 64GB', used: 13.8, all: 64},
-					{title: 'Storage', info: 'Used 0GB of 1.46TB', used: 0, all: 1.46},
-					{title: 'Volumes', info: 'Used 6 to 10', used: 6, all: 10},
-					{title: 'IP', info: 'Used 0 of 10', used: 0, all: 10},
+					{title: 'Instances',  type: '', used: 4, all: 10},
+					{title: 'vCPUs', type: '', used: 1, all: 10},
+					{title: 'RAM', type: 'GB', used: 13.8, all: 64},
+					{title: 'Storage', type: 'GB', used: 0, all: 1.46},
+					{title: 'Volumes', type: '', used: 6, all: 10},
+					{title: 'IP', type: '', used: 0, all: 10},
 				],
 
 				backgroundColor: (ctx) => {

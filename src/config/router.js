@@ -51,7 +51,7 @@ const routes = [
 				name: 'createVolumes'
 			},
 			{
-				path: ':id',
+				path: ':id/:tab?',
 				component: () => import('../components/volumes/NCVolumesPage'),
 				name: 'volumesPage'
 			},
@@ -124,7 +124,7 @@ const routes = [
 				name: 'createNetworks'
 			},
 			{
-				path: ':id',
+				path: ':id/:tab?',
 				component: () => import('../components/networks/NCNetworksPage'),
 				name: 'pageNetworks'
 			},
@@ -177,7 +177,7 @@ const routes = [
 		]
 	},
 	{
-		path: '/account',
+		path: '/account/:tab?',
 		component: () => import('../components/account/NCAccountIndex'),
 		name: 'account',
 		children: [
@@ -194,7 +194,7 @@ const routes = [
 		name: 'clients',
 		children: [
 			{
-				path: ':id',
+				path: ':id/:tab?',
 				component: () => import('../components/clients/NCClientsPage'),
 				name: 'pageClients'
 			},
@@ -225,7 +225,7 @@ const routes = [
 		]
 	},
 	{
-		path: '/search',
+		path: '/search/:tab?',
 		component: () => import('../components/search/NCSearchIndex'),
 		name: 'search'
 	},

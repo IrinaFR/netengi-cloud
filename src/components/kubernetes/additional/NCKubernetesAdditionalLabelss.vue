@@ -12,13 +12,21 @@
 				<div class="d-flex align-end">
 					<div>
 						<label for="">Key
-							<img src="/images/info.svg" class="ms-2">
+							<v-menu open-on-hover>
+								<template v-slot:activator="{ props }">
+									<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+								<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+							</v-menu>
 						</label>
 						<v-text-field v-model="tags[idx].key" density="compact" @change="$emit('update:modelValue', tags)" bg-color="background" hide-details class="input mr-1" variant="outlined"/>
 					</div>
 					<div >
 						<label for="">Value
-							<img src="/images/info.svg" class="ms-2">
+							<v-menu open-on-hover>
+								<template v-slot:activator="{ props }">
+									<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+								<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+							</v-menu>
 						</label>
 						<v-text-field v-model="tags[idx].value" density="compact" @change="$emit('update:modelValue', tags)" bg-color="background" hide-details class="input mr-1" variant="outlined"/>
 					</div>

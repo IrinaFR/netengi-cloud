@@ -35,15 +35,15 @@
 				bg-color="background"
 				color="primary-600"
 			>
-				<v-tab value="one">Subnet</v-tab>
-				<v-tab value="two">Ports</v-tab>
-				<v-tab value="three">Extra Info</v-tab>
+				<v-tab value="1">Subnet</v-tab>
+				<v-tab value="2">Ports</v-tab>
+				<v-tab value="3">Extra Info</v-tab>
 			</v-tabs>
 		</div>
 		<v-divider></v-divider>
 		<div class="mainPage">
 			<v-window v-model="tab">
-				<v-window-item value="one">
+				<v-window-item value="1">
 					<div class="listBtn">
 						<v-btn density="default" to="/ports/create" variant="tonal">Create Subnet</v-btn>
 						<div class="flex-grow-1 ms-2">
@@ -59,7 +59,7 @@
 					<NCNetworksPageSubnetTable/>
 				</v-window-item>
 
-				<v-window-item value="two">
+				<v-window-item value="2">
 					<div class="listBtn">
 						<v-btn density="default" to="/ports/create" variant="tonal">Create Port</v-btn>
 						<div class="flex-grow-1 ms-2">
@@ -75,7 +75,7 @@
 					<NCNetworksPagePortsTable/>
 				</v-window-item>
 
-				<v-window-item value="three">
+				<v-window-item value="3">
 					<v-card variant="flat" class="overviewTab">
 						<ul class="smallText-15 overviewList">
 							<li class="d-flex">
@@ -120,12 +120,15 @@
 	export default {
 		data(){
 			return{
-				tab: 'one'
+				tab: '1'
 			}
 		},
 		components: {
 			NCNetworksPagePortsTable,
 			NCNetworksPageSubnetTable
+		},
+		created() {
+			if(this.$route.params.tab) this.tab = this.$route.params.tab
 		}
 	}
 </script>

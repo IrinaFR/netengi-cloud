@@ -19,7 +19,11 @@
 							hide-details
 						></v-switch>
 						<b>Admin State Up</b>
-						<img src="/images/info.svg" class="ms-2">
+						<v-menu open-on-hover>
+							<template v-slot:activator="{ props }">
+								<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+							<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+						</v-menu>
 					</div>
 					<div class="form-group">
 						<label for="">IP address or Subnet</label>
@@ -59,14 +63,22 @@
 						<input type="checkbox" id="port" class="form-check-input mr-2">
 						<label for="port" class="d-flex align-center">
 							Port Security
-							<img src="/images/info.svg" class="ms-2">
+							<v-menu open-on-hover>
+								<template v-slot:activator="{ props }">
+									<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+								<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+							</v-menu>
 						</label>
 					</div>
 					<div class="form-group mt-2 d-flex align-center">
 						<input type="checkbox" id="autoAdd" class="form-check-input mr-2">
 						<label for="autoAdd" class="d-flex align-center">
 							Auto add security group
-							<img src="/images/info.svg" class="ms-2">
+							<v-menu open-on-hover>
+								<template v-slot:activator="{ props }">
+									<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+								<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+							</v-menu>
 						</label>
 					</div>
 				</v-form>
@@ -103,7 +115,12 @@
 				<v-card variant="flat" class="infoCard">
 					<v-card-title>
 					<span class="iconInfoCard me-2">
-						<img src="/images/info.svg">
+						<v-menu open-on-hover>
+							<template v-slot:activator="{ props }">
+								<img v-bind="props" src="/images/info.svg">
+							</template>
+							<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+						</v-menu>
 					</span>
 						<h3 class="d-inline-block">IP address or Subnet</h3>
 					</v-card-title>
@@ -116,7 +133,12 @@
 				<v-card variant="flat" class="infoCard">
 					<v-card-title>
 					<span class="iconInfoCard me-2">
-						<img src="/images/info.svg">
+						<v-menu open-on-hover>
+							<template v-slot:activator="{ props }">
+								<img v-bind="props" src="/images/info.svg">
+							</template>
+							<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+						</v-menu>
 					</span>
 						<h3 class="d-inline-block">MAC address</h3>
 					</v-card-title>

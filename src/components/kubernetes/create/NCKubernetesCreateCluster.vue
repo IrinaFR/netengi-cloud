@@ -42,7 +42,11 @@
 			<div class="form-group mt-2">
 				<label for="" class="d-flex align-center">
 					Disk Container Format
-					<img src="/images/info.svg" class="ms-2">
+					<v-menu open-on-hover>
+						<template v-slot:activator="{ props }">
+							<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+						<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+					</v-menu>
 				</label>
 				<NCAdditionalToggles v-model="formatDisk" :items="listDiskformat" label="name" value="value" count="source"/>
 			</div>
@@ -82,13 +86,21 @@
 			</div>
 			<div class="form-group">
 				<label>Number of Nodes Pool
-					<img src="/images/info.svg" class="ms-2">
+					<v-menu open-on-hover>
+						<template v-slot:activator="{ props }">
+							<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+						<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+					</v-menu>
 				</label>
 				<NCAdditionalInputCount label="items"/>
 			</div>
 			<div class="form-group">
 				<label>Storage
-					<img src="/images/info.svg" class="ms-2">
+					<v-menu open-on-hover>
+						<template v-slot:activator="{ props }">
+							<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+						<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+					</v-menu>
 				</label>
 				<NCAdditionalInputCount label="GB"/>
 			</div>
@@ -100,7 +112,11 @@
 					class="flex-grow-0 me-2"
 				></v-switch>
 				<b>Autoscale</b>
-				<img src="/images/info.svg" class="ms-2">
+				<v-menu open-on-hover>
+					<template v-slot:activator="{ props }">
+						<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+					<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+				</v-menu>
 			</div>
 			<NCKubernetesAdditionalLabelss/>
 			<NCKubernetesAdditionalTaints class="mt-5"/>

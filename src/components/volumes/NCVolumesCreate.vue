@@ -13,14 +13,22 @@
 			<div class="form-group mt-2">
 				<label for="" class="d-flex align-center">
 					Source
-					<img src="/images/info.svg" class="ms-2">
+					<v-menu open-on-hover>
+						<template v-slot:activator="{ props }">
+							<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+						<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+					</v-menu>
 				</label>
 				<NCAdditionalToggles v-model="source" :items="listSource" label="name" value="value" count="source"/>
 			</div>
 			<div class="form-group mt-7">
 				<label for="" class="d-flex align-center">
 					Disk Type
-					<img src="/images/info.svg" class="ms-2">
+					<v-menu open-on-hover>
+						<template v-slot:activator="{ props }">
+							<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+						<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+					</v-menu>
 				</label>
 				<NCAdditionalToggles v-model="disk" :items="diskType" label="name" value="value" count="disk"/>
 			</div>

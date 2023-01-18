@@ -1,7 +1,7 @@
 <template>
 	<div class="authMain">
 		<div class="authLeft">
-			<v-card to="/" class="authLogo d-flex align-center" variant="plain">
+			<v-card to="/" class="authLogo d-flex align-center" variant="flat">
 				<img src="/images/logo.svg" alt="Netengi" class="me-3">
 				<img src="/images/netengi.svg" alt="Netengi">
 			</v-card>

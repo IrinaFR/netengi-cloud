@@ -8,7 +8,7 @@
 		class="bg-grey-100"
 		width="280"
 	>
-		<v-card variant="flat" to="/" class="listItemLogo d-flex bg-grey-100">
+		<v-card variant="text" to="/" class="listItemLogo d-flex">
 			<v-img src="/images/logo.svg" class="logoMain"></v-img>
 			<v-img src="/images/netengi.svg" class="logoText" nav></v-img>
 		</v-card>
@@ -41,8 +41,8 @@
 				</template>
 				<v-card max-width="280">
 					<v-list  density="compact" v-for="(innerBlock, innerIndex) in link.links" :key="innerIndex">
-						<v-list-subheader :title="innerBlock.title" v-if="innerBlock.title" nav></v-list-subheader>
-						<v-list-item :to="innerLink.url" v-for="innerLink in innerBlock.links" :key="innerLink" :active="false">{{innerLink.title}}</v-list-item>
+						<v-list-subheader :title="innerBlock.title" v-if="innerBlock.title&&!rail" nav></v-list-subheader>
+						<v-list-item :to="innerLink.url" v-for="innerLink in innerBlock.links" :class="{hoverBorder:rail}" :key="innerLink" :active="false">{{innerLink.title}}</v-list-item>
 						<v-divider></v-divider>
 					</v-list>
 				</v-card>
@@ -61,7 +61,6 @@ export default {
 	data(){
 		return {
 			drawer: true,
-			dropdown: [],
 			menu: [
 				{
 					title: '',
@@ -134,20 +133,6 @@ export default {
 </script>
 
 <style>
-.btnClose{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 30px;
-	height: 30px;
-	border-radius: 50%;
-	border: 1px solid rgb(var(--v-theme-grey-300));;
-	background: rgb(var(--v-theme-background));
-	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-}
-.btnClose img{
-	width: 10px;
-}
 .listItemLogo{
 	margin: 30px 0 40px ;
 	height: 27px;
@@ -167,6 +152,7 @@ export default {
 }
 .v-list-item--active > .v-list-item__overlay{
 	background: #BDCEEE;
+	box-shadow: none !important;
 }
 .v-list-item--active .menuLinkIcon{
 	-webkit-filter: grayscale(0);
@@ -175,5 +161,9 @@ export default {
 .menuLinkIcon{
 	-webkit-filter: grayscale(100%);
 	filter: grayscale(100%);
+}
+.v-list-item--variant-text .v-list-item__overlay{
+	/*border: solid 1px rgb(var(--v-theme-primary-600));*/
+	box-shadow: 0 0 0 3px rgb(var(--v-theme-primary-600));
 }
 </style>

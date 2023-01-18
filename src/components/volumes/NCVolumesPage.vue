@@ -38,7 +38,7 @@
 		<v-divider></v-divider>
 		<div class="mainPage">
 			<v-window v-model="tab">
-				<v-window-item value="one">
+				<v-window-item value="1">
 					<v-card variant="flat" class="overviewTab">
 						<h3>Volume Specifications</h3>
 						<ul class="smallText-15 overviewList">
@@ -66,13 +66,13 @@
 					</v-card>
 				</v-window-item>
 
-				<v-window-item value="two">
+				<v-window-item value="2">
 					<div class="smallText-15">There are no snapshot yet.</div>
 					<v-btn density="default" variant="tonal" class="my-3">Create Snapshot</v-btn>
 					<NCVolumesPageSnapshotTable/>
 				</v-window-item>
 
-				<v-window-item value="three">
+				<v-window-item value="3">
 					<div class="smallText-15">There are no backup yet.</div>
 					<v-btn density="default" variant="tonal" class="my-3">Create Backup</v-btn>
 					<NCVolumesPageBackupTable/>
@@ -89,12 +89,15 @@
 	export default {
 		data(){
 			return{
-				tab: 'one'
+				tab: '1'
 			}
 		},
 		components: {
 			NCVolumesPageSnapshotTable,
 			NCVolumesPageBackupTable
+		},
+		created() {
+			if(this.$route.params.tab) this.tab = this.$route.params.tab
 		}
 	}
 </script>

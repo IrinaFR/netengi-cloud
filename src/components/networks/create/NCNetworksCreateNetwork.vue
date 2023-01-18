@@ -38,7 +38,11 @@
 					class="flex-grow-0 me-2"
 				></v-switch>
 				<b>Internet Access</b>
-				<img src="/images/info.svg" class="ms-2">
+				<v-menu open-on-hover>
+					<template v-slot:activator="{ props }">
+						<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+					<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+				</v-menu>
 			</div>
 			<div class="form-group d-flex align-center">
 				<v-switch
@@ -48,13 +52,22 @@
 					class="flex-grow-0 me-2"
 				></v-switch>
 				<b>Admin State Up</b>
-				<img src="/images/info.svg" class="ms-2">
+				<v-menu open-on-hover>
+					<template v-slot:activator="{ props }">
+						<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+					<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+				</v-menu>
 			</div>
 		</v-form>
 		<v-card variant="flat" class="infoCard">
 			<v-card-title>
 					<span class="iconInfoCard me-2">
-						<img src="/images/info.svg">
+						<v-menu open-on-hover>
+							<template v-slot:activator="{ props }">
+								<img v-bind="props" src="/images/info.svg">
+							</template>
+							<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+						</v-menu>
 					</span>
 				<h3 class="d-inline-block">Information</h3>
 			</v-card-title>

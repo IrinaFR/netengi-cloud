@@ -37,31 +37,51 @@
 					<div class="d-flex gap-15 justify-space-between flex-wrap">
 						<div class="form-group">
 							<label for="">Client Data Timeout
-								<img src="/images/info.svg">
+								<v-menu open-on-hover>
+									<template v-slot:activator="{ props }">
+										<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+									<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+								</v-menu>
 							</label>
 							<v-text-field density="compact" hide-details variant="outlined"/>
 						</div>
 						<div class="form-group">
 							<label for="">TCP Inspect Timeout
-								<img src="/images/info.svg">
+								<v-menu open-on-hover>
+									<template v-slot:activator="{ props }">
+										<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+									<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+								</v-menu>
 							</label>
 							<v-text-field density="compact" hide-details variant="outlined"/>
 						</div>
 						<div class="form-group">
 							<label for="">Member Connect Timeout
-								<img src="/images/info.svg">
+								<v-menu open-on-hover>
+									<template v-slot:activator="{ props }">
+										<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+									<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+								</v-menu>
 							</label>
 							<v-text-field density="compact" hide-details variant="outlined"/>
 						</div>
 						<div class="form-group">
 							<label for="">Member Data Timeout
-								<img src="/images/info.svg">
+								<v-menu open-on-hover>
+									<template v-slot:activator="{ props }">
+										<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+									<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+								</v-menu>
 							</label>
 							<v-text-field density="compact" hide-details variant="outlined"/>
 						</div>
 						<div class="form-group">
 							<label for="">Connection Timeout
-								<img src="/images/info.svg">
+								<v-menu open-on-hover>
+									<template v-slot:activator="{ props }">
+										<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+									<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+								</v-menu>
 							</label>
 							<v-text-field density="compact" hide-details variant="outlined"/>
 						</div>
@@ -72,7 +92,11 @@
 		<v-card variant="flat" class="infoCard">
 			<v-card-title>
 					<span class="iconInfoCard me-2">
-						<img src="/images/info.svg">
+						<v-menu open-on-hover>
+<template v-slot:activator="{ props }">
+<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+</v-menu>
 					</span>
 				<h3 class="d-inline-block">Information</h3>
 			</v-card-title>

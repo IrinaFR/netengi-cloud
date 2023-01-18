@@ -1,7 +1,7 @@
 <template>
 	<div class="authMain" v-if="$route.name==='auth'">
 		<div class="authLeft">
-			<v-card to="/" class="authLogo d-flex align-center" variant="plain">
+			<v-card to="/" class="authLogo d-flex align-center" variant="flat">
 				<img src="/images/logo.svg" alt="Netengi" class="me-3">
 				<img src="/images/netengi.svg" alt="Netengi">
 			</v-card>
@@ -16,9 +16,10 @@
 						<label for="" class="d-flex justify-space-between">Password
 							<router-link to="/authorization/forgot">Forgot password?</router-link>
 						</label>
-						<v-text-field density="compact" variant="outlined">
+						<v-text-field density="compact" :type="showPass?'text':'password'" variant="outlined">
 							<template v-slot:append-inner>
-								<img src="/images/authorization/showPassword.svg">
+								<img src="/images/authorization/showPassword.svg" class="cursor-pointer mt-1" @click="showPass=false" v-if="showPass">
+								<img src="/images/authorization/hidePassword.svg" class="cursor-pointer mt-1" @click="showPass=true" v-else>
 							</template>
 						</v-text-field>
 					</div>
@@ -38,6 +39,16 @@
 		<router-view/>
 	</suspense>
 </template>
+
+<script>
+	export default {
+		data(){
+			return{
+				showPass: false
+			}
+		}
+	}
+</script>
 
 <style scoped>
 	.authMain{

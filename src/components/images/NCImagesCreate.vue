@@ -37,14 +37,22 @@
 			<div class="form-group mt-2">
 				<label for="" class="d-flex align-center">
 					Disk Container Format
-					<img src="/images/info.svg" class="ms-2">
+					<v-menu open-on-hover>
+						<template v-slot:activator="{ props }">
+							<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+						<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+					</v-menu>
 				</label>
 				<NCAdditionalToggles v-model="formatDisk" :items="listDiskformat" label="name" value="value" count="source"/>
 			</div>
 			<div class="form-group mt-7">
 				<label for="" class="d-flex align-center">
 					Disk Type
-					<img src="/images/info.svg" class="ms-2">
+					<v-menu open-on-hover>
+						<template v-slot:activator="{ props }">
+							<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+						<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+					</v-menu>
 				</label>
 				<NCAdditionalToggles v-model="source" :items="sourceList" label="name" value="value" count="disk"/>
 			</div>
@@ -97,7 +105,11 @@
 			<div class="customCardOutline">
 				<div class="form-group">
 					<label for="">Operating System
-						<img src="/images/info.svg" class="ms-2">
+						<v-menu open-on-hover>
+							<template v-slot:activator="{ props }">
+								<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+							<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+						</v-menu>
 					</label>
 					<v-select
 						v-model="system"
@@ -113,7 +125,11 @@
 				</div>
 				<div class="form-group">
 					<label for="">OS version
-						<img src="/images/info.svg" class="ms-2">
+						<v-menu open-on-hover>
+							<template v-slot:activator="{ props }">
+								<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+							<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+						</v-menu>
 					</label>
 					<v-select
 						:items="listVersion"
@@ -127,13 +143,21 @@
 
 				<div class="form-group">
 					<label>Minimum Disk Size
-						<img src="/images/info.svg" class="ms-2">
+						<v-menu open-on-hover>
+							<template v-slot:activator="{ props }">
+								<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+							<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+						</v-menu>
 					</label>
 					<NCAdditionalInputCount label="GB"/>
 				</div>
 				<div class="form-group">
 					<label>Minimum Required RAM
-						<img src="/images/info.svg" class="ms-2">
+						<v-menu open-on-hover>
+							<template v-slot:activator="{ props }">
+								<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+							<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+						</v-menu>
 					</label>
 					<NCAdditionalInputCount label="MB"/>
 				</div>
@@ -144,7 +168,11 @@
 						hide-details
 					></v-switch>
 					<b>Protected</b>
-					<img src="/images/info.svg" class="ms-2">
+					<v-menu open-on-hover>
+						<template v-slot:activator="{ props }">
+							<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+						<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+					</v-menu>
 				</div>
 			</div>
 
