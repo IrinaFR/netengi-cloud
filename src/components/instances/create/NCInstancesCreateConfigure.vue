@@ -64,7 +64,12 @@
 	<div class="form-group mt-2">
 		<label for="" class="d-flex align-center">
 			Disk Type
-			<img src="/images/info.svg" class="ms-2">
+			<v-menu open-on-hover>
+				<template v-slot:activator="{ props }">
+					<img v-bind="props" src="/images/info.svg" class="ms-2">
+				</template>
+				<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+			</v-menu>
 		</label>
 		<NCAdditionalToggles v-model="configure.disk_type" :items="listDiskformat" label="name" value="value" count="source"/>
 	</div>
@@ -104,13 +109,23 @@
 	</div>
 	<div class="form-group">
 		<label>Number of machines to create
-			<img src="/images/info.svg" class="ms-2">
+			<v-menu open-on-hover>
+				<template v-slot:activator="{ props }">
+					<img v-bind="props" src="/images/info.svg" class="ms-2 infoBlockAll">
+				</template>
+				<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+			</v-menu>
 		</label>
 		<NCAdditionalInputCount v-model="configure.machines" label="items"/>
 	</div>
 	<div class="form-group">
 		<label>Storage
-			<img src="/images/info.svg" class="ms-2">
+			<v-menu open-on-hover>
+				<template v-slot:activator="{ props }">
+					<img v-bind="props" src="/images/info.svg" class="ms-2 infoBlockAll">
+				</template>
+				<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+			</v-menu>
 		</label>
 		<NCAdditionalInputCount v-model="configure.storage" label="GB"/>
 	</div>

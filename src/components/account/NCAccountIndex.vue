@@ -73,7 +73,12 @@
 						<v-form validate-on="submit" class="w-25">
 							<div class="form-group">
 								<label for="">Language
-									<img src="/images/info.svg" class="ms-2">
+									<v-menu open-on-hover>
+										<template v-slot:activator="{ props }">
+											<img v-bind="props" src="/images/info.svg" class="ms-2 blockInfoTo">
+										</template>
+										<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+									</v-menu>
 								</label>
 								<v-select
 									class="input"
@@ -87,7 +92,12 @@
 							</div>
 							<div class="form-group">
 								<label for="">Currency
-									<img src="/images/info.svg" class="ms-2">
+									<v-menu open-on-hover>
+										<template v-slot:activator="{ props }">
+											<img v-bind="props" src="/images/info.svg" class="ms-2 blockInfoTo">
+										</template>
+										<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+									</v-menu>
 								</label>
 								<v-select
 									class="input"
@@ -112,7 +122,12 @@
 									<img src="/images/app_bar/profile/dark.svg">
 									Dark theme
 								</b>
-								<img src="/images/info.svg" class="ms-2">
+								<v-menu open-on-hover>
+									<template v-slot:activator="{ props }">
+										<img v-bind="props" src="/images/info.svg" class="ms-2 blockInfo">
+									</template>
+									<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+								</v-menu>
 							</div>
 							<div class="mt-7">
 								<v-btn density="default" variant="tonal">Save</v-btn>
@@ -169,5 +184,13 @@
 		font-size: 14px;
 		line-height: 20px;
 		color: rgb(var(--v-theme-success))
+	}
+	.blockInfo{
+		position: relative;
+		top: 2px;
+	}
+	.blockInfoTo{
+		position: relative;
+		top: 4px;
 	}
 </style>

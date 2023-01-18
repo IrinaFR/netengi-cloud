@@ -38,8 +38,13 @@
 			</v-form>
 			<v-card variant="flat" class="infoCard">
 				<v-card-title>
-					<span class="iconInfoCard me-2">
-						<img src="/images/info.svg">
+					<span class="iconInfo">
+						<v-menu open-on-hover>
+							<template v-slot:activator="{ props }">
+								<img v-bind="props" src="/images/info.svg">
+							</template>
+							<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+						</v-menu>
 					</span>
 					<h3 class="d-inline-block">Information</h3>
 				</v-card-title>
@@ -54,3 +59,10 @@
 		</div>
 	</div>
 </template>
+<style scoped>
+	.iconInfo{
+		margin-right: 10px;
+		position: relative;
+		top: 3px;
+	}
+</style>

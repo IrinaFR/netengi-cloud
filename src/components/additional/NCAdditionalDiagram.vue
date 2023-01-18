@@ -4,7 +4,12 @@
 	</div>
 	<div v-if="label">
 		<p>{{label}}
-			<img src="/images/info.svg" class="ms-2">
+			<v-menu open-on-hover>
+				<template v-slot:activator="{ props }">
+					<img v-bind="props" src="/images/info.svg" class="ms-2 infoBlockAll">
+				</template>
+				<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
+			</v-menu>
 		</p>
 		<b>{{count}}</b>
 	</div>
