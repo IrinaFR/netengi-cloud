@@ -168,15 +168,21 @@ export default {
 			],
 			dataOne:[
 				{
+					label:'Network In',
+					valueTag:'22,07MB',
 					borderColor: '#4671F6',
 					data: [12, 8, 28, 12],
 				},
 				{
+					label:'Network Out',
+					valueTag:'3,16MB',
 					borderColor: '#081D42',
 					data: [6, 4, 14, 6],
 				},
 			],
 			dataTwo:[{
+				label:'CPU',
+				valueTag:'7.01',
 				borderColor: '#4671F6',
 				data: [3, 4, 2, 5],
 			}],
