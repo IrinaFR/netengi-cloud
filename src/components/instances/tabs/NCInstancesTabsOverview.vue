@@ -72,11 +72,11 @@
 			</ul>
 		</v-card>
 	</div>
-	<v-card variant="flat" class="overviewTab">
+	<v-card variant="flat" class="overviewTab w-100">
 		<h3>Network Details</h3>
 		<NCAdditionalTree/>
 	</v-card>
-	<v-card variant="flat" class="overviewTab additionalMargin">
+	<v-card variant="flat" class="overviewTab additionalMargin w-100">
 		<h3>Volume Details</h3>
 		<v-table class="tableVolume">
 			<thead>
@@ -128,21 +128,21 @@
 			<div class="blockTitleCard">
 				<h3>Network Metric</h3>
 				<div class="customSelect">
-					<select v-model="typeMetric">
+					<select v-model="typeMetric" ref="selectTypeMetrick">
 						<option value="0">Packets</option>
 					</select>
 					<v-img src="/images/instances/downTriangle.svg"/>
 				</div>
 			</div>
 			<div class="smallGreyText">Period</div>
-			<NCAdditionalToggles v-model="periodMetric" :items="listTypeMetric" label="name" value="value"/>
+			<NCAdditionalToggles v-model="periodMetric" :items="listTypeMetric" label="name" value="value" count="network"/>
 			<div class="additionalMarginGraphic"></div>
 			<NCAdditionalGraphicLine :dataSet="dataOne"/>
 		</v-card>
 		<v-card variant="flat" class="overviewTab">
 			<h3>CPU Usage</h3>
 			<div class="smallGreyText">Period</div>
-			<NCAdditionalToggles v-model="periodMetricTwo" :items="listTypeMetric" label="name" value="value"/>
+			<NCAdditionalToggles v-model="periodMetricTwo" :items="listTypeMetric" label="name" value="value" count="cpu"/>
 			<div class="additionalMarginGraphic"></div>
 			<NCAdditionalGraphicLine :dataSet="dataTwo"/>
 		</v-card>
