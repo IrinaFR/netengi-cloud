@@ -27,7 +27,8 @@
 				<label for="">Code
 					<v-menu open-on-hover>
 						<template v-slot:activator="{ props }">
-							<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+							<img v-bind="props" src="/images/info.svg" class="ms-2 blockInfo">
+						</template>
 						<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
 					</v-menu>
 				</label>
@@ -87,6 +88,9 @@
 		background: rgb(var(--v-theme-grey-800));
 		color: rgb(var(--v-theme-background));
 		border: solid 1px rgb(var(--v-theme-grey-350));
-
+	}
+	.blockInfo{
+		position: relative;
+		top: 2px;
 	}
 </style>

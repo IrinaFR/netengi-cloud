@@ -257,3 +257,7 @@ ul.v-pagination__list{
 .fade-enter-from, .fade-leave-to{
     opacity: 0;
 }
+.infoBlockAll{
+    position: relative;
+    top: 3px;
+}

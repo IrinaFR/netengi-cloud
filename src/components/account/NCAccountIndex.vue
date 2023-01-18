@@ -75,7 +75,8 @@
 								<label for="">Language
 									<v-menu open-on-hover>
 										<template v-slot:activator="{ props }">
-											<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+											<img v-bind="props" src="/images/info.svg" class="ms-2 blockInfoTo">
+										</template>
 										<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
 									</v-menu>
 								</label>
@@ -93,7 +94,7 @@
 								<label for="">Currency
 									<v-menu open-on-hover>
 										<template v-slot:activator="{ props }">
-											<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+											<img v-bind="props" src="/images/info.svg" class="ms-2 blockInfoTo">   </template>
 										<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
 									</v-menu>
 								</label>
@@ -122,7 +123,8 @@
 								</b>
 								<v-menu open-on-hover>
 									<template v-slot:activator="{ props }">
-										<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
+										<img v-bind="props" src="/images/info.svg" class="ms-2 blockInfo">
+									</template>
 									<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
 								</v-menu>
 							</div>
@@ -284,32 +286,12 @@
 		line-height: 20px;
 		color: rgb(var(--v-theme-success))
 	}
-	.requirementPass{
-		display: flex;
-		align-items: center;
-		font-size: 15px;
-		color: rgb(var(--v-theme-grey-600))
+	.blockInfo{
+		position: relative;
+		top: 2px;
 	}
-	.requirementPass.check{
-		font-weight: 700;
-		color: rgb(var(--v-theme-success))
-	}
-	.circlePoint{
-		border-radius: 50%;
-		width: 14px;
-		height: 14px;
-		background: rgb(var(--v-theme-grey-400));
-	}
-	.requirementPass.check .circlePoint{
-		background: rgb(var(--v-theme-success));
-	}
-	.weak{
-		color: rgb(var(--v-theme-error));
-	}
-	.middle{
-		color: #EE9A1C;
-	}
-	.strong{
-		color: rgb(var(--v-theme-success));
+	.blockInfoTo{
+		position: relative;
+		top: 4px;
 	}
 </style>
