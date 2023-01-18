@@ -53,7 +53,7 @@
 						<img src="/images/app_bar/profile/billing.svg" class="me-2">
 					</template>
 				</v-list-item>
-				<v-list-item density="compact" title="Activities logs">
+				<v-list-item density="compact" to="/instances/1/4" title="Activities logs">
 					<template v-slot:prepend>
 						<img src="/images/app_bar/profile/activities-logs.svg" class="me-2">
 					</template>

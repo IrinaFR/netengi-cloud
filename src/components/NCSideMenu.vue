@@ -104,7 +104,7 @@ export default {
 					title: 'Network',
 					links: [
 						{ title: 'Networks', icon: 'network', url: '/networks'},
-						{ title: 'Subnet pools', icon: 'home', url: '/subnet'},
+						{ title: 'Subnet pools', icon: 'home', url: '/networks/1'},
 						{ title: 'Ports', icon: 'home', url: '/ports'},
 						{ title: 'Routers', icon: 'home', url: '/routes'},
 						{ title: 'Security Groups', icon: 'security', url: '/security'},
@@ -163,7 +163,6 @@ export default {
 	filter: grayscale(100%);
 }
 .v-list-item--variant-text .v-list-item__overlay{
-	/*border: solid 1px rgb(var(--v-theme-primary-600));*/
 	box-shadow: 0 0 0 3px rgb(var(--v-theme-primary-600));
 }
 </style>
