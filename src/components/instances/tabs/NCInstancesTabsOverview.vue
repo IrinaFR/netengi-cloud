@@ -171,20 +171,22 @@ export default {
 					label:'Network In',
 					valueTag:'22,07MB',
 					borderColor: '#4671F6',
-					data: [12, 8, 28, 12],
+					fill:true,
+					data: [12, 8, 28, 12,12, 8, 28, 12,12, 8, 28, 12],
 				},
 				{
 					label:'Network Out',
 					valueTag:'3,16MB',
 					borderColor: '#081D42',
-					data: [6, 4, 14, 6],
+					data: [6,4,14,6,6,4,14,6,6,1,1,1,1],
 				},
 			],
 			dataTwo:[{
 				label:'CPU',
 				valueTag:'7.01',
 				borderColor: '#4671F6',
-				data: [3, 4, 2, 5],
+				fill:true,
+				data: [10,7,12,11,12,14,1,8,9,4,2,6],
 			}],
 		}
 	}
