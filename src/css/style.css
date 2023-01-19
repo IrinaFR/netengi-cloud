@@ -191,6 +191,11 @@ ul.v-pagination__list{
 }
 
 /*tables*/
+th.v-data-table__td{
+    background: rgb(var(--v-theme-grey-200));
+    height: 34px;
+}
+
 .tableCheck{
     width: 50px;
 }

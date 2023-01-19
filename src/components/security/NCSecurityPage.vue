@@ -1,4 +1,5 @@
 <template>
+
 	<div class="mainPage">
 		<div class="backPage cursor-pointer" @click="$router.go(-1)">
 			<img src="/images/arrowBack.svg" class="backPageIcon">
@@ -13,7 +14,15 @@
 				</v-btn>
 			</div>
 		</div>
-		<v-card variant="flat" class="overviewTab">
+		<v-data-table
+			v-model:items-per-page="table.itemsPerPage"
+			:headers="table.headers"
+			:items="table.desserts"
+			item-value="direction"
+			show-select
+			class="elevation-1"
+		></v-data-table>
+		<v-card variant="flat" class="overviewTab mt-5">
 			<ul class="smallText-15 overviewList">
 				<li class="d-flex">
 					<span class="color-grey-700">ID</span>
@@ -52,6 +61,29 @@
 <script>
 	import NCSecurityPageTable from '@/components/security/page/NCSecurityPageTable'
 	export default {
+		data(){
+			return{
+				table: {
+					itemsPerPage: 10,
+					headers: [
+						{
+							title: 'Direction',
+							align: 'start',
+							key: 'direction',
+						},
+						{ title: 'Type', align: 'start', key: 'type' },
+						{ title: 'Protocol', align: 'start', key: 'protocol' },
+						{ title: 'Ports', align: 'start', key: 'ports' },
+						{ title: 'CIDR', align: 'start', key: 'cidr' },
+					],
+					desserts: [
+						{direction: 'Egress 1', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0'},
+						{direction: 'Egress 2', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0'},
+						{direction: 'Egress 3', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0'}
+					]
+				}
+			}
+		},
 		components: {
 			NCSecurityPageTable
 		}
