@@ -1,6 +1,6 @@
 <template>
 	<div class="blockChart">
-		<Line :data="data" :options="options"/>
+		<canvas :id="idCanvas"/>
 	</div>
 	<div class="listTags">
 		<div class="infoTag" v-for="(item,index) of dataSet" :key="index">
@@ -12,18 +12,16 @@
 </template>
 
 <script>
-import { Line } from 'vue-chartjs'
-import {Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend,} from 'chart.js'
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
+import Chart from 'chart.js/auto';
 export default {
-	components:{Line},
 	props:{
 		dataSet:Array
 	},
 	data(){
 		return{
+			idCanvas:'chart-'+new Date().getTime(),
 			data:{
-				labels: ['Oct, 1', '6 AM', '12 AM', '6 PM',],
+				labels: ['Oct, 1', '6 AM', '5 AM', '4 AM', '3 AM', '2 AM', '1 AM', '6 AM', '5 AM', '4 AM', '3 AM', '2 AM', '1 AM'],
 				datasets: this.$props.dataSet
 			},
 			options:{
@@ -37,6 +35,25 @@ export default {
 			}
 		}
 	},
+	methods:{
+		$_additional_graphicLine_set(){
+			const chart = document.getElementById(this.idCanvas).getContext('2d')
+			let gradient = chart.createLinearGradient(0, 0, 0, 250);
+			gradient.addColorStop(0, 'rgba(70, 113, 246, 0.5)');
+			gradient.addColorStop(1, 'rgba(217, 217, 217, 0)');
+			this.data.datasets[0].backgroundColor = gradient
+			new Chart(chart, {
+				type: 'line',
+				data: this.data,
+				options: this.options
+			});
+		}
+	},
+	mounted() {
+		this.$nextTick(()=>{
+			this.$_additional_graphicLine_set()
+		})
+	}
 }
 </script>
 
