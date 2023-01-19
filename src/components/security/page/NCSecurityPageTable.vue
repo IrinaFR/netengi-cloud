@@ -1,85 +1,100 @@
 <template>
 	<div class="listBtn mt-5">
 		<v-btn density="default" variant="tonal" to="/security/create-rules">Create Rule</v-btn>
+		<div class="flex-grow-1 ps-2">
+			<v-btn density="default" variant="outlined">
+				<v-img src="/images/general/delete.svg"></v-img>
+			</v-btn>
+		</div>
 		<v-btn density="default" variant="outlined">
-			<v-img src="/images/general/delete.svg"></v-img>
+			<img src="/images/general/filter.svg">
+			Filter
 		</v-btn>
 	</div>
-	<v-table density="compact" class="tableMain">
-		<thead class="bg-grey-200">
-		<tr>
-			<th class="text-left">
-				<input type="checkbox" class="form-check-input">
-			</th>
-			<th class="text-left">Direction
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left">Type
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left">Protocol
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left">Ports
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left">CIDR
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left"></th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr
-			v-for="item in table"
-			:key="item.id"
-		>
-			<td class="tableCheck">
-				<input type="checkbox" v-model="item.check" class="form-check-input">
-			</td>
-			<td class="tableName">{{item.direction}}</td>
-			<td>{{item.type}}</td>
-			<td>{{item.protocol}}</td>
-			<td>{{item.ports}}</td>
-			<td>{{item.cidr}}</td>
-			<td class="text-end cursor-pointer"><img src="/images/table/more.svg"></td>
-		</tr>
-		</tbody>
-	</v-table>
-	<div class="settingTable">
-		<div class="tableList">
-			<span>Show items</span>
-			<select name="tableListInstance" class="tableSizeList form-select" v-model="sizeList" id="tableListInstance">
-				<option value="10">10</option>
-				<option value="30">30</option>
-				<option value="50">50</option>
-			</select>
-			<span>of {{table.length}}</span>
-		</div>
-		<div class="tablePage">
-			<v-pagination
-				density="comfortable"
-				v-model="page"
-				:length="Math.ceil(table.length / sizeList)"
-				active-color="primary-600"
-			></v-pagination>
-		</div>
-	</div>
+
+	<v-data-table
+		v-model:items-per-page="table.itemsPerPage"
+		:headers="table.headers"
+		:items="table.data"
+		item-value="direction"
+		show-select
+		hide-default-footer
+		:page="page"
+		class="elevation-1"
+	>
+		<template v-slot:bottom>
+			<div class="settingTable">
+				<div class="tableList">
+					<span>Show items</span>
+					<select name="tableListInstance" class="tableSizeList form-select" v-model="table.itemsPerPage" id="tableListInstance">
+						<option value="10">10</option>
+						<option value="30">30</option>
+						<option value="50">50</option>
+					</select>
+					<span>of {{table.length}}</span>
+				</div>
+				<div class="tablePage">
+					<v-pagination
+						density="comfortable"
+						v-model="page"
+						:length="Math.ceil(table.data.length / table.itemsPerPage)"
+						active-color="primary-600"
+					></v-pagination>
+				</div>
+			</div>
+		</template>
+		<template v-slot:item.actions="{item}">
+			<v-menu open-on-hover>
+				<template v-slot:activator="{ props }">
+					<img src="/images/instances/more.svg" v-bind="props">
+				</template>
+				<v-list class="listMenu">
+					<v-list-item>
+						<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw, modalEdit=true">
+							<v-img src="/images/instances/menu/edit.svg"/>
+							Edit
+						</v-list-item-title>
+						<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw, modalDelete=true">
+							<v-img src="/images/instances/menu/delete.svg"/>
+							Delete
+						</v-list-item-title>
+					</v-list-item>
+				</v-list>
+			</v-menu>
+		</template>
+	</v-data-table>
+
 </template>
 
 <script>
 export default {
-	name: "NCInstancesTable",
 	data(){
 		return{
-			table: [
-				{id: 1, check: false, direction: 'Egress', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0'},
-				{id: 2, check: false, direction: 'Egress', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0'},
-				{id: 3, check: false, direction: 'Egress', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0'},
-				{id: 4, check: false, direction: 'Egress', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0'},
-			],
 			sizeList: 10,
 			page: 1,
+			table: {
+				itemsPerPage: 10,
+				headers: [
+					{
+						title: 'Direction',
+						align: 'start',
+						key: 'direction',
+					},
+					{ title: 'Type', align: 'start', key: 'type' },
+					{ title: 'Protocol', align: 'start', key: 'protocol' },
+					{ title: 'Ports', align: 'start', key: 'ports' },
+					{ title: 'CIDR', align: 'start', key: 'cidr' },
+					{ title: '', key: 'actions', align: 'end', sortable: false }
+				],
+				data: [
+					{direction: 'Egress 1', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0', actions:''},
+					{direction: 'Egress 2', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0', actions:''},
+					{direction: 'Egress 3', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0', actions:''}
+				]
+			},
+			modalItem: {},
+			modalDelete: false,
+			modalEdit: false
 		}
 	}
 }
@@ -96,32 +111,7 @@ export default {
 .v-btn + .v-btn{
 	margin-left: 6px;
 }
-.tableMain{
-	border-radius: 4px;
-	border: solid 1px rgb(var(--v-theme-grey-300));
-}
-.tableName{
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	max-width: 230px;
-}
-tr:not(:last-child){
-	border-bottom: solid 1px rgb(var(--v-theme-grey-300));
-}
-tr:nth-child(2n){
-	background: rgb(var(--v-theme-grey-100));
-}
-.instanceRunning{
-	font-weight: 700;
-	color: rgb(var(--v-theme-success));
-	font-size: 15px;
-}
-.instancePause{
-	font-weight: 700;
-	color: #D69F12;
-	font-size: 15px;
-}
+
 .settingTable{
 	display: flex;
 	justify-content: space-between;
@@ -142,5 +132,16 @@ tr:nth-child(2n){
 }
 .tablePage .v-pagination__next .v-btn{
 	background-image: url("/public/images/arrows/right.svg");
+}
+@media(max-width: 768px){
+	.settingTable{
+		display: block;
+	}
+	.tablePage{
+		display: flex;
+		margin-top: 20px;
+		justify-content: center;
+	}
+
 }
 </style>

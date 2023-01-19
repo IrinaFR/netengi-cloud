@@ -5,7 +5,7 @@
 			<img src="/images/arrowBack.svg" class="backPageIcon">
 			<span>Back to Security Groups</span>
 		</div>
-		<div class="pageTitle d-flex mt-4 mb-1">
+		<div class="d-flex flex-wrap mt-4 mb-1">
 			<h1 class="pageTitle d-block flex-grow-1">Netengi-security-group-1</h1>
 			<div class="listBtn mt-5">
 				<v-btn density="default" variant="outlined">
@@ -14,14 +14,7 @@
 				</v-btn>
 			</div>
 		</div>
-		<v-data-table
-			v-model:items-per-page="table.itemsPerPage"
-			:headers="table.headers"
-			:items="table.desserts"
-			item-value="direction"
-			show-select
-			class="elevation-1"
-		></v-data-table>
+
 		<v-card variant="flat" class="overviewTab mt-5">
 			<ul class="smallText-15 overviewList">
 				<li class="d-flex">
@@ -63,25 +56,7 @@
 	export default {
 		data(){
 			return{
-				table: {
-					itemsPerPage: 10,
-					headers: [
-						{
-							title: 'Direction',
-							align: 'start',
-							key: 'direction',
-						},
-						{ title: 'Type', align: 'start', key: 'type' },
-						{ title: 'Protocol', align: 'start', key: 'protocol' },
-						{ title: 'Ports', align: 'start', key: 'ports' },
-						{ title: 'CIDR', align: 'start', key: 'cidr' },
-					],
-					desserts: [
-						{direction: 'Egress 1', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0'},
-						{direction: 'Egress 2', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0'},
-						{direction: 'Egress 3', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0'}
-					]
-				}
+
 			}
 		},
 		components: {

@@ -268,12 +268,7 @@ export default {
 	.v-table--density-default > .v-table__wrapper > table > tbody > tr > td, .v-table--density-default > .v-table__wrapper > table > thead > tr > td, .v-table--density-default > .v-table__wrapper > table > tfoot > tr > td{
 		height: 42px;
 	}
-	.moreRow{
-		width: 20px;
-		height: 20px;
-		margin-left: auto;
-		cursor: pointer;
-	}
+
 	.blueText{
 		font-weight: 400;
 		color: rgb(var(--v-theme-primary-600));
@@ -286,32 +281,7 @@ export default {
 		color: #D69F12;
 		font-weight: 500;
 	}
-	.listMenu, .listMenu .v-list-item{
-		padding: 0 !important;
-	}
-	.dropDownItemMenu{
-		display: flex;
-		height: 36px;
-		font-weight: 400;
-		font-size: 15px;
-		color: rgb(var(--v-theme-grey-900));
-		cursor: pointer;
-		width: 150px;
-		line-height: 36px;
-		padding-left: 12px;
-	}
-	.dropDownItemMenu:hover{
-		background: #FCFBFC;
-	}
-	.dropDownItemMenu:active{
-		background: rgb(var(--v-theme-grey-200));
-	}
-	.dropDownItemMenu .v-img{
-		width: 20px;
-		height: 20px;
-		flex: none;
-		margin: auto 8px auto 0;
-	}
+
 	.additionalMargin{
 		margin: 20px 0;
 	}

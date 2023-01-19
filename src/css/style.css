@@ -166,7 +166,8 @@ ul.v-pagination__list{
     margin-right: 10px;
 }
 /*checkbox*/
-.form-check-input{
+.form-check-input,
+.v-selection-control__input > .v-icon{
     width: 16px;
     height: 16px;
     vertical-align: top;
@@ -181,20 +182,120 @@ ul.v-pagination__list{
     /* -webkit-print-color-adjust: exact; */
     print-color-adjust: exact;
 }
-.form-check-input[type=checkbox]{
+.v-selection-control__input > .v-icon:before{
+    content: '';
+}
+.form-check-input[type=checkbox],
+.v-selection-control__input > .v-icon.mdi-checkbox-blank-outline{
     border-radius: 4px;
 }
-.form-check-input[type=checkbox]:checked{
+.form-check-input[type=checkbox]:checked,
+.v-selection-control__input > .v-icon.mdi-checkbox-marked{
     background-color: rgb(var(--v-theme-primary-600));
     background: url("/public/images/form/checked.svg");
     border: none;
 }
+.v-selection-control__input > .v-icon.mdi-checkbox-marked:before{
+    content: '';
+}
+.v-selection-control__input > .v-icon.mdi-minus-box:before{
+    content: '';
+    background: url("/public/images/form/minus.svg") no-repeat;
+    width: 16px;
+    height: 16px;
+    background-size: cover;
+    margin-left: -1px;
+}
+
+/*card with list info*/
+@media(max-width: 768px){
+    .overviewTab{
+        width: 100%;
+    }
+    .overviewList li{
+        flex-direction: column;
+        column-gap: 10px;
+        margin-bottom: 15px;
+    }
+}
 
 /*tables*/
-th.v-data-table__td{
+.v-table__wrapper{
+    border-radius: 4px;
+    border: solid 1px rgb(var(--v-theme-grey-350));
+}
+.v-table.elevation-1{
+    box-shadow: none !important;
+}
+.v-data-table-header__content > span {
+    color: rgb(var(--v-theme-grey-900));
+}
+.v-data-table .v-table__wrapper > table > thead > tr th{
     background: rgb(var(--v-theme-grey-200));
     height: 34px;
 }
+.v-data-table .v-table__wrapper > table tbody > tr > td{
+    background: none;
+    height: 42px;
+    line-height: 0;
+}
+.v-data-table .v-table__wrapper > table > thead > tr:nth-child(2n),
+.v-data-table .v-table__wrapper > table tbody > tr:nth-child(2n){
+    background: rgb(var(--v-theme-grey-200));
+}
+
+
+.v-data-table-header__content > .mdi-arrow-down::before{
+    content: '';
+    width: 16px;
+    height: 16px;
+    background: url("/public/images/arrows/down.svg");
+}
+.v-data-table-header__content > .mdi-arrow-up::before{
+    content: '';
+    width: 16px;
+    height: 16px;
+    background: url("/public/images/arrows/up.svg");
+}
+.tableList{
+    display: flex;
+    align-items: center;
+}
+
+.moreRow{
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+    cursor: pointer;
+}
+.listMenu, .listMenu .v-list-item{
+    padding: 0 !important;
+}
+.dropDownItemMenu{
+    display: flex;
+    height: 36px;
+    font-weight: 400;
+    font-size: 15px;
+    color: rgb(var(--v-theme-grey-900));
+    cursor: pointer;
+    width: 150px;
+    line-height: 36px;
+    padding-left: 12px;
+}
+.dropDownItemMenu:hover{
+    background: #FCFBFC;
+}
+.dropDownItemMenu:active{
+    background: rgb(var(--v-theme-grey-200));
+}
+.dropDownItemMenu .v-img{
+    width: 20px;
+    height: 20px;
+    flex: none;
+    margin: auto 8px auto 0;
+}
+
+/*---------*/
 
 .tableCheck{
     width: 50px;
