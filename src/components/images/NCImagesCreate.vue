@@ -58,26 +58,19 @@
 			</div>
 			<div class="form-group" v-if="source===1">
 				<label for="">File</label>
-				<div
-					ref="imageLoadFile"
-					class="imageLoadFile mb-2"
-					@dragstart="() => {return false}"
-					@dragover="$refs.imageLoadFile.classList.add('hover')"
-					@dragleave="$refs.imageLoadFile.classList.remove('hover')"
-					>
-					<img src="/images/form/fileUpload.svg" class="mb-2">
-					<b>
-						<label for="imageLoadFile" class="color-primary-600 cursor-pointer">Click to upload</label>
-						<span> or drag and drop</span>
-					</b>
-					<span class="d-block color-grey-600">.ssh (maximum file size 10MB)</span>
-					<div class="errorLoad">
-						<img src="/images/form/error.svg" class="me-2">
-						<span>Failed to upload file. The format is not supported</span>
+				<NCAdditionalUploadPhoto v-model="uploadedFiles"/>
+				<!--for example-->
+				<div class="form-group loadedFile" v-for="(file, idx) in uploadedFiles" :key="idx">
+					<div class="d-flex justify-space-between">
+						<img src="/images/index/document.svg" class="me-2">
+						<div class="loadedFileName flex-grow-1">
+							<b class="small-text-14">{{ file.name }}</b>
+							<div class="small-text-12 color-grey-600">{{ file.size }} (bit)</div>
+						</div>
+						<img src="/images/general/close.svg" class="removeLoaded" @click="uploadedFiles.splice(idx, 1)">
 					</div>
-
 				</div>
-				<input type="file" id="imageLoadFile" class="d-none">
+				<!--for example-->
 				<div class="form-group loadedFile" v-for="(file, idx) in files" :key="idx">
 					<div class="d-flex justify-space-between">
 						<img src="/images/index/document.svg" class="me-2">
@@ -188,11 +181,12 @@
 <script>
 import NCAdditionalToggles from "@/components/additional/NCAdditionalToggles";
 import NCAdditionalInputCount from "@/components/additional/NCAdditionalInputCount";
+import NCAdditionalUploadPhoto from "@/components/additional/NCAdditionalUploadPhoto";
 export default {
 	data() {
 		return{
 			formatDisk: '',
-
+			uploadedFiles:[],
 			listDiskformat: [
 				{value: 'QCOW', name: 'QCOW'},
 				{value: 'RAW', name: 'RAW'},
@@ -221,37 +215,13 @@ export default {
 		}
 	},
 	components: {
+		NCAdditionalUploadPhoto,
 		NCAdditionalToggles, NCAdditionalInputCount
 	},
 }
 </script>
 
 <style scoped>
-.imageLoadFile{
-	padding: 20px 10px;
-	max-width: 50%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	border-radius: 4px;
-	border: 1.5px dashed rgb(var(--v-theme-grey-350));
-}
-.imageLoadFile.hover{
-	background: rgba(var(--v-theme-primary-100), .1);
-	border: 1.5px dashed rgb(var(--v-theme-primary-300));
-}
-.imageLoadFile.error .errorLoad{
-	display: block;
-}
-.errorLoad{
-	display: none;
-	background: #FFE5E5;
-	padding: 5px 8px;
-	border-radius: 4px;
-	margin-top: 18px;
-	color: #FF3D3D;
-}
 .loadedFile{
 	background: rgb(var(--v-theme-background));
 	border-radius: 4px;
