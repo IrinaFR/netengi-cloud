@@ -59,18 +59,6 @@
 			<div class="form-group" v-if="source===1">
 				<label for="">File</label>
 				<NCAdditionalUploadPhoto v-model="uploadedFiles"/>
-				<!--for example-->
-				<div class="form-group loadedFile" v-for="(file, idx) in uploadedFiles" :key="idx">
-					<div class="d-flex justify-space-between">
-						<img src="/images/index/document.svg" class="me-2">
-						<div class="loadedFileName flex-grow-1">
-							<b class="small-text-14">{{ file.name }}</b>
-							<div class="small-text-12 color-grey-600">{{ file.size }} (bit)</div>
-						</div>
-						<img src="/images/general/close.svg" class="removeLoaded" @click="uploadedFiles.splice(idx, 1)">
-					</div>
-				</div>
-				<!--for example-->
 				<div class="form-group loadedFile" v-for="(file, idx) in files" :key="idx">
 					<div class="d-flex justify-space-between">
 						<img src="/images/index/document.svg" class="me-2">
@@ -186,7 +174,7 @@ export default {
 	data() {
 		return{
 			formatDisk: '',
-			uploadedFiles:[],
+			uploadedFiles:null,
 			listDiskformat: [
 				{value: 'QCOW', name: 'QCOW'},
 				{value: 'RAW', name: 'RAW'},
