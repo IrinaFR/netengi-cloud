@@ -1,6 +1,6 @@
 <template>
 	<div class="infoCreateInstance">
-		<v-card variant="flat" class="bg-grey-100 kubernetesInfo">
+		<v-card variant="flat" class="bg-grey-100 text-center kubernetesInfo pa-5">
 			<h1>Everything is simple with Kubernetes</h1>
 			<p class="my-3 text-center">Set up your kubernetes cluster quickly. <br>
 				We focus on your server, you focus on your business.</p>
@@ -21,16 +21,16 @@
 			</div>
 		</v-card>
 	</div>
-	<div class="d-flex gap-15 flex-wrap justify-space-between mt-5">
-		<v-card variant="flat" class="bg-grey-100 w-25 pa-7 flex-grow-1">
+	<div class="d-flex gap-15 flex-md-nowrap flex-wrap justify-space-between mt-5">
+		<v-card variant="flat" class="bg-grey-100 pa-7 flex-grow-1">
 			<h3>Simplify Kubernetes</h3>
 			<p class="mt-4">Netengi Kubernetes allows you to streamline your automated application deployments with monitoring, instance replication, cluster scheduling, and seamless application releases.</p>
 		</v-card>
-		<v-card variant="flat" class="bg-grey-100 w-25 pa-7 flex-grow-1">
+		<v-card variant="flat" class="bg-grey-100 pa-7 flex-grow-1">
 			<h3>Save time with guided configuration</h3>
 			<p class="mt-4">We guide you through the steps to create and connect to your cluster and provide guides to help you deploy an application and add additional resources like persistent storage and load balancers.</p>
 		</v-card>
-		<v-card variant="flat" class="bg-grey-100 w-25 pa-7 flex-grow-1">
+		<v-card variant="flat" class="bg-grey-100 pa-7 flex-grow-1">
 			<h3>Focus more on your business</h3>
 			<p class="mt-4">Netengi Kubernetes allows you to streamline your automated application deployments with monitoring, instance replication, cluster scheduling, and seamless application releases.</p>
 		</v-card>
@@ -45,11 +45,7 @@
 		align-items: center;
 		flex-direction: column;
 	}
-	.infoCreateInstance{
-		display: flex;
-		width: 100%;
-		gap: 30px;
-	}
+
 	.blockWithBtn{
 		margin-right: 10px;
 		flex: auto;
@@ -57,15 +53,7 @@
 	.blockWithBtn .v-btn{
 		margin-bottom: 20px;
 	}
-	.blockBanner{
-		width: 405px;
-		height: 245px;
-		background: rgb(var(--v-theme-grey-300));
-		border-radius: 8px;
-		padding: 20px 20px 25px 20px;
-		box-shadow: none;
-		position: relative;
-	}
+
 	.title{
 		font-weight: 400;
 		font-size: 15px;

@@ -74,6 +74,7 @@
 	gap: 10px;
 	margin: 20px 0;
 }
+
 .quoteCard{
 	text-align: center;
 	width: 100%;
@@ -92,5 +93,23 @@
 	width: 82px;
 	max-height: 82px;
 	height: 82px;
+}
+@media(max-width: 1080px){
+	.qoutas{
+		flex-wrap: wrap;
+	}
+	.quoteCard{
+		flex: 32% 1;
+	}
+}
+@media(max-width: 640px){
+	.qoutas{
+		flex-wrap: nowrap;
+		overflow-x: scroll;
+	}
+	.quoteCard{
+		flex: none;
+		width: 175px;
+	}
 }
 </style>

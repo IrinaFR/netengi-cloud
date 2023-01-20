@@ -46,15 +46,7 @@ export default {
 	.blockWithBtn .v-btn{
 		margin-bottom: 20px;
 	}
-	.blockBanner{
-		width: 405px;
-		height: 245px;
-		background: rgb(var(--v-theme-grey-300));
-		border-radius: 8px;
-		padding: 20px 20px 25px 20px;
-		box-shadow: none;
-		position: relative;
-	}
+
 	.title{
 		font-weight: 400;
 		font-size: 15px;

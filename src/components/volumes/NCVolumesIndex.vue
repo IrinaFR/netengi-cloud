@@ -14,13 +14,8 @@
 				</v-expansion-panel-text>
 			</v-expansion-panel>
 		</v-expansion-panels>
-		<div class="listBtn">
-			<v-btn density="default" to="/volumes/create" variant="tonal">Create Volumes</v-btn>
-			<v-btn density="default" variant="outlined" v-if="table.length">
-				<v-img src="/images/general/delete.svg"></v-img>
-			</v-btn>
-		</div>
-		<NCVolumesTable v-if="showTable" :table="table"/>
+
+		<NCVolumesTable v-if="showTable"/>
 		<NCVolumesNone v-else/>
 		<br>
 		<button @click="showTable=!showTable">Сменить дизайн</button>
@@ -37,15 +32,6 @@
 			return{
 				showTable:false,
 				hideQuotas: true,
-				table: [
-					{id: 1, check: false, name: 'netengi-instance-1', zone: 'nova', size: '1GB', region: {country: 'ua', name: 'ua-central-1'}},
-					{id: 2, check: false, name: 'netengi-instance-2', zone: 'nova', size: '4GB', region: {country: 'ua', name: 'ua-central-1'}},
-					{id: 3, check: false, name: 'netengi-instance-3', zone: 'nova', size: '1GB', region: {country: 'ua', name: 'ua-central-1'}},
-					{id: 4, check: false, name: 'netengi-instance-4', zone: 'nova', size: '8GB', region: {country: 'ua', name: 'ua-central-1'}},
-					{id: 5, check: false, name: 'netengi-instance-5', zone: 'nova', size: '8GB', region: {country: 'ua', name: 'ua-central-1'}},
-					{id: 6, check: false, name: 'netengi-instance-6', zone: 'nova', size: '4GB', region: {country: 'ua', name: 'ua-central-1'}},
-					{id: 7, check: false, name: 'netengi-instance-7', zone: 'nova', size: '1GB', region: {country: 'ua', name: 'ua-central-1'}}
-				],
 			}
 		},
 		components: {

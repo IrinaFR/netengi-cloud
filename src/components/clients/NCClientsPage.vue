@@ -84,150 +84,25 @@
 					</div>
 				</v-window-item>
 				<v-window-item value="2">
-					<v-btn density="default" variant="tonal" class="my-3" @click="dialogInvite=true">
-						Invite User
-					</v-btn>
-					<v-table density="compact" class="tableMain">
-						<thead class="bg-grey-200">
-						<tr>
-							<th class="text-left">Email
-								<img src="/images/arrows/down.svg" class="ms-1">
-							</th>
-							<th class="text-left">Accepted invite
-								<img src="/images/arrows/down.svg" class="ms-1">
-							</th>
-							<th class="text-left">Roles
-								<img src="/images/arrows/down.svg" class="ms-1">
-							</th>
-							<th class="text-left"></th>
-						</tr>
-						</thead>
-						<tbody>
-						<tr
-							v-for="item in table"
-							:key="item.id"
-							:class="{bold:item.id===ownerId}"
-						>
-							<td>{{item.id===ownerId ? item.email + ' (you)' : item.email}}</td>
-							<td>{{item.invited ? 'Yes' : 'No'}}</td>
-							<td>
-								<span class="role" v-for="role in item.roles" :key="role">{{role}}</span>
-							</td>
-							<td class="text-end cursor-pointer"><img src="/images/table/more.svg"></td>
-						</tr>
-						</tbody>
-					</v-table>
-					<div class="settingTable">
-						<div class="tableList">
-							<span>Show items</span>
-							<select name="tableListInstance" class="tableSizeList form-select" v-model="sizeList" id="tableListInstance">
-								<option value="10">10</option>
-								<option value="5">5</option>
-								<option value="30">30</option>
-								<option value="50">50</option>
-							</select>
-							<span>of {{table.length}}</span>
-						</div>
-						<div class="tablePage">
-							<v-pagination
-								class="justify-end"
-								density="comfortable"
-								v-model="page"
-								:length="Math.ceil(table.length / sizeList)"
-								active-color="primary-600"
-							></v-pagination>
-						</div>
-					</div>
+					<NCClientsUsers/>
 				</v-window-item>
 				<v-window-item value="3">
-
+				<!--no design-->
 				</v-window-item>
 			</v-window>
 		</div>
 	</v-card>
-	<v-dialog v-model="dialogInvite" width="400">
-		<v-card color="background">
-			<v-card-text>
-				<v-toolbar density="comfortable" rounded color="background">
-					<v-toolbar-title class="ml-0">
-						<h3>Invite user for client Dmitriy Babanovlongfamily</h3>
-					</v-toolbar-title>
-					<v-btn icon dark density="compact" class="me-0" @click="dialogInvite = false">
-						<v-icon>mdi-close</v-icon>
-					</v-btn>
-				</v-toolbar>
-				<div class="form-group">
-					<label for="">User Email
-						<v-menu open-on-hover>
-							<template v-slot:activator="{ props }">
-								<img v-bind="props" src="/images/info.svg" class="ms-2">   </template>
-							<v-card class="pa-2" max-width="250">Sneak peak at soon launching Netengi cloud. More info you can look on netengi.com</v-card>
-						</v-menu>
-					</label>
-					<v-text-field density="compact" hide-details variant="outlined"/>
-				</div>
-				<v-divider class="my-4"></v-divider>
-				<div class="mt-3">
-					<b class="smallText-15 mb-3">Select user roles</b>
-					<v-card variant="flat" class="smallText-15 bg-grey-200 pa-2 mb-1">
-						<input type="checkbox" id="owner" name="roles" class="form-check-input mt-1 me-2">
-						<label for="owner">Owner</label>
-					</v-card>
-					<v-card variant="flat" class="smallText-15 bg-grey-200 pa-2 mb-1">
-						<input type="checkbox" id="programmer" name="roles" class="form-check-input mt-1 me-2">
-						<label for="programmer">Programmer</label>
-					</v-card>
-					<v-card variant="flat" class="smallText-15 bg-grey-200 pa-2 mb-1">
-						<input type="checkbox" id="accounter" name="roles" class="form-check-input mt-1 me-2">
-						<label for="accounter">Accounter</label>
-					</v-card>
-					<v-card variant="flat" class="smallText-15 bg-grey-200 pa-2 mb-1">
-						<input type="checkbox" id="member" name="roles" class="form-check-input mt-1 me-2">
-						<label for="member">Member</label>
-					</v-card>
-					<v-card variant="flat" class="smallText-15 bg-grey-200 pa-2">
-						<input type="checkbox" id="onlyNotif" name="roles" class="form-check-input mt-1 me-2">
-						<label for="onlyNotif">Only Notifications</label>
-					</v-card>
-				</div>
-				<div class="mt-4">
-					<b class="smallText-15">Select notifications settings</b>
-					<p class="my-3">User won't receive client related notifications until invitation is accepted.</p>
-					<div class="form-group">
-						<input type="checkbox" id="generalAnnouncements" class="form-check-input mt-1 me-2">
-						<label for="generalAnnouncements">General announcements</label>
-					</div>
-					<div class="form-group">
-						<input type="checkbox" id="notifications" class="form-check-input mt-1 me-2">
-						<label for="notifications">Billing and service related notifications</label>
-					</div>
-					<div class="form-group">
-						<input type="checkbox" id="techAnnouncements" class="form-check-input mt-1 me-2">
-						<label for="techAnnouncements">Technical announcements</label>
-					</div>
-				</div>
-				<div class="d-flex gap-15 justify-space-between mt-6 mb-2">
-					<v-btn variant="outlined" class="flex-grow-1" @click="dialogInvite=false">Cancel</v-btn>
-					<v-btn variant="tonal" class="flex-grow-1" color="grey-400" @click="dialogInvite=false">Invite User</v-btn>
-				</div>
-			</v-card-text>
-		</v-card>
-	</v-dialog>
 </template>
 
 <script>
+	import NCClientsUsers from '@/components/clients/NCClientsUsers'
 	export default {
+		components: {
+			NCClientsUsers
+		},
 		data(){
 			return{
-				ownerId: 1,
 				tab: '1',
-				table: [
-					{id: 1, email: 'mymail@mail.com', roles: ['Owner'], invited: true},
-					{id: 2, email: 'programmer@mail.ru', roles: ['Developer'], invited: false},
-					{id: 3, email: 'accountant@mail.ru', roles: ['Accountant', 'Role2', 'Role3'], invited: true},
-				],
-				sizeList: 10,
-				page: 1,
 				dialogInvite: false,
 			}
 		},
@@ -254,13 +129,7 @@
 	.overviewList li span:first-child{
 		min-width: 300px;
 	}
-	.role{
-		padding: 3px 4px;
-		border-radius: 4px;
-		font-size: 12px;
-		background: rgb(var(--v-theme-grey-300));
-		margin: 5px;
-	}
+
 	tr.bold{
 		font-weight: 700;
 	}

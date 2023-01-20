@@ -1,76 +1,94 @@
 <template>
 	<div class="mainPage" v-if="$route.name === 'clients'">
 		<h1 class="pageTitle mb-5">Clients</h1>
-		<v-table density="compact" class="tableMain">
-			<thead class="bg-grey-200">
-			<tr>
-				<th class="text-left">ID
-					<img src="/images/arrows/down.svg" class="ms-1">
-				</th>
-				<th class="text-left">Name
-					<img src="/images/arrows/down.svg" class="ms-1">
-				</th>
-				<th class="text-left">Roles
-					<img src="/images/arrows/down.svg" class="ms-1">
-				</th>
-				<th class="text-left">Created at
-					<img src="/images/arrows/down.svg" class="ms-1">
-				</th>
-				<th class="text-left"></th>
-			</tr>
-			</thead>
-			<tbody>
-			<tr
-				v-for="item in table"
-				:key="item.id"
-			>
-				<td class="tableName">
-					<router-link :to="`/clients/${item.id}`">{{ item.id }}</router-link>
-				</td>
-				<td>{{item.name}}</td>
-				<td>
-					<span class="role" v-for="role in item.roles" :key="role">{{role}}</span>
-				</td>
-				<td>{{item.create}}</td>
-				<td class="text-end cursor-pointer"><img src="/images/table/more.svg"></td>
-			</tr>
-			</tbody>
-		</v-table>
-		<div class="settingTable">
-			<div class="tableList">
-				<span>Show items</span>
-				<select name="tableListInstance" class="tableSizeList form-select" v-model="sizeList" id="tableListInstance">
-					<option value="10">10</option>
-					<option value="5">5</option>
-					<option value="30">30</option>
-					<option value="50">50</option>
-				</select>
-				<span>of {{table.length}}</span>
-			</div>
-			<div class="tablePage">
-				<v-pagination
-					class="justify-end"
-					density="comfortable"
-					v-model="page"
-					:length="Math.ceil(table.length / sizeList)"
-					active-color="primary-600"
-				></v-pagination>
-			</div>
-		</div>
+		<v-data-table
+			v-model:items-per-page="table.itemsPerPage"
+			:headers="table.headers"
+			:items="table.data"
+
+			show-select
+			hide-default-footer
+			:page="page"
+			class="elevation-1"
+		>
+			<template v-slot:bottom>
+				<div class="settingTable">
+					<div class="tableList">
+						<span>Show items</span>
+						<select name="tableListInstance" class="tableSizeList form-select" v-model="table.itemsPerPage" id="tableListInstance">
+							<option value="10">10</option>
+							<option value="30">30</option>
+							<option value="50">50</option>
+						</select>
+						<span>of {{table.length}}</span>
+					</div>
+					<div class="tablePage">
+						<v-pagination
+							density="comfortable"
+							v-model="page"
+							:length="Math.ceil(table.data.length / table.itemsPerPage)"
+							active-color="primary-600"
+						></v-pagination>
+					</div>
+				</div>
+			</template>
+			<template v-slot:[`item.id`]="{item}">
+				<router-link :to="`/clients/${item.raw.id}`">{{item.raw.id}}</router-link>
+			</template>
+			<template v-slot:[`item.roles`]="{item}">
+				<span class="role" v-for="role in item.raw.roles" :key="role">{{role}}</span>
+			</template>
+			<template v-slot:[`item.actions`]="{item}">
+				<v-menu open-on-hover>
+					<template v-slot:activator="{ props }">
+						<img src="/images/instances/more.svg" v-bind="props">
+					</template>
+					<v-list min-width="150" class="listMenu">
+						<v-list-item>
+							<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw">
+								<v-img src="/images/instances/menu/edit.svg"/>
+								Edit
+							</v-list-item-title>
+							<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw, modalDelete=true">
+								<v-img src="/images/instances/menu/delete.svg"/>
+								Delete
+							</v-list-item-title>
+						</v-list-item>
+					</v-list>
+				</v-menu>
+			</template>
+		</v-data-table>
+		<NCModalDelete v-model="modalDelete"/>
 	</div>
 	<router-view></router-view>
 </template>
 
 <script>
+import NCModalDelete from '@/components/modal/NCModalDelete'
 export default {
+	components: {
+		NCModalDelete
+	},
 	data(){
 		return{
-			table: [
-				{id: 976465, name: 'Dmitriy Babanov', roles: ['Owner', 'Developer'], create: 'Apr 29, 2022, 4:19:46 PM'},
-				{id: 976466, name: 'Dmitriy Babanov', roles: ['Owner', 'Developer'], create: 'Apr 29, 2022, 4:19:46 PM'},
-			],
 			sizeList: 10,
 			page: 1,
+			table: {
+				itemsPerPage: 10,
+				headers: [
+					{ title: 'ID', align: 'start', key: 'id' },
+					{ title: 'Name', align: 'start', key: 'name' },
+					{ title: 'Roles', align: 'start', key: 'roles' },
+					{ title: 'Created at', align: 'start', key: 'create' },
+					{ title: '', key: 'actions', align: 'end', sortable: false }
+				],
+				data: [
+					{id: 976465, name: 'Dmitriy Babanov', roles: ['Owner', 'Developer'], create: 'Apr 29, 2022, 4:19:46 PM'},
+					{id: 976466, name: 'Dmitriy Babanov', roles: ['Owner', 'Developer'], create: 'Apr 29, 2022, 4:19:46 PM'},
+				]
+			},
+			modalItem: {},
+			modalDelete: false,
 		}
 	}
 }

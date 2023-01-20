@@ -1,107 +1,112 @@
 <template>
-	<v-table density="compact" class="tableMain">
-		<thead class="bg-grey-200">
-		<tr>
-			<th class="text-left">
-				<input type="checkbox" class="form-check-input">
-			</th>
-			<th class="text-left">Name
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left">Network Address
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left">IP Version
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left">Gateway IP
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left"></th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr
-			v-for="item in table"
-			:key="item.id"
-		>
-			<td class="tableCheck">
-				<input type="checkbox" v-model="item.check" class="form-check-input">
-			</td>
-			<td class="tableName">
-				<router-link :to="`/volumes/${item.id}`">{{ item.name }}</router-link>
-			</td>
-			<td>{{item.address}}</td>
-			<td>{{item.ipVersion}}</td>
-			<td>{{item.gateway}}</td>
-			<td class="text-end cursor-pointer"><img src="/images/table/more.svg"></td>
-		</tr>
-		</tbody>
-	</v-table>
-	<div class="settingTable">
-		<div class="tableList">
-			<span>Show items</span>
-			<select name="tableListInstance" class="tableSizeList form-select" v-model="sizeList" id="tableListInstance">
-				<option value="10">10</option>
-				<option value="5">5</option>
-				<option value="30">30</option>
-				<option value="50">50</option>
-			</select>
-			<span>of {{table.length}}</span>
+	<div class="listBtn">
+		<v-btn density="default" to="/ports/create" variant="tonal">Create Subnet</v-btn>
+		<div class="flex-grow-1 px-2">
+			<v-btn density="default" variant="outlined" @click="modalDelete=true">
+				<v-img src="/images/general/delete.svg"></v-img>
+			</v-btn>
 		</div>
-		<div class="tablePage">
-			<v-pagination
-				class="justify-end"
-				density="comfortable"
-				v-model="page"
-				:length="Math.ceil(table.length / sizeList)"
-				active-color="primary-600"
-			></v-pagination>
-		</div>
+		<v-btn density="default" variant="outlined">
+			<img src="/images/general/filter.svg">
+			Filter
+		</v-btn>
 	</div>
+
+	<v-data-table
+		v-model:items-per-page="table.itemsPerPage"
+		:headers="table.headers"
+		:items="table.data"
+
+		show-select
+		hide-default-footer
+		:page="page"
+		class="elevation-1"
+	>
+		<template v-slot:bottom>
+			<div class="settingTable">
+				<div class="tableList">
+					<span>Show items</span>
+					<select name="tableListInstance" class="tableSizeList form-select" v-model="table.itemsPerPage" id="tableListInstance">
+						<option value="10">10</option>
+						<option value="30">30</option>
+						<option value="50">50</option>
+					</select>
+					<span>of {{table.length}}</span>
+				</div>
+				<div class="tablePage">
+					<v-pagination
+						density="comfortable"
+						v-model="page"
+						:length="Math.ceil(table.data.length / table.itemsPerPage)"
+						active-color="primary-600"
+					></v-pagination>
+				</div>
+			</div>
+		</template>
+		<template v-slot:[`item.name`]="{item}">
+			<router-link :to="`/subnet/${item.raw.id}`">{{item.raw.name}}</router-link>
+		</template>
+		<template v-slot:[`item.actions`]="{item}">
+			<v-menu open-on-hover>
+				<template v-slot:activator="{ props }">
+					<img src="/images/instances/more.svg" v-bind="props">
+				</template>
+				<v-list min-width="150" class="listMenu">
+					<v-list-item>
+						<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw">
+							<v-img src="/images/instances/menu/edit.svg"/>
+							Edit
+						</v-list-item-title>
+						<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw, modalDelete=true">
+							<v-img src="/images/instances/menu/delete.svg"/>
+							Delete
+						</v-list-item-title>
+					</v-list-item>
+				</v-list>
+			</v-menu>
+		</template>
+	</v-data-table>
+	<NCModalDelete v-model="modalDelete"/>
 </template>
 
 <script>
+import NCModalDelete from "@/components/modal/NCModalDelete";
+
 export default {
+	components: {
+		NCModalDelete
+	},
 	data(){
 		return{
-			table: [
-				{id: 0, check: false, name: 'net-subnet1', address: '95.163.248.0/22', ipVersion: '4', gateway: '2.59.220.1'},
-				{id: 0, check: false, name: 'net-subnet20', address: '37.139.40.0/22', ipVersion: '4', gateway: '213.219.215.254'},
-			],
 			sizeList: 10,
 			page: 1,
+			table: {
+				itemsPerPage: 10,
+				headers: [
+					{ title: 'Name', align: 'start', key: 'name' },
+					{ title: 'Network Address', align: 'start', key: 'address' },
+					{ title: 'IP Version', align: 'start', key: 'ip_version' },
+					{ title: 'Gateway IP', align: 'start', key: 'gateway' },
+					{ title: '', key: 'actions', align: 'end', sortable: false }
+				],
+				data: [
+					{id: 0, name: 'net-subnet1', address: '95.163.248.0/22', ip_version: '4', gateway: '2.59.220.1'},
+					{id: 0, name: 'net-subnet20', address: '37.139.40.0/22', ip_version: '4', gateway: '213.219.215.254'}
+				]
+			},
+			modalItem: {},
+			modalDelete: false,
 		}
 	}
 }
 </script>
 
 <style>
-.listBtn{
-	display: flex;
-	margin-bottom: 10px;
-}
 .v-btn .v-responsive{
 	width: 20px;
 }
 .v-btn + .v-btn{
 	margin-left: 6px;
-}
-.tableMain{
-	border-radius: 4px;
-	border: solid 1px rgb(var(--v-theme-grey-300));
-}
-.tableName{
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	max-width: 230px;
-}
-tr:not(:last-child){
-	border-bottom: solid 1px rgb(var(--v-theme-grey-300));
-}
-tr:nth-child(2n){
-	background: rgb(var(--v-theme-grey-100));
 }
 .settingTable{
 	display: flex;

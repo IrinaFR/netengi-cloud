@@ -39,7 +39,7 @@
 					<span class="color-grey-700">Instance UUID</span>
 					<span class="valueInfo">
 						c6e9f098-aed9-453a-b27a...
-						<v-btn class="btnCopy">
+						<v-btn class="btnCopy width-fit-content">
 							<v-img src="/images/instances/copy.svg"/>
 						</v-btn>
 					</span>
@@ -78,50 +78,35 @@
 	</v-card>
 	<v-card variant="flat" class="overviewTab additionalMargin w-100">
 		<h3>Volume Details</h3>
-		<v-table class="tableVolume">
-			<thead>
-			<tr>
-				<th>Name</th>
-				<th>Status</th>
-				<th>Size</th>
-				<th>Has Snapshot</th>
-				<th></th>
-			</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>
-						<span class="blueText">snapshot1</span>
-					</td>
-					<td>
-						<span :class="true?'instanceRunning':'instancePause'">In Use</span>
-					</td>
-					<td>
-						<span class="boldText">1GB</span>
-					</td>
-					<td>Yes</td>
-					<td>
-						<v-menu>
-							<template v-slot:activator="{ props }">
-								<v-img class="moreRow" src="/images/instances/more.svg" v-bind="props"></v-img>
-							</template>
-							<v-list class="listMenu">
-								<v-list-item>
-									<v-list-item-title class="dropDownItemMenu">
-										<v-img src="/images/instances/menu/edit.svg"/>
-										Edit
-									</v-list-item-title>
-									<v-list-item-title class="dropDownItemMenu">
-										<v-img src="/images/instances/menu/delete.svg"/>
-										Delete
-									</v-list-item-title>
-								</v-list-item>
-							</v-list>
-						</v-menu>
-					</td>
-				</tr>
-			</tbody>
-		</v-table>
+		<v-data-table
+			:headers="tableVolumes.headers"
+			:items="tableVolumes.data"
+
+			hide-default-footer
+			class="elevation-1"
+		>
+			<template v-slot:bottom></template>
+			<template v-slot:[`item.actions`]="{item}">
+				<v-menu open-on-hover>
+					<template v-slot:activator="{ props }">
+						<img src="/images/instances/more.svg" v-bind="props">
+					</template>
+					<v-list min-width="150" class="listMenu">
+						<v-list-item>
+							<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw">
+								<v-img src="/images/instances/menu/edit.svg"/>
+								Edit
+							</v-list-item-title>
+							<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw, modalDelete=true">
+								<v-img src="/images/instances/menu/delete.svg"/>
+								Delete
+							</v-list-item-title>
+						</v-list-item>
+					</v-list>
+				</v-menu>
+			</template>
+		</v-data-table>
+		<NCModalDelete v-model="modalDelete"/>
 	</v-card>
 	<div class="listInfoMain additionalMargin">
 		<v-card variant="flat" class="overviewTab">
@@ -153,8 +138,9 @@
 import NCAdditionalToggles from "@/components/additional/NCAdditionalToggles";
 import NCAdditionalGraphicLine from "@/components/additional/NCAdditionalGraphicLine";
 import NCAdditionalTree from "@/components/additional/tree/NCAdditionalTree";
+import NCModalDelete from '@/components/modal/NCModalDelete'
 export default {
-	components: {NCAdditionalTree, NCAdditionalGraphicLine, NCAdditionalToggles},
+	components: {NCAdditionalTree, NCAdditionalGraphicLine, NCAdditionalToggles, NCModalDelete},
 	data(){
 		return{
 			typeMetric:0,
@@ -188,6 +174,21 @@ export default {
 				fill:true,
 				data: [10,7,12,11,12,14,1,8,9,4,2,6],
 			}],
+			tableVolumes: {
+				itemsPerPage: 10,
+				headers: [
+					{ title: 'Name', align: 'start', key: 'name' },
+					{ title: 'Status', align: 'start', key: 'status' },
+					{ title: 'Size', align: 'start', key: 'size' },
+					{ title: 'Has Snapshot', align: 'start', key: 'snapshot' },
+					{ title: '', key: 'actions', align: 'end', sortable: false }
+				],
+				data: [
+					{name: 'snapshot1', status: 'In Use', size: '1GB', snapshot: 'Yes'},
+				]
+			},
+			modalItem: {},
+			modalDelete: false,
 		}
 	}
 }

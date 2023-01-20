@@ -239,8 +239,7 @@ ul.v-pagination__list{
     height: 42px;
     line-height: 0;
 }
-.v-data-table .v-table__wrapper > table > thead > tr:nth-child(2n),
-.v-data-table .v-table__wrapper > table tbody > tr:nth-child(2n){
+.v-data-table .v-table__wrapper > table > thead > tr:nth-child(2n){
     background: rgb(var(--v-theme-grey-200));
 }
 
@@ -278,7 +277,6 @@ ul.v-pagination__list{
     font-size: 15px;
     color: rgb(var(--v-theme-grey-900));
     cursor: pointer;
-    width: 150px;
     line-height: 36px;
     padding-left: 12px;
 }
@@ -305,6 +303,39 @@ ul.v-pagination__list{
     color: rgb(var(--v-theme-success));
     font-size: 15px;
 }
+
+/*mainPages*/
+.infoCreateInstance{
+    display: flex;
+    width: 100%;
+    gap: 30px;
+}
+.blockBanner{
+    width: 405px;
+    height: 245px;
+    background: rgb(var(--v-theme-grey-300));
+    border-radius: 8px;
+    padding: 20px 20px 25px 20px;
+    box-shadow: none;
+    position: relative;
+}
+.listBtn{
+    display: flex;
+    margin-bottom: 10px;
+}
+@media(max-width: 880px){
+    .infoCreateInstance{
+        flex-wrap: wrap;
+    }
+    .blockBanner{
+        width: 100%;
+    }
+    .listBtn{
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+}
+
 
 /*blockInfo*/
 .infoCard{

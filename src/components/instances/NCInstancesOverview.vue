@@ -4,26 +4,26 @@
 			<img src="/images/arrowBack.svg" class="backPageIcon">
 			<span>Back to Instances</span>
 		</div>
-		<div class="titleWithBtn">
+		<div class="d-flex justify-space-between align-center my-3 flex-wrap gap-15">
 			<h1 class="pageTitle">Netengi-instance-1</h1>
 			<div class="listBtn">
-				<v-btn class="smallGreyBtn">
-					<v-img src="/images/instances/power.svg"></v-img>
+				<v-btn class="bg-grey-300 px-0" size="30" variant="flat">
+					<v-img src="/images/general/power.svg"></v-img>
 				</v-btn>
-				<v-btn class="smallGreyBtn">
-					<v-img src="/images/instances/restart.svg"></v-img>
+				<v-btn class="bg-grey-300 px-0" size="30" variant="flat">
+					<v-img src="/images/general/restart.svg"></v-img>
 				</v-btn>
-				<v-btn class="smallGreyBtn">
-					<v-img src="/images/instances/resize.svg"></v-img>
+				<v-btn class="bg-grey-300 px-0" size="30" variant="flat">
+					<v-img src="/images/general/resize.svg"></v-img>
 				</v-btn>
-				<v-menu>
+				<v-menu width="240">
 					<template v-slot:activator="{ props }">
-						<v-btn class="btnEmpty" density="default" variant="outlined" v-bind="props">
-							<v-img src="/images/instances/more.svg"></v-img>
+						<v-btn height="30" density="default" max-height="30" variant="outlined" v-bind="props">
+							<v-img src="/images/general/more.svg"></v-img>
 							<span>Menu</span>
 						</v-btn>
 					</template>
-					<v-list class="listMenu">
+					<v-list min-width="150" class="listMenu">
 						<v-list-item>
 							<v-list-item-title class="dropDownItemMenu">
 								<v-img src="/images/instances/menu/rebuild.svg"/>
@@ -110,10 +110,6 @@ export default {
 	.titleWithBtn h1{
 		line-height: 51px;
 		font-weight: 500;
-	}
-	.listBtn {
-		display: flex;
-		align-items: center;
 	}
 	.listMenu, .listMenu .v-list-item{
 		padding: 0 !important;

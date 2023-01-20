@@ -1,7 +1,7 @@
 <template>
 	<div class="listBtn">
 		<v-btn density="default" variant="tonal" to="/instances/create">Create Instance</v-btn>
-		<v-btn density="default" variant="outlined">
+		<v-btn density="default" variant="outlined" @click="modalDelete=true">
 			<v-img src="/images/general/delete.svg"></v-img>
 		</v-btn>
 		<v-btn density="default" variant="outlined">
@@ -11,91 +11,98 @@
 			<v-img src="/images/general/playBtn.svg"></v-img>
 		</v-btn>
 	</div>
-	<v-table density="compact" class="tableMain">
-		<thead class="bg-grey-200">
-			<tr>
-				<th class="text-left">
-					<input type="checkbox" class="form-check-input">
-				</th>
-				<th class="text-left">Name
-					<img src="/images/arrows/down.svg" class="ms-1">
-				</th>
-				<th class="text-left">Instance State
-					<img src="/images/arrows/down.svg" class="ms-1">
-				</th>
-				<th class="text-left">Instance Type
-					<img src="/images/arrows/down.svg" class="ms-1">
-				</th>
-				<th class="text-left">IP Address
-					<img src="/images/arrows/down.svg" class="ms-1">
-				</th>
-				<th class="text-left"></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr
-				v-for="item in table"
-				:key="item.id"
-			>
-				<td class="tableCheck">
-					<input type="checkbox" v-model="item.check" class="form-check-input">
-				</td>
-				<td class="tableName">
-					<router-link :to="`/instances/${item.id}`">{{ item.name }}</router-link>
-				</td>
-				<td>
-					<span class="instanceRunning" v-if="item.state===1">
-						<img src="/images/table/running.svg" class="me-2">
-						Running
-					</span>
-					<span class="instancePause" v-else>
-						<img src="/images/table/pause.svg" class="me-2">
-						Pause
-					</span>
+	<v-data-table
+		v-model:items-per-page="table.itemsPerPage"
+		:headers="table.headers"
+		:items="table.data"
 
-				</td>
-				<td>{{item.type}}</td>
-				<td>{{item.ip}}</td>
-				<td class="text-end cursor-pointer"><img src="/images/table/more.svg"></td>
-
-			</tr>
-		</tbody>
-	</v-table>
-	<div class="settingTable">
-		<div class="tableList">
-			<span>Show items</span>
-			<select name="tableListInstance" class="tableSizeList form-select" v-model="sizeList" id="tableListInstance">
-				<option value="10">10</option>
-				<option value="30">30</option>
-				<option value="50">50</option>
-			</select>
-			<span>of {{table.length}}</span>
-		</div>
-		<div class="tablePage">
-			<v-pagination
-				density="comfortable"
-				v-model="page"
-				:length="Math.ceil(table.length / sizeList)"
-				active-color="primary-600"
-			></v-pagination>
-		</div>
-	</div>
+		show-select
+		hide-default-footer
+		:page="page"
+		class="elevation-1"
+	>
+		<template v-slot:bottom>
+			<div class="settingTable">
+				<div class="tableList">
+					<span>Show items</span>
+					<select name="tableListInstance" class="tableSizeList form-select" v-model="table.itemsPerPage" id="tableListInstance">
+						<option value="10">10</option>
+						<option value="30">30</option>
+						<option value="50">50</option>
+					</select>
+					<span>of {{table.length}}</span>
+				</div>
+				<div class="tablePage">
+					<v-pagination
+						density="comfortable"
+						v-model="page"
+						:length="Math.ceil(table.data.length / table.itemsPerPage)"
+						active-color="primary-600"
+					></v-pagination>
+				</div>
+			</div>
+		</template>
+		<template v-slot:[`item.name`]="{item}">
+			<router-link :to="`/instances/${item.raw.id}`">{{item.raw.name}}</router-link>
+		</template>
+		<template v-slot:[`item.state`]="{item}">
+			<span class="instanceRunning" v-if="item.raw.state===1">
+				<img src="/images/table/running.svg" class="me-2">
+				Running
+			</span>
+			<span class="instancePause" v-else>
+				<img src="/images/table/pause.svg" class="me-2">
+				Pause
+			</span>
+		</template>
+		<template v-slot:[`item.actions`]="{item}">
+			<v-menu open-on-hover>
+				<template v-slot:activator="{ props }">
+					<img src="/images/instances/more.svg" v-bind="props">
+				</template>
+				<v-list min-width="150" class="listMenu">
+					<v-list-item>
+						<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw">
+							<v-img src="/images/instances/menu/edit.svg"/>
+							Edit
+						</v-list-item-title>
+						<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw, modalDelete=true">
+							<v-img src="/images/instances/menu/delete.svg"/>
+							Delete
+						</v-list-item-title>
+					</v-list-item>
+				</v-list>
+			</v-menu>
+		</template>
+	</v-data-table>
+	<NCModalDelete v-model="modalDelete"/>
 </template>
 
 <script>
-	export default {
-		name: "NCInstancesTable",
+import NCModalDelete from '@/components/modal/NCModalDelete'
+export default {
+	components: {
+		NCModalDelete
+	},
 		data(){
 			return{
-				table: [
-					{id: 1, check: false, name: 'netengi-instance-1', state: 1, type: 'n2.micro', ip: '13.56.241.172'},
-					{id: 2, check: false, name: 'netengi-instance-2', state: 2, type: 'n2.micro', ip: '13.56.241.172'},
-					{id: 3, check: false, name: 'netengi-instance-3', state: 1, type: 'n2.micro', ip: '13.56.241.172'},
-					{id: 4, check: false, name: 'netengi-instance-4', state: 1, type: 'n2.micro', ip: '13.56.241.172'},
-					{id: 5, check: false, name: 'netengi-instance-5', state: 2, type: 'n2.micro', ip: '13.56.241.172'},
-					{id: 6, check: false, name: 'netengi-instance-6', state: 2, type: 'n2.micro', ip: '13.56.241.172'},
-					{id: 7, check: false, name: 'netengi-instance-7', state: 1, type: 'n2.micro', ip: '13.56.241.172'}
-				],
+				table: {
+					itemsPerPage: 10,
+					headers: [
+						{ title: 'Name', align: 'start', key: 'name' },
+						{ title: 'Instance State', align: 'start', key: 'state' },
+						{ title: 'Instance Type', align: 'start', key: 'type' },
+						{ title: 'IP Address', align: 'start', key: 'ip' },
+						{ title: '', key: 'actions', align: 'end', sortable: false }
+					],
+					data: [
+						{id: 1, check: false, name: 'netengi-instance-1', state: 1, type: 'n2.micro', ip: '13.56.241.172'},
+						{id: 2, check: false, name: 'netengi-instance-2', state: 2, type: 'n2.micro', ip: '13.56.241.172'},
+						{id: 3, check: false, name: 'netengi-instance-3', state: 1, type: 'n2.micro', ip: '13.56.241.172'},
+					]
+				},
+				modalItem: {},
+				modalDelete: false,
 				sizeList: 10,
 				page: 1,
 			}
@@ -104,10 +111,6 @@
 </script>
 
 <style>
-	.listBtn{
-		display: flex;
-		margin-bottom: 10px;
-	}
 	.v-btn .v-responsive{
 		width: 20px;
 	}

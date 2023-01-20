@@ -76,9 +76,9 @@ export default {
 							{
 								title: 'Category',
 								links: [
-									{ title: 'Overviews', url: '/'},
-									{ title: 'Snapshots', url: '/'},
-									{ title: 'Backups', url: '/'},
+									{ title: 'Overviews', url: '/volumes/0/1'},
+									{ title: 'Snapshots', url: '/volumes/0/2'},
+									{ title: 'Backups', url: '/volumes/0/3'},
 								]
 							},
 							{

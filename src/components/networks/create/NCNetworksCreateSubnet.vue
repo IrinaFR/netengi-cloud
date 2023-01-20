@@ -7,61 +7,36 @@
 					<span>Add Subnet</span>
 				</v-btn>
 			</div>
-			<v-table density="compact" class="tableMain">
-				<thead class="bg-grey-200">
-				<tr>
-					<th class="text-left">
-						<input type="checkbox" class="form-check-input">
-					</th>
-					<th class="text-left">Name
-						<img src="/images/arrows/down.svg" class="ms-1">
-					</th>
-					<th class="text-left">Network Address
-						<img src="/images/arrows/down.svg" class="ms-1">
-					</th>
-					<th class="text-left">IP Version
-						<img src="/images/arrows/down.svg" class="ms-1">
-					</th>
-					<th class="text-left">Gateway IP
-						<img src="/images/arrows/down.svg" class="ms-1">
-					</th>
-					<th class="text-left"></th>
-				</tr>
-				</thead>
-				<tbody>
-					<tr v-for="item in table" :key="item.id">
-						<td class="tableCheck">
-							<input type="checkbox" v-model="item.check" class="form-check-input">
-						</td>
-						<td class="tableName">
-							<span>{{item.name}}</span>
-						</td>
-						<td>{{item.address}}</td>
-						<td>{{item.ipv}}</td>
-						<td>{{item.gateways}}</td>
-						<td class="text-end cursor-pointer"><img src="/images/table/more.svg"></td>
-					</tr>
-				</tbody>
-			</v-table>
-			<div class="settingTable">
-				<div class="tableList">
-					<span>Show items</span>
-					<select name="tableListInstance" class="tableSizeList form-select" v-model="sizeList" id="tableListInstance">
-						<option value="10">10</option>
-						<option value="30">30</option>
-						<option value="50">50</option>
-					</select>
-					<span>of {{table.length}}</span>
-				</div>
-				<div class="tablePage">
-					<v-pagination
-						density="comfortable"
-						v-model="page"
-						:length="Math.ceil(table.length / sizeList)"
-						active-color="primary-600"
-					></v-pagination>
-				</div>
-			</div>
+			<v-data-table
+				:headers="table.headers"
+				:items="table.data"
+
+				show-select
+				hide-default-footer
+				class="elevation-1"
+			>
+				<template v-slot:bottom></template>
+				<template v-slot:[`item.actions`]="{item}">
+					<v-menu open-on-hover>
+						<template v-slot:activator="{ props }">
+							<img src="/images/instances/more.svg" v-bind="props">
+						</template>
+						<v-list min-width="150" class="listMenu">
+							<v-list-item>
+								<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw">
+									<v-img src="/images/instances/menu/edit.svg"/>
+									Edit
+								</v-list-item-title>
+								<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw, modalDelete=true">
+									<v-img src="/images/instances/menu/delete.svg"/>
+									Delete
+								</v-list-item-title>
+							</v-list-item>
+						</v-list>
+					</v-menu>
+				</template>
+			</v-data-table>
+			<NCModalDelete v-model="modalDelete"/>
 			<div class="mt-7">
 				<v-btn density="default" variant="tonal" @click="$emit('change', 1)">Continue</v-btn>
 				<v-btn density="default" class="ms-3" variant="outlined" @click="$emit('change', 0)">Back</v-btn>
@@ -87,16 +62,30 @@
 </template>
 
 <script>
+import NCModalDelete from "@/components/modal/NCModalDelete";
+
 export default {
+	components: {
+		NCModalDelete
+	},
 	emits: ['change'],
 	data(){
 		return{
-			table: [
-				{id: 1, check: false, name: 'netengi-subnet1', address: '13.56.241.172', ipv: 'IPv4', gateway: 'Do not set gateway ip'},
-				{id: 2, check: false, name: 'netengi-subnet1', address: '13.56.241.172', ipv: 'IPv4', gateway: 'Do not set gateway ip'},
-			],
-			sizeList: 10,
-			page: 1,
+			table: {
+				headers: [
+					{ title: 'Name', align: 'start', key: 'name' },
+					{ title: 'Network Address', align: 'start', key: 'address' },
+					{ title: 'IP Version', align: 'start', key: 'ip_version' },
+					{ title: 'Gateway IP', align: 'start', key: 'gateway' },
+					{ title: '', key: 'actions', align: 'end', sortable: false }
+				],
+				data: [
+					{id: 0, name: 'net-subnet1', address: '95.163.248.0/22', ip_version: '4', gateway: '2.59.220.1'},
+					{id: 0, name: 'net-subnet20', address: '37.139.40.0/22', ip_version: '4', gateway: '213.219.215.254'}
+				]
+			},
+			modalItem: {},
+			modalDelete: false,
 		}
 	}
 }

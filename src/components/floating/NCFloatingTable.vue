@@ -1,103 +1,119 @@
 <template>
 	<div class="listBtn mt-5">
 		<v-btn density="default" variant="tonal">Create Instance</v-btn>
+		<div class="px-2 flex-grow-1">
+			<v-btn density="default" variant="outlined" @click="modalDelete=true">
+				<v-img src="/images/general/delete.svg"></v-img>
+			</v-btn>
+		</div>
 		<v-btn density="default" variant="outlined">
-			<v-img src="/images/general/delete.svg"></v-img>
+			<img src="/images/general/filter.svg" class="me-2">
+			Filter
 		</v-btn>
 	</div>
-	<v-table density="compact" class="tableMain">
-		<thead class="bg-grey-200">
-		<tr>
-			<th class="text-left">
-				<input type="checkbox" class="form-check-input">
-			</th>
-			<th class="text-left">IP Address
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left">Status
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left">Network
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left">Associated Object
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left">Placement Region
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left"></th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr
-			v-for="item in table"
-			:key="item.id"
-		>
-			<td class="tableCheck">
-				<input type="checkbox" v-model="item.check" class="form-check-input">
-			</td>
-			<td class="tableName">
-				<router-link :to="`/floating/${item.id}`">{{ item.ip }}</router-link>
-			</td>
-			<td>
-					<span class="instanceRunning" v-if="item.state===1">
-						<img src="/images/table/running.svg" class="me-2">
-						Running
-					</span>
-				<span class="instancePause" v-else>
-						<img src="/images/table/pause.svg" class="me-2">
-						Pause
-					</span>
+	<v-data-table
+		v-model:items-per-page="table.itemsPerPage"
+		:headers="table.headers"
+		:items="table.data"
 
-			</td>
-			<td>{{item.network}}</td>
-			<td>{{item.associated}}</td>
-			<td>
-				<span>
-					<img :src="`/images/flags/${item.region.country}.svg`" class="me-2">
-					{{item.region.name}}
-				</span>
-			</td>
-			<td class="text-end cursor-pointer"><img src="/images/table/more.svg"></td>
-		</tr>
-		</tbody>
-	</v-table>
-	<div class="settingTable">
-		<div class="tableList">
-			<span>Show items</span>
-			<select name="tableListInstance" class="tableSizeList form-select" v-model="sizeList" id="tableListInstance">
-				<option value="10">10</option>
-				<option value="30">30</option>
-				<option value="50">50</option>
-			</select>
-			<span>of {{table.length}}</span>
-		</div>
-		<div class="tablePage">
-			<v-pagination
-				density="comfortable"
-				v-model="page"
-				:length="Math.ceil(table.length / sizeList)"
-				active-color="primary-600"
-			></v-pagination>
-		</div>
-	</div>
+		show-select
+		hide-default-footer
+		:page="page"
+		class="elevation-1"
+	>
+		<template v-slot:bottom>
+			<div class="settingTable">
+				<div class="tableList">
+					<span>Show items</span>
+					<select name="tableListInstance" class="tableSizeList form-select" v-model="table.itemsPerPage" id="tableListInstance">
+						<option value="10">10</option>
+						<option value="30">30</option>
+						<option value="50">50</option>
+					</select>
+					<span>of {{table.length}}</span>
+				</div>
+				<div class="tablePage">
+					<v-pagination
+						density="comfortable"
+						v-model="page"
+						:length="Math.ceil(table.data.length / table.itemsPerPage)"
+						active-color="primary-600"
+					></v-pagination>
+				</div>
+			</div>
+		</template>
+		<template v-slot:[`item.ip`]="{item}">
+			<router-link :to="`/floating/${item.raw.id}`">{{item.raw.ip}}</router-link>
+		</template>
+		<template v-slot:[`item.status`]="{item}">
+			<span class="instanceRunning" v-if="item.raw.status===1">
+				<img src="/images/table/running.svg" class="me-2">
+				Running
+			</span>
+			<span class="instancePause" v-else>
+				<img src="/images/table/pause.svg" class="me-2">
+				Pause
+			</span>
+		</template>
+		<template v-slot:[`item.region.name`]="{item}">
+			<span>
+				<img :src="`/images/flags/${item.raw.region.country}.svg`" class="me-2">
+				{{item.raw.region.name}}
+			</span>
+		</template>
+		<template v-slot:[`item.actions`]="{item}">
+			<v-menu open-on-hover>
+				<template v-slot:activator="{ props }">
+					<img src="/images/instances/more.svg" v-bind="props">
+				</template>
+				<v-list min-width="150" class="listMenu">
+					<v-list-item>
+						<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw">
+							<v-img src="/images/instances/menu/edit.svg"/>
+							Edit
+						</v-list-item-title>
+						<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw, modalDelete=true">
+							<v-img src="/images/instances/menu/delete.svg"/>
+							Delete
+						</v-list-item-title>
+					</v-list-item>
+				</v-list>
+			</v-menu>
+		</template>
+	</v-data-table>
+	<NCModalDelete v-model="modalDelete"/>
 </template>
 
 <script>
+import NCModalDelete from '@/components/modal/NCModalDelete'
 export default {
-	name: "NCInstancesTable",
+	components: {
+		NCModalDelete
+	},
 	data(){
 		return{
-			table: [
-				{id: 1, check: false, ip: '192.168.254.144', state: 1, associated: '-', network: 'netengi-network1', region: {country: 'ua', name: 'ua-central-1'}},
-				{id: 2, check: false, ip: '192.168.254.144', state: 2, associated: '-', network: 'netengi-network1', region: {country: 'ua', name: 'ua-central-1'}},
-				{id: 3, check: false, ip: '192.168.1.2', state: 1, associated: '-', network: 'netengi-network1', region: {country: 'pl', name: 'pl-central-23'}},
-				{id: 4, check: false, ip: '192.168.254.144', state: 2, associated: '-', network: 'netengi-network1', region: {country: 'ua', name: 'ua-central-1'}},
-				{id: 5, check: false, ip: '192.168.1.2', state: 2, associated: '-', network: 'netengi-network1', region: {country: 'pl', name: 'pl-central-23'}},
-				{id: 6, check: false, ip: '192.168.254.144', state: 1, associated: '-', network: 'netengi-network1', region: {country: 'pl', name: 'pl-central-23'}},
-				{id: 7, check: false, ip: '192.168.254.144', state: 1, associated: '-', network: 'netengi-network1', region: {country: 'ua', name: 'ua-central-1'}}
-			],
+			table: {
+				itemsPerPage: 10,
+				headers: [
+					{ title: 'IP Address', align: 'start', key: 'ip' },
+					{ title: 'Status', align: 'start', key: 'status' },
+					{ title: 'Network', align: 'start', key: 'network' },
+					{ title: 'Associated Object', align: 'start', key: 'associated' },
+					{ title: 'Placement Region', align: 'start', key: 'region.name' },
+					{ title: '', key: 'actions', align: 'end', sortable: false }
+				],
+				data: [
+					{id: 1, ip: '192.168.254.144', status: 1, associated: '-', network: 'netengi-network1', region: {country: 'ua', name: 'ua-central-1'}},
+					{id: 2, ip: '192.168.254.144', status: 2, associated: '-', network: 'netengi-network1', region: {country: 'ua', name: 'ua-central-1'}},
+					{id: 3, ip: '192.168.1.2', status: 1, associated: '-', network: 'netengi-network1', region: {country: 'pl', name: 'pl-central-23'}},
+					{id: 4, ip: '192.168.254.144', status: 2, associated: '-', network: 'netengi-network1', region: {country: 'ua', name: 'ua-central-1'}},
+					{id: 5, ip: '192.168.1.2', status: 2, associated: '-', network: 'netengi-network1', region: {country: 'pl', name: 'pl-central-23'}},
+					{id: 6, ip: '192.168.254.144', status: 1, associated: '-', network: 'netengi-network1', region: {country: 'pl', name: 'pl-central-23'}},
+					{id: 7, ip: '192.168.254.144', status: 1, associated: '-', network: 'netengi-network1', region: {country: 'ua', name: 'ua-central-1'}}
+				]
+			},
+			modalItem: {},
+			modalDelete: false,
 			sizeList: 10,
 			page: 1,
 		}
@@ -106,10 +122,6 @@ export default {
 </script>
 
 <style>
-.listBtn{
-	display: flex;
-	margin-bottom: 10px;
-}
 .v-btn .v-responsive{
 	width: 20px;
 }

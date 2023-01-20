@@ -1,4 +1,7 @@
 <template>
+	<div class="listBtn">
+		<v-btn density="default" to="/volumes/create" variant="tonal">Create Volumes</v-btn>
+	</div>
 	<div class="infoCreateInstance">
 		<div class="blockWithBtn">
 			<div class="title">You have no volumes right now.</div>
@@ -25,10 +28,6 @@
 </template>
 
 <style>
-	.listBtn{
-		display: flex;
-		margin-bottom: 10px;
-	}
 	.infoCreateInstance{
 		display: flex;
 		width: 100%;
@@ -40,15 +39,7 @@
 	.blockWithBtn .v-btn{
 		margin-bottom: 20px;
 	}
-	.blockBanner{
-		width: 405px;
-		height: 245px;
-		background: rgb(var(--v-theme-grey-300));
-		border-radius: 8px;
-		padding: 20px 20px 25px 20px;
-		box-shadow: none;
-		position: relative;
-	}
+
 	.title{
 		font-weight: 400;
 		font-size: 15px;

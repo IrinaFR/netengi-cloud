@@ -2,7 +2,7 @@
 	<div class="listBtn">
 		<v-btn density="default" variant="tonal" to="/kubernetes/create">Create Kubernetes</v-btn>
 		<v-btn density="default" variant="outlined">Get Kubeconfig</v-btn>
-		<v-btn density="default" variant="outlined">
+		<v-btn density="default" variant="outlined" @click="modalDelete=true">
 			<v-img src="/images/general/delete.svg"></v-img>
 		</v-btn>
 		<v-btn density="default" variant="outlined">
@@ -15,144 +15,131 @@
 			<v-img src="/images/general/stop.svg"></v-img>
 		</v-btn>
 	</div>
-	<v-table density="compact" class="tableMain">
-		<thead class="bg-grey-200">
-			<tr>
-				<th class="text-left">
-					<input type="checkbox" class="form-check-input">
-				</th>
-				<th class="text-left">Name
-					<img src="/images/arrows/down.svg" class="ms-1">
-				</th>
-				<th class="text-left">Number of nodes
-					<img src="/images/arrows/down.svg" class="ms-1">
-				</th>
-				<th class="text-left">Type
-					<img src="/images/arrows/down.svg" class="ms-1">
-				</th>
-				<th class="text-left">Price
-					<img src="/images/arrows/down.svg" class="ms-1">
-				</th>
-				<th class="text-left"></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr v-for="item in table" :key="item.id">
-				<td class="text-left">
-					<input type="checkbox" class="form-check-input">
-				</td>
-				<td class="text-left">{{item.name}}</td>
-				<td class="text-left">{{item.nodes}}</td>
-				<td class="text-left">{{item.type}}</td>
-				<td class="text-left">
-					{{item.price.price}}
-					<span class="color-grey-700"> / {{item.price.period}}</span>
-				</td>
-				<td class="text-end cursor-pointer">
-					<v-menu
-						:close-on-content-click="false"
-						location="end"
-						open-on-hover
-					>
-						<template v-slot:activator="{ props }">
-							<img src="/images/info.svg" class="me-2" v-bind="props">
-						</template>
-						<v-card class="pa-5 smallText-15">
-							<h3>Options</h3>
-							<ul class="smallText-15 mt-3 overviewList">
-								<li class="d-flex">
-									<span class="color-grey-700">RAM</span>
-									<span>{{item.options.ram}}</span>
-								</li>
-								<li class="d-flex">
-									<span class="color-grey-700">CPU</span>
-									<span>{{item.options.cpu}} vCPU</span>
-								</li>
-								<li class="d-flex">
-									<span class="color-grey-700">Number of Master nodes</span>
-									<span>{{item.options.master_nodes}}</span>
-								</li>
-								<li class="d-flex">
-									<span class="color-grey-700">Number of nodes</span>
-									<span>{{item.options.number_nodes}}</span>
-								</li>
-								<li class="d-flex">
-									<span class="color-grey-700">Placement Region</span>
-									<span>{{item.options.region}}</span>
-								</li>
-							</ul>
-						</v-card>
-					</v-menu>
-					<img src="/images/table/more.svg">
-				</td>
-			</tr>
-		</tbody>
-	</v-table>
-	<div class="settingTable">
-		<div class="tableList">
-			<span>Show items</span>
-			<select name="tableListInstance" class="tableSizeList form-select" v-model="sizeList" id="tableListInstance">
-				<option value="10">10</option>
-				<option value="30">30</option>
-				<option value="50">50</option>
-			</select>
-			<span>of {{table.length}}</span>
-		</div>
-		<div class="tablePage">
-			<v-pagination
-				density="comfortable"
-				v-model="page"
-				:length="Math.ceil(table.length / sizeList)"
-				active-color="primary-600"
-			></v-pagination>
-		</div>
-	</div>
+	<v-data-table
+		v-model:items-per-page="table.itemsPerPage"
+		:headers="table.headers"
+		:items="table.data"
+		:group-by="[{ key: 'parent' }]"
+		show-select
+		hide-default-footer
+		:page="page"
+		class="elevation-1"
+	>
+		<template v-slot:bottom>
+			<div class="settingTable">
+				<div class="tableList">
+					<span>Show items</span>
+					<select name="tableListInstance" class="tableSizeList form-select" v-model="table.itemsPerPage" id="tableListInstance">
+						<option value="10">10</option>
+						<option value="30">30</option>
+						<option value="50">50</option>
+					</select>
+					<span>of {{table.length}}</span>
+				</div>
+				<div class="tablePage">
+					<v-pagination
+						density="comfortable"
+						v-model="page"
+						:length="Math.ceil(table.data.length / table.itemsPerPage)"
+						active-color="primary-600"
+					></v-pagination>
+				</div>
+			</div>
+		</template>
+<!--		<template v-slot:group-header="{ item, columns, toggleGroup, isGroupOpen }">-->
+
+<!--		</template>-->
+		<template v-slot:[`item.actions`]="{item}">
+			<v-menu open-on-hover>
+				<template v-slot:activator="{ props }">
+					<img src="/images/instances/more.svg" v-bind="props">
+				</template>
+				<v-list min-width="150" class="listMenu">
+					<v-list-item>
+						<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw">
+							<v-img src="/images/instances/menu/edit.svg"/>
+							Edit
+						</v-list-item-title>
+						<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw, modalDelete=true">
+							<v-img src="/images/instances/menu/delete.svg"/>
+							Delete
+						</v-list-item-title>
+					</v-list-item>
+				</v-list>
+			</v-menu>
+		</template>
+	</v-data-table>
+	<NCModalDelete v-model="modalDelete"/>
+<!--	<v-menu-->
+<!--		:close-on-content-click="false"-->
+<!--		location="end"-->
+<!--		open-on-hover-->
+<!--	>-->
+<!--		<template v-slot:activator="{ props }">-->
+<!--			<img src="/images/info.svg" class="me-2" v-bind="props">-->
+<!--		</template>-->
+<!--		<v-card class="pa-5 smallText-15">-->
+<!--			<h3>Options</h3>-->
+<!--			<ul class="smallText-15 mt-3 overviewList">-->
+<!--				<li class="d-flex">-->
+<!--					<span class="color-grey-700">RAM</span>-->
+<!--					<span>{{item.options.ram}}</span>-->
+<!--				</li>-->
+<!--				<li class="d-flex">-->
+<!--					<span class="color-grey-700">CPU</span>-->
+<!--					<span>{{item.options.cpu}} vCPU</span>-->
+<!--				</li>-->
+<!--				<li class="d-flex">-->
+<!--					<span class="color-grey-700">Number of Master nodes</span>-->
+<!--					<span>{{item.options.master_nodes}}</span>-->
+<!--				</li>-->
+<!--				<li class="d-flex">-->
+<!--					<span class="color-grey-700">Number of nodes</span>-->
+<!--					<span>{{item.options.number_nodes}}</span>-->
+<!--				</li>-->
+<!--				<li class="d-flex">-->
+<!--					<span class="color-grey-700">Placement Region</span>-->
+<!--					<span>{{item.options.region}}</span>-->
+<!--				</li>-->
+<!--			</ul>-->
+<!--		</v-card>-->
+<!--	</v-menu>-->
 </template>
 
 <script>
+import NCModalDelete from '@/components/modal/NCModalDelete'
 export default {
-	name: "NCInstancesTable",
+	components: {
+		NCModalDelete
+	},
 	data(){
 		return{
-			table: [
-				{id: 1, check: false, name: 'netengi-instance-1',
-					nodes:2,
-					type: 'Netengi-Basic1',
-					price: {price: 428, period: 'month' },
-					options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'},
-					clusters: [
-						{id: 1, check: false, name: 'cluster1',
-							nodes:2,
-							type: 'Netengi-Basic1',
-							options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'}
-						},
-						{id: 2, check: false, name: 'cluster2',
-							nodes:2,
-							type: 'Netengi-Basic1',
-							options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'}
-						}
-					]
-				},
-				{id: 2, check: false, name: 'netengi-instance-1',
-					nodes:2,
-					type: 'Netengi-Basic2',
-					price: {price: 163.48, period: 'month' },
-					options: {ram: '128GB', cpu: 42, master_nodes: 3, number_nodes: 3, region: 'ua-central-2'},
-					clusters: [
-						{id: 3, name: 'cluster1',
-							nodes:2,
-							type: 'Netengi-Basic3',
-							options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'}
-						},
-						{id: 4, name: 'cluster2',
-							nodes:2,
-							type: 'Netengi-Basic3',
-							options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'}
-						}
-					]
-				},
-
-			],
+			table: {
+				itemsPerPage: 10,
+				headers: [
+					{ title: 'Name', align: 'start', key: 'name' },
+					{ title: 'Number of nodes', align: 'start', key: 'nodes' },
+					{ title: 'Type', align: 'start', key: 'type' },
+					{ title: 'Price', align: 'start', key: 'price.price' },
+					{ title: '', key: 'actions', align: 'end', sortable: false }
+				],
+				data: [
+					{id: 1, name: 'netengi-kubernetes1', nodes:'2 node master', type: 'Netengi-Basic1', price: {price: 428, period: 'month' },
+						options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'},
+					},
+					{id: 1, name: 'pool1', nodes:'2 node master', type: 'Netengi-Basic1', price: {price: '', period: '' },
+						options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'}, parent: 'netengi-kubernetes1',
+					},
+					{id: 1, name: 'pool2', nodes:'2 node master', type: 'Netengi-Basic1', price: {price: '', period: '' },
+						options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'}, parent: 'netengi-kubernetes1',
+					},
+					{id: 1, name: 'test.test', nodes:'2 node master', type: 'Netengi-Basic1', price: {price: '', period: '' },
+						options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'},
+					},
+				]
+			},
+			modalItem: {},
+			modalDelete: false,
 			sizeList: 10,
 			page: 1,
 		}
@@ -166,10 +153,6 @@ export default {
 }
 .overviewList li span:first-child{
 	min-width: 200px;
-}
-.listBtn{
-	display: flex;
-	margin-bottom: 10px;
 }
 .v-btn .v-responsive{
 	width: 20px;

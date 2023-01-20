@@ -1,8 +1,8 @@
 <template>
 	<div class="listBtn mt-5">
 		<v-btn density="default" variant="tonal" to="/security/create-rules">Create Rule</v-btn>
-		<div class="flex-grow-1 ps-2">
-			<v-btn density="default" variant="outlined">
+		<div class="flex-grow-1 px-2">
+			<v-btn density="default" variant="outlined" @click="modalDelete=true">
 				<v-img src="/images/general/delete.svg"></v-img>
 			</v-btn>
 		</div>
@@ -16,7 +16,7 @@
 		v-model:items-per-page="table.itemsPerPage"
 		:headers="table.headers"
 		:items="table.data"
-		item-value="direction"
+
 		show-select
 		hide-default-footer
 		:page="page"
@@ -43,14 +43,14 @@
 				</div>
 			</div>
 		</template>
-		<template v-slot:item.actions="{item}">
+		<template v-slot:[`item.actions`]="{item}">
 			<v-menu open-on-hover>
 				<template v-slot:activator="{ props }">
 					<img src="/images/instances/more.svg" v-bind="props">
 				</template>
-				<v-list class="listMenu">
+				<v-list min-width="150" class="listMenu">
 					<v-list-item>
-						<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw, modalEdit=true">
+						<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw">
 							<v-img src="/images/instances/menu/edit.svg"/>
 							Edit
 						</v-list-item-title>
@@ -67,48 +67,43 @@
 </template>
 
 <script>
-import NCModalDelete from '@/components/modal/NCModalDelete'
-export default {
-	components: {
-		NCModalDelete
-	},
-	data(){
-		return{
-			sizeList: 10,
-			page: 1,
-			table: {
-				itemsPerPage: 10,
-				headers: [
-					{
-						title: 'Direction',
-						align: 'start',
-						key: 'direction',
-					},
-					{ title: 'Type', align: 'start', key: 'type' },
-					{ title: 'Protocol', align: 'start', key: 'protocol' },
-					{ title: 'Ports', align: 'start', key: 'ports' },
-					{ title: 'CIDR', align: 'start', key: 'cidr' },
-					{ title: '', key: 'actions', align: 'end', sortable: false }
-				],
-				data: [
-					{direction: 'Egress 1', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0', actions:''},
-					{direction: 'Egress 2', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0', actions:''},
-					{direction: 'Egress 3', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0', actions:''}
-				]
-			},
-			modalItem: {},
-			modalDelete: false,
-			modalEdit: false
+	import NCModalDelete from '@/components/modal/NCModalDelete'
+	export default {
+		components: {
+			NCModalDelete
+		},
+		data(){
+			return{
+				sizeList: 10,
+				page: 1,
+				table: {
+					itemsPerPage: 10,
+					headers: [
+						{
+							title: 'Direction',
+							align: 'start',
+							key: 'direction',
+						},
+						{ title: 'Type', align: 'start', key: 'type' },
+						{ title: 'Protocol', align: 'start', key: 'protocol' },
+						{ title: 'Ports', align: 'start', key: 'ports' },
+						{ title: 'CIDR', align: 'start', key: 'cidr' },
+						{ title: '', key: 'actions', align: 'end', sortable: false }
+					],
+					data: [
+						{direction: 'Egress 1', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0', actions:''},
+						{direction: 'Egress 2', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0', actions:''},
+						{direction: 'Egress 3', type: 'IPv4', protocol: 'Any', ports: '-', cidr: '0.0.0.0', actions:''}
+					]
+				},
+				modalItem: {},
+				modalDelete: false,
+			}
 		}
 	}
-}
 </script>
 
 <style>
-.listBtn{
-	display: flex;
-	margin-bottom: 10px;
-}
 .v-btn .v-responsive{
 	width: 20px;
 }

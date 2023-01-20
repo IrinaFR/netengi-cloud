@@ -1,87 +1,108 @@
 <template>
-	<v-table density="compact" class="tableMain">
-		<thead class="bg-grey-200">
-		<tr>
-			<th class="text-left">
-				<input type="checkbox" class="form-check-input">
-			</th>
-			<th class="text-left">Name
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left">ID
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left">Created at
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left"></th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr
-			v-for="item in table"
-			:key="item.id"
-		>
-			<td class="tableCheck">
-				<input type="checkbox" v-model="item.check" class="form-check-input">
-			</td>
-			<td class="tableName">
-				<router-link :to="`/volumes/${item.id}`">{{ item.name }}</router-link>
-			</td>
-			<td>{{item.id}}</td>
-			<td>{{item.create}}</td>
-			<td class="text-end cursor-pointer"><img src="/images/table/more.svg"></td>
-		</tr>
-		</tbody>
-	</v-table>
-	<div class="settingTable">
-		<div class="tableList">
-			<span>Show items</span>
-			<select name="tableListInstance" class="tableSizeList form-select" v-model="sizeList" id="tableListInstance">
-				<option value="10">10</option>
-				<option value="5">5</option>
-				<option value="30">30</option>
-				<option value="50">50</option>
-			</select>
-			<span>of {{table.length}}</span>
-		</div>
-		<div class="tablePage">
-			<v-pagination
-				class="justify-end"
-				density="comfortable"
-				v-model="page"
-				:length="Math.ceil(table.length / sizeList)"
-				active-color="primary-600"
-			></v-pagination>
-		</div>
+	<div v-if="!table.data.length">
+		<div class="smallText-15">There are no snapshot yet.</div>
+		<v-btn density="default" variant="tonal" class="my-3">Create Snapshot</v-btn>
 	</div>
+	<div class="listBtn mt-5" v-else>
+		<v-btn density="default" variant="tonal">Create Snapshot</v-btn>
+		<div class="flex-grow-1 px-2">
+			<v-btn density="default" variant="outlined" @click="modalDelete=true">
+				<v-img src="/images/general/delete.svg"></v-img>
+			</v-btn>
+		</div>
+		<v-btn density="default" variant="outlined">
+			<img src="/images/general/filter.svg">
+			Filter
+		</v-btn>
+	</div>
+	<v-data-table
+		v-model:items-per-page="table.itemsPerPage"
+		:headers="table.headers"
+		:items="table.data"
+
+		show-select
+		hide-default-footer
+		:page="page"
+		class="elevation-1"
+	>
+		<template v-slot:bottom>
+			<div class="settingTable">
+				<div class="tableList">
+					<span>Show items</span>
+					<select name="tableListInstance" class="tableSizeList form-select" v-model="table.itemsPerPage" id="tableListInstance">
+						<option value="10">10</option>
+						<option value="30">30</option>
+						<option value="50">50</option>
+					</select>
+					<span>of {{table.length}}</span>
+				</div>
+				<div class="tablePage">
+					<v-pagination
+						density="comfortable"
+						v-model="page"
+						:length="Math.ceil(table.data.length / table.itemsPerPage)"
+						active-color="primary-600"
+					></v-pagination>
+				</div>
+			</div>
+		</template>
+		<template v-slot:[`item.name`]="{item}">
+			<router-link :to="`/snapshot/${item.raw.id}`">{{item.raw.name}}</router-link>
+		</template>
+		<template v-slot:[`item.actions`]="{item}">
+			<v-menu open-on-hover>
+				<template v-slot:activator="{ props }">
+					<img src="/images/instances/more.svg" v-bind="props">
+				</template>
+				<v-list min-width="150" class="listMenu">
+					<v-list-item>
+						<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw">
+							<v-img src="/images/instances/menu/edit.svg"/>
+							Edit
+						</v-list-item-title>
+						<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw, modalDelete=true">
+							<v-img src="/images/instances/menu/delete.svg"/>
+							Delete
+						</v-list-item-title>
+					</v-list-item>
+				</v-list>
+			</v-menu>
+		</template>
+	</v-data-table>
+	<NCModalDelete v-model="modalDelete"/>
 </template>
 
 <script>
+import NCModalDelete from '@/components/modal/NCModalDelete'
 export default {
+	components: {
+		NCModalDelete
+	},
 	data(){
 		return{
-			table: [
-				{check: false, name: 'netengi-instance-1', id: '45609f9gdfgsadase453454asd24', create: 'Aug 25, 2022, 12:11:58 PM'},
-				{check: false, name: 'netengi-instance-2', id: '45609f9gdfgsadase453454asd24', create: 'Aug 25, 2022, 12:11:58 PM'},
-				{check: false, name: 'netengi-instance-3', id: '45609f9gdfgsadase453454asd24', create: 'Aug 25, 2022, 12:11:58 PM'},
-				{check: false, name: 'netengi-instance-4', id: '45609f9gdfgsadase453454asd24', create: 'Aug 25, 2022, 12:11:58 PM'},
-				{check: false, name: 'netengi-instance-5', id: '45609f9gdfgsadase453454asd24', create: 'Aug 25, 2022, 12:11:58 PM'},
-				{check: false, name: 'netengi-instance-6', id: '45609f9gdfgsadase453454asd24', create: 'Aug 25, 2022, 12:11:58 PM'},
-				{check: false, name: 'netengi-instance-7', id: '45609f9gdfgsadase453454asd24', create: 'Aug 25, 2022, 12:11:58 PM'}
-			],
 			sizeList: 10,
 			page: 1,
+			table: {
+				itemsPerPage: 10,
+				headers: [
+					{ title: 'Name', align: 'start', key: 'name' },
+					{ title: 'ID', align: 'start', key: 'id' },
+					{ title: 'Created at', align: 'start', key: 'create' },
+					{ title: '', key: 'actions', align: 'end', sortable: false }
+				],
+				data: [
+					{check: false, name: 'netengi-snapshot-1', id: '45609f9gdfgsadase453454asd24', create: 'Aug 25, 2022, 12:11:58 PM'},
+					{check: false, name: 'netengi-snapshot-2', id: '45609f9gdfgsadase453454asd24', create: 'Aug 25, 2022, 12:11:58 PM'},
+				]
+			},
+			modalItem: {},
+			modalDelete: false,
 		}
 	}
 }
 </script>
 
 <style>
-.listBtn{
-	display: flex;
-	margin-bottom: 10px;
-}
 .v-btn .v-responsive{
 	width: 20px;
 }

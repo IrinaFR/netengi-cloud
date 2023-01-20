@@ -2,15 +2,47 @@
 	<div class="mainPage">
 		<div class="backPage cursor-pointer" @click="$router.go(-1)">
 			<img src="/images/arrowBack.svg" class="backPageIcon">
-			<span>Back to Volumes</span>
+			<span>Back to Networks</span>
 		</div>
-		<div class="pageTitle d-flex mt-4">
-			<h1 class="pageTitle d-block flex-grow-1">Netengi-volume-1</h1>
+		<div class="d-flex justify-space-between align-center my-3 flex-wrap gap-15">
+			<h1 class="pageTitle">Netengi-volume-1</h1>
 			<div class="listBtn">
-				<v-btn density="default" variant="outlined">
-					<v-img src="/images/general/more.svg" class="me-1"></v-img>
-					<span>Menu</span>
-				</v-btn>
+				<v-menu width="240">
+					<template v-slot:activator="{ props }">
+						<v-btn height="30" density="default" max-height="30" variant="outlined" v-bind="props">
+							<v-img src="/images/general/more.svg"></v-img>
+							<span>Menu</span>
+						</v-btn>
+					</template>
+					<v-list min-width="150" class="listMenu">
+						<v-list-item>
+							<v-list-item-title class="dropDownItemMenu">
+								<v-img src="/images/instances/menu/rebuild.svg"/>
+								Rebuild
+							</v-list-item-title>
+							<v-list-item-title class="dropDownItemMenu">
+								<v-img src="/images/instances/menu/rename.svg"/>
+								Rename
+							</v-list-item-title>
+							<v-list-item-title class="dropDownItemMenu">
+								<v-img src="/images/instances/menu/plus.svg"/>
+								Assign floating IP
+							</v-list-item-title>
+							<v-list-item-title class="dropDownItemMenu">
+								<v-img src="/images/instances/menu/minus.svg"/>
+								Dissociate IP
+							</v-list-item-title>
+							<v-list-item-title class="dropDownItemMenu">
+								<v-img src="/images/instances/menu/password.svg"/>
+								Change password
+							</v-list-item-title>
+							<v-list-item-title class="dropDownItemMenu">
+								<v-img src="/images/instances/menu/delete.svg"/>
+								Delete
+							</v-list-item-title>
+						</v-list-item>
+					</v-list>
+				</v-menu>
 			</div>
 		</div>
 		<div class="smallText-14 d-flex gap-15">
@@ -44,34 +76,10 @@
 		<div class="mainPage">
 			<v-window v-model="tab">
 				<v-window-item value="1">
-					<div class="listBtn">
-						<v-btn density="default" to="/ports/create" variant="tonal">Create Subnet</v-btn>
-						<div class="flex-grow-1 ms-2">
-							<v-btn density="default" variant="outlined">
-								<v-img src="/images/general/delete.svg"></v-img>
-							</v-btn>
-						</div>
-						<v-btn density="default" variant="outlined">
-							<v-img src="/images/general/filter.svg" class="me-2"></v-img>
-							<span>Filter</span>
-						</v-btn>
-					</div>
 					<NCNetworksPageSubnetTable/>
 				</v-window-item>
 
 				<v-window-item value="2">
-					<div class="listBtn">
-						<v-btn density="default" to="/ports/create" variant="tonal">Create Port</v-btn>
-						<div class="flex-grow-1 ms-2">
-							<v-btn density="default" variant="outlined">
-								<v-img src="/images/general/delete.svg"></v-img>
-							</v-btn>
-						</div>
-						<v-btn density="default" variant="outlined">
-							<v-img src="/images/general/filter.svg" class="me-2"></v-img>
-							<span>Filter</span>
-						</v-btn>
-					</div>
 					<NCNetworksPagePortsTable/>
 				</v-window-item>
 

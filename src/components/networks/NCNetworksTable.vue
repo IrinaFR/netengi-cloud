@@ -1,113 +1,124 @@
 <template>
 	<div class="listBtn">
 		<v-btn density="default" variant="tonal">Create Instance</v-btn>
-		<v-btn density="default" variant="outlined">
+		<v-btn density="default" variant="outlined" @click="modalDelete=true">
 			<v-img src="/images/general/delete.svg"></v-img>
 		</v-btn>
 	</div>
-	<v-table density="compact" class="tableMain">
-		<thead class="bg-grey-200">
-		<tr>
-			<th class="text-left">
-				<input type="checkbox" class="form-check-input">
-			</th>
-			<th class="text-left">Name
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left">Network State
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left">Subnets
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left">IP Address
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left">Gateways
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left"></th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr
-			v-for="item in table"
-			:key="item.id"
-			valign="top"
-		>
-			<td class="tableCheck">
-				<input type="checkbox" v-model="item.check" class="form-check-input">
-			</td>
-			<td class="tableName">
-				<router-link :to="`/networks/${item.id}`">{{ item.name }}</router-link>
-			</td>
-			<td>
-					<span class="instanceRunning" v-if="item.state===1">
-						<img src="/images/table/running.svg" class="me-2">
-						Running
-					</span>
-				<span class="instancePause" v-else>
-						<img src="/images/table/pause.svg" class="me-2">
-						Pause
-					</span>
+	<v-data-table
+		v-model:items-per-page="table.itemsPerPage"
+		:headers="table.headers"
+		:items="table.data"
 
-			</td>
-			<td>
-				<v-list density="compact">
-					<v-list-item density="compact" v-for="sub in item.subnets" :title="sub" :key="sub"></v-list-item>
+		show-select
+		hide-default-footer
+		:page="page"
+		class="elevation-1"
+	>
+		<template v-slot:bottom>
+			<div class="settingTable">
+				<div class="tableList">
+					<span>Show items</span>
+					<select name="tableListInstance" class="tableSizeList form-select" v-model="table.itemsPerPage" id="tableListInstance">
+						<option value="10">10</option>
+						<option value="30">30</option>
+						<option value="50">50</option>
+					</select>
+					<span>of {{table.length}}</span>
+				</div>
+				<div class="tablePage">
+					<v-pagination
+						density="comfortable"
+						v-model="page"
+						:length="Math.ceil(table.data.length / table.itemsPerPage)"
+						active-color="primary-600"
+					></v-pagination>
+				</div>
+			</div>
+		</template>
+		<template v-slot:[`item.name`]="{item}">
+			<router-link :to="`/networks/${item.raw.id}`">{{item.raw.name}}</router-link>
+		</template>
+		<template v-slot:[`item.status`]="{item}">
+			<span class="instanceRunning" v-if="item.raw.status===1">
+				<img src="/images/table/running.svg" class="me-2">
+				Running
+			</span>
+			<span class="instancePause" v-else>
+				<img src="/images/table/pause.svg" class="me-2">
+				Pause
+			</span>
+		</template>
+		<template v-slot:[`item.subnets`]="{item}">
+			<v-list density="compact" variant="text" bg-color="transparent">
+				<v-list-item variant="text" density="compact" v-for="sub in item.raw.subnets" :title="sub" :key="sub"></v-list-item>
+			</v-list>
+		</template>
+		<template v-slot:[`item.ip`]="{item}">
+			<v-list density="compact" variant="text" bg-color="transparent">
+				<v-list-item variant="text" density="compact" v-for="ip in item.raw.ip" :title="ip" :key="ip"></v-list-item>
+			</v-list>
+		</template>
+		<template v-slot:[`item.gateways`]="{item}">
+			<v-list density="compact" variant="text" bg-color="transparent">
+				<v-list-item variant="text" density="compact" v-for="gateway in item.raw.gateways" :title="gateway" :key="gateway"></v-list-item>
+			</v-list>
+		</template>
+		<template v-slot:[`item.actions`]="{item}">
+			<v-menu open-on-hover>
+				<template v-slot:activator="{ props }">
+					<img src="/images/instances/more.svg" v-bind="props">
+				</template>
+				<v-list min-width="150" class="listMenu">
+					<v-list-item>
+						<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw">
+							<v-img src="/images/instances/menu/edit.svg"/>
+							Edit
+						</v-list-item-title>
+						<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw, modalDelete=true">
+							<v-img src="/images/instances/menu/delete.svg"/>
+							Delete
+						</v-list-item-title>
+					</v-list-item>
 				</v-list>
-			</td>
-			<td>
-				<v-list density="compact">
-					<v-list-item density="compact" v-for="ip in item.ip" :title="ip" :key="ip"></v-list-item>
-				</v-list>
-			</td>
-			<td>
-				<v-list density="compact">
-					<v-list-item density="compact" v-for="gateway in item.gateways" :title="gateway" :key="gateway"></v-list-item>
-				</v-list>
-			</td>
-			<td class="text-end cursor-pointer"><img src="/images/table/more.svg"></td>
-		</tr>
-		</tbody>
-	</v-table>
-	<div class="settingTable">
-		<div class="tableList">
-			<span>Show items</span>
-			<select name="tableListInstance" class="tableSizeList form-select" v-model="sizeList" id="tableListInstance">
-				<option value="10">10</option>
-				<option value="30">30</option>
-				<option value="50">50</option>
-			</select>
-			<span>of {{table.length}}</span>
-		</div>
-		<div class="tablePage">
-			<v-pagination
-				density="comfortable"
-				v-model="page"
-				:length="Math.ceil(table.length / sizeList)"
-				active-color="primary-600"
-			></v-pagination>
-		</div>
-	</div>
+			</v-menu>
+		</template>
+	</v-data-table>
+	<NCModalDelete v-model="modalDelete"/>
 </template>
 
 <script>
+import NCModalDelete from '@/components/modal/NCModalDelete'
 export default {
-	name: "NCInstancesTable",
+	components: {
+		NCModalDelete
+	},
 	data(){
 		return{
-			table: [
-				{
-					id: 1,
-					check: false,
-					name: 'netengi-network1',
-					state: 1,
-					subnets: ['neteng-subnet1', 'neteng-subnet2', 'neteng-subnet3'],
-					ip:['95.163.180.0/23', '95.163.208.0/22', '95.163.212.0/22', '128.140.175.96/29', '79.137.174.0/23'],
-					gateways:['95.163.180.0/23', '95.163.208.0/22', '95.163.212.0/22', '128.140.175.96/29', '79.137.174.0/23']
-				}
-			],
+			table: {
+				itemsPerPage: 10,
+				headers: [
+					{ title: 'Name', align: 'start', key: 'name' },
+					{ title: 'Network State', align: 'start', key: 'status' },
+					{ title: 'Subnets', align: 'start', key: 'subnets' },
+					{ title: 'IP Address', align: 'start', key: 'ip' },
+					{ title: 'Gateways', align: 'start', key: 'gateways' },
+					{ title: '', key: 'actions', align: 'end', sortable: false }
+				],
+				data: [
+					{
+						id: 1,
+						check: false,
+						name: 'netengi-network1',
+						status: 1,
+						subnets: ['neteng-subnet1', 'neteng-subnet2', 'neteng-subnet3'],
+						ip:['95.163.180.0/23', '95.163.208.0/22', '95.163.212.0/22', '128.140.175.96/29', '79.137.174.0/23'],
+						gateways:['95.163.180.0/23', '95.163.208.0/22', '95.163.212.0/22', '128.140.175.96/29', '79.137.174.0/23']
+					}
+				]
+			},
+			modalItem: {},
+			modalDelete: false,
 			sizeList: 10,
 			page: 1,
 		}
@@ -116,10 +127,6 @@ export default {
 </script>
 
 <style>
-.listBtn{
-	display: flex;
-	margin-bottom: 10px;
-}
 .v-btn .v-responsive{
 	width: 20px;
 }

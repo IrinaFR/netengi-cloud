@@ -2,6 +2,13 @@
 	<div class="infoCreateInstance">
 		<div class="blockWithBtn">
 			<div class="title">You have no SSH keys right now.</div>
+			<div class="listBtn">
+				<v-btn density="default" to="/ssh-keys/create" variant="tonal">Create SSH Key</v-btn>
+				<v-btn density="default" to="/ssh-keys/import" variant="outlined">
+					<v-img src="/images/general/import.svg"></v-img>
+					<span>Import</span>
+				</v-btn>
+			</div>
 			<div class="btnLern">
 				<v-img src="/images/general/link.svg"></v-img>
 				<span>Learn more about ssh keys</span>
@@ -37,15 +44,7 @@
 	.blockWithBtn .v-btn{
 		margin-bottom: 20px;
 	}
-	.blockBanner{
-		width: 405px;
-		height: 245px;
-		background: rgb(var(--v-theme-grey-300));
-		border-radius: 8px;
-		padding: 20px 20px 25px 20px;
-		box-shadow: none;
-		position: relative;
-	}
+
 	.title{
 		font-weight: 400;
 		font-size: 15px;

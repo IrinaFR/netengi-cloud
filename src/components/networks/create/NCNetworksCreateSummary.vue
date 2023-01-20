@@ -26,70 +26,33 @@
 	</v-card>
 	<v-card variant="flat" class="overviewTab mb-2">
 		<h3>Subnet</h3>
-		<v-table density="compact" class="tableMain mt-2">
-			<thead class="bg-grey-200">
-			<tr>
-				<th class="text-left">Name
-					<img src="/images/arrows/down.svg" class="ms-1">
-				</th>
-				<th class="text-left">Network Address
-					<img src="/images/arrows/down.svg" class="ms-1">
-				</th>
-				<th class="text-left">IP Version
-					<img src="/images/arrows/down.svg" class="ms-1">
-				</th>
-				<th class="text-left">Gateway IP
-					<img src="/images/arrows/down.svg" class="ms-1">
-				</th>
-			</tr>
-			</thead>
-			<tbody>
-			<tr>
-				<td class="tableName">
-					<span>{{subnet.name}}</span>
-				</td>
-				<td>{{subnet.address}}</td>
-				<td>{{subnet.ipv}}</td>
-				<td>{{subnet.gateways}}</td>
-			</tr>
-			</tbody>
-		</v-table>
+		<v-data-table
+			:headers="tableSubnet.headers"
+			:items="tableSubnet.data"
+
+			hide-default-footer
+			class="elevation-1"
+		>
+			<template v-slot:bottom></template>
+		</v-data-table>
 	</v-card>
 	<v-card variant="flat" class="overviewTab mb-2">
 		<h3>Router</h3>
-		<v-table density="compact" class="tableMain mt-2">
-			<thead class="bg-grey-200">
-			<tr>
-				<th class="text-left">Name
-					<img src="/images/arrows/down.svg" class="ms-1">
-				</th>
-				<th class="text-left">Placement Region
-					<img src="/images/arrows/down.svg" class="ms-1">
-				</th>
-				<th class="text-left">Network
-					<img src="/images/arrows/down.svg" class="ms-1">
-				</th>
-				<th class="text-left">Interface
-					<img src="/images/arrows/down.svg" class="ms-1">
-				</th>
-			</tr>
-			</thead>
-			<tbody>
-			<tr>
-				<td class="tableName">
-					<span>{{router.name}}</span>
-				</td>
-				<td>
-						<span>
-							<img :src="`/images/flags/${router.region.country}.svg`" class="me-2">
-							{{router.region.name}}
-						</span>
-				</td>
-				<td>{{router.network ? router.network : 'No Network'}}</td>
-				<td>{{router.interface ? router.interface : 'No Subnet'}}</td>
-			</tr>
-			</tbody>
-		</v-table>
+		<v-data-table
+			:headers="tableRouter.headers"
+			:items="tableRouter.data"
+
+			hide-default-footer
+			class="elevation-1"
+		>
+			<template v-slot:bottom></template>
+			<template v-slot:[`item.region.name`]="{item}">
+					<span>
+						<img :src="`/images/flags/${item.raw.region.country}.svg`" class="me-2">
+						{{item.raw.region.name}}
+					</span>
+			</template>
+		</v-data-table>
 	</v-card>
 	<v-card variant="flat" class="overviewTab mb-2">
 		<h3>Extra Options</h3>
@@ -123,11 +86,27 @@
 					ipv: 'IPv4',
 					gateway: 'Do not set gateway ip'
 				},
-				router: {
-					name: 'netengi-router1',
-					network: '',
-					interface: '',
-					region: {country: 'ua', name: 'ua-central-1'}
+				tableSubnet: {
+					headers: [
+						{ title: 'Name', align: 'start', key: 'name' },
+						{ title: 'Network Address', align: 'start', key: 'address' },
+						{ title: 'IP Version', align: 'start', key: 'ip_version' },
+						{ title: 'Gateway IP', align: 'start', key: 'gateway' },
+					],
+					data: [
+						{id: 0, name: 'net-subnet1', address: '95.163.248.0/22', ip_version: '4', gateway: '2.59.220.1'},
+					]
+				},
+				tableRouter: {
+					headers: [
+						{ title: 'Name', align: 'start', key: 'name' },
+						{ title: 'Placement Region', align: 'start', key: 'region.name' },
+						{ title: 'Network', align: 'start', key: 'network' },
+						{ title: 'Interface', align: 'start', key: 'interface' },
+					],
+					data: [
+						{id: 1, check: false, name: 'netengi-router1', network: 'No Network', interface: 'No Subnet', region: {country: 'ua', name: 'ua-central-1'}},
+					]
 				},
 			}
 		}

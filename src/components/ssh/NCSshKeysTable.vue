@@ -1,76 +1,100 @@
 <template>
-	<v-table density="compact" class="tableMain">
-		<thead class="bg-grey-200">
-		<tr>
-			<th class="text-left">
-				<input type="checkbox" class="form-check-input">
-			</th>
-			<th class="text-left">Name
-				<img src="/images/arrows/down.svg" class="ms-1">
-			</th>
-			<th class="text-left"></th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr
-			v-for="item in table"
-			:key="item.id"
-		>
-			<td class="tableCheck">
-				<input type="checkbox" v-model="item.check" class="form-check-input">
-			</td>
-			<td class="tableName">
-				<router-link :to="`/ssh-keys/${item.id}`">{{ item.name }}</router-link>
-			</td>
-			<td class="text-end cursor-pointer"><img src="/images/table/more.svg"></td>
-		</tr>
-		</tbody>
-	</v-table>
-	<div class="settingTable">
-		<div class="tableList">
-			<span>Show items</span>
-			<select name="tableListInstance" class="tableSizeList form-select" v-model="sizeList" id="tableListInstance">
-				<option value="10">10</option>
-				<option value="30">30</option>
-				<option value="50">50</option>
-			</select>
-			<span>of {{table.length}}</span>
-		</div>
-		<div class="tablePage">
-			<v-pagination
-				density="comfortable"
-				v-model="page"
-				:length="Math.ceil(table.length / sizeList)"
-				active-color="primary-600"
-			></v-pagination>
-		</div>
+	<div class="listBtn">
+		<v-btn density="default" to="/ssh-keys/create" variant="tonal">Create SSH Key</v-btn>
+		<v-btn density="default" to="/ssh-keys/import" variant="outlined">
+			<v-img src="/images/general/import.svg"></v-img>
+			<span>Import</span>
+		</v-btn>
+		<v-btn density="default" variant="outlined" @click="modalDelete=true">
+			<v-img src="/images/general/delete.svg"></v-img>
+		</v-btn>
 	</div>
+	<v-data-table
+		v-model:items-per-page="table.itemsPerPage"
+		:headers="table.headers"
+		:items="table.data"
+
+		show-select
+		hide-default-footer
+		:page="page"
+		class="elevation-1"
+	>
+		<template v-slot:bottom>
+			<div class="settingTable">
+				<div class="tableList">
+					<span>Show items</span>
+					<select name="tableListInstance" class="tableSizeList form-select" v-model="table.itemsPerPage" id="tableListInstance">
+						<option value="10">10</option>
+						<option value="30">30</option>
+						<option value="50">50</option>
+					</select>
+					<span>of {{table.length}}</span>
+				</div>
+				<div class="tablePage">
+					<v-pagination
+						density="comfortable"
+						v-model="page"
+						:length="Math.ceil(table.data.length / table.itemsPerPage)"
+						active-color="primary-600"
+					></v-pagination>
+				</div>
+			</div>
+		</template>
+		<template v-slot:[`item.name`]="{item}">
+			<router-link :to="`/ssh-keys/${item.raw.id}`">{{item.raw.name}}</router-link>
+		</template>
+		<template v-slot:[`item.actions`]="{item}">
+			<v-menu open-on-hover>
+				<template v-slot:activator="{ props }">
+					<img src="/images/instances/more.svg" v-bind="props">
+				</template>
+				<v-list min-width="150" class="listMenu">
+					<v-list-item>
+						<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw">
+							<v-img src="/images/instances/menu/edit.svg"/>
+							Edit
+						</v-list-item-title>
+						<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw, modalDelete=true">
+							<v-img src="/images/instances/menu/delete.svg"/>
+							Delete
+						</v-list-item-title>
+					</v-list-item>
+				</v-list>
+			</v-menu>
+		</template>
+	</v-data-table>
+	<NCModalDelete v-model="modalDelete"/>
 </template>
 
 <script>
+import NCModalDelete from '@/components/modal/NCModalDelete'
 export default {
-	props: {
-		table: {
-			type: Array,
-			default(){
-				return []
-			}
-		}
+	components: {
+		NCModalDelete
 	},
 	data(){
 		return{
 			sizeList: 10,
 			page: 1,
+			table: {
+				itemsPerPage: 10,
+				headers: [
+					{ title: 'Name', align: 'start', key: 'name' },
+					{ title: '', key: 'actions', align: 'end', sortable: false }
+				],
+				data: [
+					{id: 1, name: 'netengi-sshkey-1'},
+					{id: 2, name: 'netengi-sshkey-2'},
+				]
+			},
+			modalItem: {},
+			modalDelete: false,
 		}
 	}
 }
 </script>
 
 <style>
-.listBtn{
-	display: flex;
-	margin-bottom: 10px;
-}
 .v-btn .v-responsive{
 	width: 20px;
 }

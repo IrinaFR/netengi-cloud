@@ -75,10 +75,6 @@
 </script>
 
 <style>
-	.listBtn{
-		display: flex;
-		margin-bottom: 10px;
-	}
 	.systemLogs{
 		max-width: 100%;
 		max-height: 100%;

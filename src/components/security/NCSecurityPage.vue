@@ -5,13 +5,45 @@
 			<img src="/images/arrowBack.svg" class="backPageIcon">
 			<span>Back to Security Groups</span>
 		</div>
-		<div class="d-flex flex-wrap mt-4 mb-1">
-			<h1 class="pageTitle d-block flex-grow-1">Netengi-security-group-1</h1>
-			<div class="listBtn mt-5">
-				<v-btn density="default" variant="outlined">
-					<v-img src="/images/general/more.svg" class="me-1"></v-img>
-					<span>Menu</span>
-				</v-btn>
+		<div class="d-flex justify-space-between align-center my-3 flex-wrap gap-15">
+			<h1 class="pageTitle">Netengi-security-group-1</h1>
+			<div class="listBtn">
+				<v-menu width="240">
+					<template v-slot:activator="{ props }">
+						<v-btn height="30" density="default" max-height="30" variant="outlined" v-bind="props">
+							<v-img src="/images/general/more.svg"></v-img>
+							<span>Menu</span>
+						</v-btn>
+					</template>
+					<v-list min-width="150" class="listMenu">
+						<v-list-item>
+							<v-list-item-title class="dropDownItemMenu">
+								<v-img src="/images/instances/menu/rebuild.svg"/>
+								Rebuild
+							</v-list-item-title>
+							<v-list-item-title class="dropDownItemMenu">
+								<v-img src="/images/instances/menu/rename.svg"/>
+								Rename
+							</v-list-item-title>
+							<v-list-item-title class="dropDownItemMenu">
+								<v-img src="/images/instances/menu/plus.svg"/>
+								Assign floating IP
+							</v-list-item-title>
+							<v-list-item-title class="dropDownItemMenu">
+								<v-img src="/images/instances/menu/minus.svg"/>
+								Dissociate IP
+							</v-list-item-title>
+							<v-list-item-title class="dropDownItemMenu">
+								<v-img src="/images/instances/menu/password.svg"/>
+								Change password
+							</v-list-item-title>
+							<v-list-item-title class="dropDownItemMenu">
+								<v-img src="/images/instances/menu/delete.svg"/>
+								Delete
+							</v-list-item-title>
+						</v-list-item>
+					</v-list>
+				</v-menu>
 			</div>
 		</div>
 
