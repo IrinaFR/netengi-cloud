@@ -5,7 +5,7 @@
 				<h3>netengi-nodepool1</h3>
 				<ul class="smallText-15 overviewList">
 					<li class="d-flex">
-						<span class="color-grey-700">Type Nood Pool</span>
+						<span class="color-grey-700">Type Node Pool</span>
 						<span>NetBasic-1</span>
 						<div class="d-flex gap-15 smallText-12 ms-2">
 							<v-card variant="flat" class="bg-grey-300 px-2">2 CPU</v-card>

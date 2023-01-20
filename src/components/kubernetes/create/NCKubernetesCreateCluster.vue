@@ -8,14 +8,11 @@
 			<div class="form-group">
 				<label for="">Type Master Node</label>
 				<v-select
-					multiple
-					class="input"
+					chips label="NetBasic-1"
+					multiple class="input customMultiSelect"
 					:items="['2 CPU', '4GB RAM', '$0,18/h']"
-					density="compact"
-					hide-details
-					hide-selected
-					variant="outlined"
-				>
+					density="compact" hide-details
+					hide-selected variant="outlined">
 				</v-select>
 			</div>
 			<div class="form-group">
