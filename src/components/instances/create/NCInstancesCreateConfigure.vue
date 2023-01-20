@@ -6,15 +6,11 @@
 	<div class="form-group">
 		<label for="">Type Instance</label>
 		<v-select
-			v-model="configure.type"
-			multiple
-			class="input"
-			:items="['1 CPU', '1GB RAM', '$0,18/h']"
-			density="compact"
-			hide-details
-			hide-selected
-			variant="outlined"
-		>
+			chips label="NetBasic-1"
+			multiple class="input customMultiSelect"
+			:items="['2 CPU', '4GB RAM', '$0,18/h']"
+			density="compact" hide-details
+			hide-selected variant="outlined">
 		</v-select>
 	</div>
 	<div class="form-group">

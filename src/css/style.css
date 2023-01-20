@@ -398,3 +398,30 @@ ul.v-pagination__list{
     position: relative;
     top: 3px;
 }
+.customMultiSelect .v-chip.v-chip--density-default{
+    background: rgb(var(--v-theme-grey-300));
+    color: rgb(var(--v-theme-grey-900));
+    border-radius: 4px;
+    padding: 3px 4px;
+}
+.customMultiSelect .v-field--dirty .v-select__selection{
+    -webkit-margin-end: 6px;
+    margin-inline-end: 6px;
+}
+.customMultiSelect .v-field__input{
+    justify-content: end;
+    padding: 0;
+    align-items: center;
+}
+.customMultiSelect .v-label.v-field-label{
+    visibility: unset;
+    color: rgb(var(--v-theme-grey-900));
+    opacity: 1;
+
+    transform: none !important;
+    top: var(--v-input-padding-top, 10px) !important;
+    max-width: calc(100% - var(--v-field-padding-start) - var(--v-field-padding-end)) !important;
+}
+.customMultiSelect .v-field--variant-outlined .v-label.v-field-label--floating{
+    display: none;
+}
