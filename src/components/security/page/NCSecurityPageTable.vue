@@ -63,11 +63,15 @@
 			</v-menu>
 		</template>
 	</v-data-table>
-
+	<NCModalDelete v-model="modalDelete"/>
 </template>
 
 <script>
+import NCModalDelete from '@/components/modal/NCModalDelete'
 export default {
+	components: {
+		NCModalDelete
+	},
 	data(){
 		return{
 			sizeList: 10,
