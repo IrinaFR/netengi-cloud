@@ -131,7 +131,7 @@ export default {
 						options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'}, group: 'netengi-kubernetes1',
 					},
 					{id: 4, name: 'pool1', nodes:'2 node master', type: 'Netengi-Basic1', price: {price: '', period: '' },
-						options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1' group: 'test.test'},
+						options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1', group: 'test.test'},
 					},
 				]
 			},
