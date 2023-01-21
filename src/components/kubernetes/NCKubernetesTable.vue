@@ -19,7 +19,7 @@
 		v-model:items-per-page="table.itemsPerPage"
 		:headers="table.headers"
 		:items="table.data"
-		:group-by="[{ key: 'parent' }]"
+		:group-by="[{ key: 'group' }]"
 		show-select
 		hide-default-footer
 		:page="page"
@@ -124,17 +124,14 @@ export default {
 					{ title: '', key: 'actions', align: 'end', sortable: false }
 				],
 				data: [
-					{id: 1, name: 'netengi-kubernetes1', nodes:'2 node master', type: 'Netengi-Basic1', price: {price: 428, period: 'month' },
-						options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'},
+					{id: 2, name: 'pool1', nodes:'2 node master', type: 'Netengi-Basic1', price: {price: '', period: '' },
+						options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'}, group: 'netengi-kubernetes1',
 					},
-					{id: 1, name: 'pool1', nodes:'2 node master', type: 'Netengi-Basic1', price: {price: '', period: '' },
-						options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'}, parent: 'netengi-kubernetes1',
+					{id: 3, name: 'pool2', nodes:'2 node master', type: 'Netengi-Basic1', price: {price: '', period: '' },
+						options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'}, group: 'netengi-kubernetes1',
 					},
-					{id: 1, name: 'pool2', nodes:'2 node master', type: 'Netengi-Basic1', price: {price: '', period: '' },
-						options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'}, parent: 'netengi-kubernetes1',
-					},
-					{id: 1, name: 'test.test', nodes:'2 node master', type: 'Netengi-Basic1', price: {price: '', period: '' },
-						options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'},
+					{id: 4, name: 'pool1', nodes:'2 node master', type: 'Netengi-Basic1', price: {price: '', period: '' },
+						options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1' group: 'test.test'},
 					},
 				]
 			},
