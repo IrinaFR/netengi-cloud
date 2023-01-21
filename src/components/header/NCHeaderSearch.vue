@@ -134,4 +134,9 @@
 	.search .v-field__append-inner{
 		display: none;
 	}
+	@media(max-width: 820px){
+		.search{
+			display: none;
+		}
+	}
 </style>

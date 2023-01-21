@@ -2,9 +2,7 @@
 	<div class="btnClose invertTheme" @click="changeMenu" :class="{hide:rail}">
 		<img src="/images/arrowLeft.svg">
 	</div>
-	<v-app-bar
-	height="80"
-	flat>
+	<v-app-bar :height="height" flat class="headerMain">
 		<NCHeaderSearch/>
 		<template v-slot:append>
 			<div class="d-flex justify-lg-space-between align-center">
@@ -26,6 +24,7 @@ export default {
 	emits: ['change'],
 	data(){
 		return {
+			height: 80,
 			rail: true,
 			menu: false,
 			theme: false
@@ -37,6 +36,9 @@ export default {
 	watch: {
 		'$root.rail'(){
 			this.rail = this.$root.rail
+		},
+		'window.innerWidth'(value){
+			value < 820 ? this.height = 120 : this.height = 80
 		}
 	},
 	methods: {
