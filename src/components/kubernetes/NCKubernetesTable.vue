@@ -11,8 +11,14 @@
 		<v-btn density="default" variant="outlined">
 			<v-img src="/images/general/playBtn.svg"></v-img>
 		</v-btn>
+		<div class="flex-grow-1 ps-2">
+			<v-btn density="default" variant="outlined">
+				<v-img src="/images/general/stop.svg"></v-img>
+			</v-btn>
+		</div>
 		<v-btn density="default" variant="outlined">
-			<v-img src="/images/general/stop.svg"></v-img>
+			<img src="/images/general/filter.svg">
+			Filter
 		</v-btn>
 	</div>
 	<v-data-table
@@ -46,13 +52,113 @@
 				</div>
 			</div>
 		</template>
-<!--		<template v-slot:group-header="{ item, columns, toggleGroup, isGroupOpen }">-->
-
-<!--		</template>-->
+		<template v-slot:group-header="{ item, toggleGroup, isGroupOpen }">
+			<tr>
+				<td></td>
+				<td>
+					<router-link to="/">{{item.value}}</router-link>
+					<span class="iconCollapse ms-3" @click="toggleGroup(item)" :class="{open:isGroupOpen(item)}">
+						<img src="/images/arrows/down.svg">
+					</span>
+				</td>
+				<td></td>
+				<td>{{item.items[0].props.title.nodes}}</td>
+				<td>{{item.items[0].props.title.type}}</td>
+				<td>
+					<b>${{item.items[0].props.title.price.price}}</b>
+					<span class="color-grey-700"> / {{item.items[0].props.title.price.period}}</span>
+				</td>
+				<td align="right">
+					<div class="d-flex align-center justify-end">
+						<v-menu open-on-hover>
+							<template v-slot:activator="{ props }">
+								<img src="/images/info.svg" class="me-4" v-bind="props">
+							</template>
+							<v-card class="listMenu smallText-15">
+								<h3 class="pa-4 pb-0">Options</h3>
+								<ul class="smallText-15 pa-4 mt-3 overviewList">
+									<li class="d-flex">
+										<span class="color-grey-700">RAM</span>
+										<span>{{item.items[0].props.title.options.ram}}</span>
+									</li>
+									<li class="d-flex">
+										<span class="color-grey-700">CPU</span>
+										<span>{{item.items[0].props.title.options.cpu}} vCPU</span>
+									</li>
+									<li class="d-flex">
+										<span class="color-grey-700">Number of Master nodes</span>
+										<span>{{item.items[0].props.title.options.master_nodes}}</span>
+									</li>
+									<li class="d-flex">
+										<span class="color-grey-700">Number of nodes</span>
+										<span>{{item.items[0].props.title.options.number_nodes}}</span>
+									</li>
+									<li class="d-flex">
+										<span class="color-grey-700">Placement Region</span>
+										<span>{{item.items[0].props.title.options.region}}</span>
+									</li>
+								</ul>
+							</v-card>
+						</v-menu>
+						<v-menu open-on-hover>
+							<template v-slot:activator="{ props }">
+								<img src="/images/general/more.svg" v-bind="props">
+							</template>
+							<v-list min-width="150" class="listMenu">
+								<v-list-item>
+									<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw">
+										<v-img src="/images/instances/menu/edit.svg"/>
+										Edit
+									</v-list-item-title>
+									<v-list-item-title class="dropDownItemMenu" @click="modalItem=item.raw, modalDelete=true">
+										<v-img src="/images/instances/menu/delete.svg"/>
+										Delete
+									</v-list-item-title>
+								</v-list-item>
+							</v-list>
+						</v-menu>
+					</div>
+				</td>
+			</tr>
+		</template>
+		<template v-slot:[`item.name`]="{item}">
+			<router-link :to="`/kubernetes/${item.raw.id}`">{{item.raw.name}}</router-link>
+		</template>
+		<template v-slot:[`item.price.price`]></template>
 		<template v-slot:[`item.actions`]="{item}">
 			<v-menu open-on-hover>
 				<template v-slot:activator="{ props }">
-					<img src="/images/instances/more.svg" v-bind="props">
+					<img src="/images/info.svg" class="me-4" v-bind="props">
+				</template>
+				<v-card class="listMenu smallText-15">
+					<h3 class="pa-4 pb-0">Options</h3>
+					<ul class="smallText-15 pa-4 mt-3 overviewList">
+						<li class="d-flex">
+							<span class="color-grey-700">RAM</span>
+							<span>{{item.raw.options.ram}}</span>
+						</li>
+						<li class="d-flex">
+							<span class="color-grey-700">CPU</span>
+							<span>{{item.raw.options.cpu}} vCPU</span>
+						</li>
+						<li class="d-flex">
+							<span class="color-grey-700">Number of Master nodes</span>
+							<span>{{item.raw.options.master_nodes}}</span>
+						</li>
+						<li class="d-flex">
+							<span class="color-grey-700">Number of nodes</span>
+							<span>{{item.raw.options.number_nodes}}</span>
+						</li>
+						<li class="d-flex">
+							<span class="color-grey-700">Placement Region</span>
+							<span>{{item.raw.options.region}}</span>
+						</li>
+					</ul>
+				</v-card>
+			</v-menu>
+			<v-menu open-on-hover>
+				<template v-slot:activator="{ props }">
+					<img src="/images/general/more.svg" v-bind="props">
 				</template>
 				<v-list min-width="150" class="listMenu">
 					<v-list-item>
@@ -70,40 +176,6 @@
 		</template>
 	</v-data-table>
 	<NCModalDelete v-model="modalDelete"/>
-<!--	<v-menu-->
-<!--		:close-on-content-click="false"-->
-<!--		location="end"-->
-<!--		open-on-hover-->
-<!--	>-->
-<!--		<template v-slot:activator="{ props }">-->
-<!--			<img src="/images/info.svg" class="me-2" v-bind="props">-->
-<!--		</template>-->
-<!--		<v-card class="pa-5 smallText-15">-->
-<!--			<h3>Options</h3>-->
-<!--			<ul class="smallText-15 mt-3 overviewList">-->
-<!--				<li class="d-flex">-->
-<!--					<span class="color-grey-700">RAM</span>-->
-<!--					<span>{{item.options.ram}}</span>-->
-<!--				</li>-->
-<!--				<li class="d-flex">-->
-<!--					<span class="color-grey-700">CPU</span>-->
-<!--					<span>{{item.options.cpu}} vCPU</span>-->
-<!--				</li>-->
-<!--				<li class="d-flex">-->
-<!--					<span class="color-grey-700">Number of Master nodes</span>-->
-<!--					<span>{{item.options.master_nodes}}</span>-->
-<!--				</li>-->
-<!--				<li class="d-flex">-->
-<!--					<span class="color-grey-700">Number of nodes</span>-->
-<!--					<span>{{item.options.number_nodes}}</span>-->
-<!--				</li>-->
-<!--				<li class="d-flex">-->
-<!--					<span class="color-grey-700">Placement Region</span>-->
-<!--					<span>{{item.options.region}}</span>-->
-<!--				</li>-->
-<!--			</ul>-->
-<!--		</v-card>-->
-<!--	</v-menu>-->
 </template>
 
 <script>
@@ -124,14 +196,17 @@ export default {
 					{ title: '', key: 'actions', align: 'end', sortable: false }
 				],
 				data: [
-					{id: 2, name: 'pool1', nodes:'2 node master', type: 'Netengi-Basic1', price: {price: '', period: '' },
+					{id: 2, name: 'pool1', nodes:'2 node master', type: 'Netengi-Basic1', price: {price: 428, period: 'month' },
 						options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'}, group: 'netengi-kubernetes1',
 					},
-					{id: 3, name: 'pool2', nodes:'2 node master', type: 'Netengi-Basic1', price: {price: '', period: '' },
+					{id: 3, name: 'pool2', nodes:'2 node master', type: 'Netengi-Basic1', price: {price: 428, period: 'month' },
 						options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'}, group: 'netengi-kubernetes1',
 					},
-					{id: 4, name: 'pool1', nodes:'2 node master', type: 'Netengi-Basic1', price: {price: '', period: '' },
-						options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1', group: 'test.test'},
+					{id: 3, name: 'pool2', nodes:'2 node master', type: 'Netengi-Basic1', price: {price: 164.48, period: 'month'},
+						options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'}, group: 'test',
+					},
+					{id: 3, name: 'pool2', nodes:'2 node master', type: 'Netengi-Basic1', price: {price: 164.48, period: 'month' },
+						options: {ram: '172GB', cpu: 42, master_nodes: 3, number_nodes: 2, region: 'ua-central-1'}, group: 'test',
 					},
 				]
 			},
@@ -145,6 +220,23 @@ export default {
 </script>
 
 <style>
+.iconCollapse{
+	padding: 6px;
+	border-radius: 4px;
+	background: rgb(var(--v-theme-grey-300));
+	margin-right: 10px;
+}
+.iconCollapse.open{
+	box-shadow: 0 0 0 3px #E0EAFF;
+	border: solid 1px rgb(var(--v-theme-primary-200));
+	background: rgb(var(--v-theme-background));
+}
+.iconCollapse img{
+	transition: transform .15s ease-out;
+}
+.iconCollapse.open img{
+	transform: rotate(180deg);
+}
 .overviewList li{
 	margin: 6px 0;
 }

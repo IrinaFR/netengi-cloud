@@ -2,19 +2,20 @@
 	<div class="mainPage">
 		<h1 class="pageTitle">Welcome, Dmitriy!</h1>
 		<v-card variant="text" class="alertCard">
-			<router-link to="/" class="d-flex">
-				<img src="/images/index/document.svg" class="me-3">
-				<div>
+			<router-link to="/" class="d-flex align-start position-relative">
+				<img src="/images/index/document.svg" class="me-3 grayscaleTheme">
+				<div class="flex-grow-1">
 					<div class="alertTitle">Getting started with Netengi</div>
 					<div class="alertInfo">Learn the fundamentals and find valuable information to get the most out of Netengi.</div>
 				</div>
+				<img src="/images/general/close.svg" class="d-block">
 			</router-link>
 		</v-card>
 		<NCAdditionalQuotes/>
 		<NCIndexServices/>
 		<NCIndexOtherServices/>
 
-		<div class="footerMain">
+		<div class="footerMain flex-wrap flex-md-nowrap">
 			<NCIndexLogs/>
 			<NCIndexGettingStart/>
 		</div>

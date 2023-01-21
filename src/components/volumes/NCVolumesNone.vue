@@ -2,7 +2,7 @@
 	<div class="listBtn">
 		<v-btn density="default" to="/volumes/create" variant="tonal">Create Volumes</v-btn>
 	</div>
-	<div class="infoCreateInstance">
+	<div class="infoPageMain pageVolumes">
 		<div class="blockWithBtn">
 			<div class="title">You have no volumes right now.</div>
 			<div class="btnLern">
@@ -11,12 +11,12 @@
 			</div>
 		</div>
 		<v-card class="blockBanner">
-			<v-img class="close" src="/images/instances/close.svg"></v-img>
-			<div class="player">
+			<v-img class="close" src="/images/general/close.svg"></v-img>
+			<div class="player grayscaleTheme">
 				<v-img src="/images/instances/play.svg"></v-img>
 			</div>
-			<div class="banner">
-				<v-img class="lineBlock" src="/images/volumes/block.svg"></v-img>
+			<div class="banner grayscaleTheme">
+				<img class="lineBlock" src="/images/volumes/block.svg">
 				<v-img class="whiteBox" src="/images/instances/whiteBox.svg"></v-img>
 			</div>
 			<div class="textBanner">
@@ -28,7 +28,7 @@
 </template>
 
 <style>
-	.infoCreateInstance{
+	.infoPageMain{
 		display: flex;
 		width: 100%;
 	}
@@ -53,44 +53,9 @@
 		right: 20px;
 		cursor: pointer;
 	}
-	.player{
-		width: 80px;
-		height: 80px;
-		background: white;
-		border-radius: 50%;
-		position: absolute;
-		top: 69px;
-	}
-	.banner{
-		position: absolute;
-		right: 20px;
-		bottom: 0;
-		width: 221px;
-	}
-	.whiteBox{
-		width: 192px;
-	}
-	.lineBlock{
-		height: 180px;
-		bottom: 75px;
-		right: 9px;
-		z-index: 1;
-		position: absolute;
-		width: 221px;
-	}
-	.textBanner{
-		z-index: 2;
-		position: absolute;
-		bottom: 25px;
-		left: 20px;
-	}
-	.greyTitle{
-		font-weight: 400;
-		font-size: 12px;
-		line-height: 15px;
-		text-transform: uppercase;
-		color: rgb(var(--v-theme-grey-600));
-		margin-bottom: 6px;
+	.pageVolumes .lineBlock{
+		height: 130px;
+		bottom: 70px;
 	}
 	.request{
 		font-weight: 500;

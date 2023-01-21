@@ -1,9 +1,9 @@
 <template>
 	<div class="authMain">
 		<div class="authLeft">
-			<v-card to="/" class="authLogo d-flex align-center" variant="flat">
+			<v-card to="/" class="authLogo d-flex align-center" variant="text">
 				<img src="/images/logo.svg" alt="Netengi" class="me-3">
-				<img src="/images/netengi.svg" alt="Netengi">
+				<img src="/images/netengi.svg" alt="Netengi" class="invertTheme">
 			</v-card>
 			<div class="authForm" v-if="step===1">
 				<div class="authFormTitle text-start">Forgot password</div>

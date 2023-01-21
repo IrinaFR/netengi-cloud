@@ -2,9 +2,9 @@
 	<label class="titleBlock">Other services</label>
 	<div class="otherServices">
 		<v-card variant="outlined" :to="service.url" class="otherServicesCard"  v-for="(service, idx) in services" :key="idx">
-			<img :src="`/images/menu/${service.img}.svg`" class="me-2">
+			<img :src="`/images/menu/${service.img}.svg`" class="grayscaleTheme me-2">
 			<div>
-				<div class="otherServicesTitle">{{service.title}}</div>
+				<div class="otherServicesTitle grayscaleTheme">{{service.title}}</div>
 				<div class="otherServicesInfo">{{service.info}}</div>
 			</div>
 		</v-card>
@@ -55,5 +55,10 @@
 		font-weight: 400;
 		line-height: 20px;
 		color: rgb(var(--v-theme-grey-600));
+	}
+	@media(max-width: 768px){
+		.otherServicesCard{
+			width: 100%;
+		}
 	}
 </style>

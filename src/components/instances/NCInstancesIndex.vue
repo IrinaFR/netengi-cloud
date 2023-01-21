@@ -2,7 +2,7 @@
 	<div class="mainPage" v-if="$route.name==='instances'">
 		<div class="titleWithBtn">
 			<h1 class="pageTitle">Instances</h1>
-			<div class="btnHide" @click="hideQuotas=!hideQuotas">
+			<div class="btnHide grayscaleTheme" @click="hideQuotas=!hideQuotas">
 				<v-img src="/images/instances/hide-quotas.svg"></v-img>
 				{{hideQuotas ? 'show' : 'hide'}} quotas
 			</div>

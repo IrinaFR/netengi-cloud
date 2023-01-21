@@ -10,7 +10,7 @@
 	>
 		<v-card variant="text" to="/" class="listItemLogo d-flex">
 			<v-img src="/images/logo.svg" class="logoMain"></v-img>
-			<v-img src="/images/netengi.svg" class="logoText" nav></v-img>
+			<v-img src="/images/netengi.svg" class="logoText invertTheme" nav></v-img>
 		</v-card>
 		<v-list density="compact" nav v-for="(block, index) in menu" :key="index">
 			<v-list-subheader :title="block.title" v-if="block.title&&!rail"></v-list-subheader>

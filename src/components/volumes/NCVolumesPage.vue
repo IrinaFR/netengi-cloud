@@ -55,7 +55,7 @@
 			</div>
 		</div>
 	</div>
-	<v-card variant="flat">
+	<v-card variant="text">
 		<div class="container">
 			<v-tabs
 				v-model="tab"

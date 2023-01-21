@@ -6,7 +6,7 @@
 		</div>
 		<h1 class="pageTitle mb-5 mt-2">Dmitriy Babanov</h1>
 	</div>
-	<v-card variant="flat">
+	<v-card variant="text">
 		<div class="container">
 			<v-tabs
 				v-model="tab"
@@ -64,19 +64,19 @@
 							<h3>Your Notifications</h3>
 							<ul class="smallText-15 overviewList">
 								<li class="d-flex align-center">
-									<input type="checkbox" id="notifAuth" class="form-check-input me-2 greyscale-1">
+									<input type="checkbox" id="notifAuth" class="form-check-input me-2 grayscale-1">
 									<label for="notifAuth" class="my-0">Account authorization notifications</label>
 								</li>
 								<li class="d-flex align-center">
-									<input type="checkbox" id="notifBilling" class="form-check-input me-2 greyscale-1">
+									<input type="checkbox" id="notifBilling" class="form-check-input me-2 grayscale-1">
 									<label for="notifBilling" class="my-0">Billing and service related notifications</label>
 								</li>
 								<li class="d-flex align-center">
-									<input type="checkbox" id="notifGeneral" class="form-check-input me-2 greyscale-1">
+									<input type="checkbox" id="notifGeneral" class="form-check-input me-2 grayscale-1">
 									<label for="notifGeneral" class="my-0">General announcements</label>
 								</li>
 								<li class="d-flex align-center">
-									<input type="checkbox" id="notifTech" class="form-check-input me-2 greyscale-1">
+									<input type="checkbox" id="notifTech" class="form-check-input me-2 grayscale-1">
 									<label for="notifTech" class="my-0">Technical announcements</label>
 								</li>
 							</ul>

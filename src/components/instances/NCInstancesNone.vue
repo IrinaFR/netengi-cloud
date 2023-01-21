@@ -1,5 +1,5 @@
 <template>
-<div class="infoCreateInstance">
+<div class="infoPageMain pageInstances">
 	<div class="blockWithBtn">
 		<div class="title">You have no instances right now.</div>
 		<v-btn density="default" variant="tonal" to="/instances/create">Create Instance</v-btn>
@@ -9,15 +9,12 @@
 		</div>
 	</div>
 	<v-card class="blockBanner">
-		<v-img class="close" src="/images/instances/close.svg"></v-img>
-		<div class="player">
+		<v-img class="close" src="/images/general/close.svg"></v-img>
+		<div class="player grayscaleTheme">
 			<v-img src="/images/instances/play.svg"></v-img>
 		</div>
-		<div class="banner">
-			<v-img class="lineBlock" src="/images/instances/blueBlock.svg"></v-img>
-			<v-img class="lineBlock" src="/images/instances/blueBlockEmpty.svg"></v-img>
-			<v-img class="lineBlock" src="/images/instances/blueBlock.svg"></v-img>
-			<v-img class="lineBlock" src="/images/instances/blueShadow.svg"></v-img>
+		<div class="banner grayscaleTheme">
+			<img class="lineBlock" src="/images/instances/instances.svg">
 			<v-img class="whiteBox" src="/images/instances/whiteBox.svg"></v-img>
 		</div>
 		<div class="textBanner">
@@ -35,7 +32,7 @@ export default {
 </script>
 
 <style scoped>
-	.infoCreateInstance{
+	.infoPageMain{
 		display: flex;
 		width: 100%;
 	}
@@ -46,7 +43,10 @@ export default {
 	.blockWithBtn .v-btn{
 		margin-bottom: 20px;
 	}
-
+	.pageInstances .lineBlock{
+		height: 130px;
+		bottom: 70px;
+	}
 	.title{
 		font-weight: 400;
 		font-size: 15px;
@@ -60,58 +60,7 @@ export default {
 		right: 20px;
 		cursor: pointer;
 	}
-	.player{
-		width: 80px;
-		height: 80px;
-		background: white;
-		border-radius: 50%;
-		position: absolute;
-		top: 69px;
-	}
-	.banner{
-		position: absolute;
-		right: 20px;
-		bottom: 0;
-		width: 221px;
-	}
-	.whiteBox{
-		width: 192px;
-	}
-	.lineBlock{
-		height: 90px;
-		right: 9px;
-		z-index: 1;
-		position: absolute;
-		width: 221px;
-	}
-	.lineBlock:first-child{
-		bottom: 75px
-	}
-	.lineBlock:nth-child(2){
-		bottom: 100px;
-	}
-	.lineBlock:nth-child(3){
-		bottom: 125px;
-	}
-	.lineBlock:nth-child(4){
-		width: 53px;
-		right: 96px;
-		top: -14px;
-	}
-	.textBanner{
-		z-index: 2;
-		position: absolute;
-		bottom: 25px;
-		left: 20px;
-	}
-	.greyTitle{
-		font-weight: 400;
-		font-size: 12px;
-		line-height: 15px;
-		text-transform: uppercase;
-		color: rgb(var(--v-theme-grey-600));
-		margin-bottom: 6px;
-	}
+
 	.request{
 		font-weight: 500;
 		font-size: 18px;

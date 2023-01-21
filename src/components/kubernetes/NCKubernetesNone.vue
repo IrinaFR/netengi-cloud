@@ -1,5 +1,5 @@
 <template>
-	<div class="infoCreateInstance">
+	<div class="infoPageMain">
 		<v-card variant="flat" class="bg-grey-100 text-center kubernetesInfo pa-5">
 			<h1>Everything is simple with Kubernetes</h1>
 			<p class="my-3 text-center">Set up your kubernetes cluster quickly. <br>
@@ -7,11 +7,11 @@
 			<v-btn density="default" to="/kubernetes/create" class="width-fit-content" variant="tonal">Create a Kubernetes Cluster</v-btn>
 		</v-card>
 		<v-card class="blockBanner">
-			<v-img class="close" src="/images/instances/close.svg"></v-img>
-			<div class="player">
+			<v-img class="close" src="/images/general/close.svg"></v-img>
+			<div class="player grayscaleTheme">
 				<v-img src="/images/instances/play.svg"></v-img>
 			</div>
-			<div class="banner">
+			<div class="banner grayscaleTheme">
 				<v-img class="lineBlock" src="/images/menu/kubernetes.svg"></v-img>
 				<v-img class="whiteBox" src="/images/instances/whiteBox.svg"></v-img>
 			</div>
@@ -67,45 +67,7 @@
 		right: 20px;
 		cursor: pointer;
 	}
-	.player{
-		width: 80px;
-		height: 80px;
-		background: white;
-		border-radius: 50%;
-		position: absolute;
-		top: 69px;
-	}
-	.banner{
-		position: absolute;
-		right: 20px;
-		bottom: 0;
-		width: 221px;
-	}
-	.whiteBox{
-		width: 192px;
-	}
-	.lineBlock{
-		height: 70px;
-		bottom: 100px;
-		right: 17px;
-		z-index: 1;
-		position: absolute;
-		width: 221px;
-	}
-	.textBanner{
-		z-index: 2;
-		position: absolute;
-		bottom: 25px;
-		left: 20px;
-	}
-	.greyTitle{
-		font-weight: 400;
-		font-size: 12px;
-		line-height: 15px;
-		text-transform: uppercase;
-		color: rgb(var(--v-theme-grey-600));
-		margin-bottom: 6px;
-	}
+
 	.request{
 		font-weight: 500;
 		font-size: 18px;

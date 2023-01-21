@@ -1,13 +1,15 @@
 <template>
 	<div class="services">
 		<v-card variant="flat" class="serviceCard bg-grey-100" v-for="(service, idx) in services" :key="idx">
-			<div class="serviceTitle color-grey-800">{{service.title}}</div>
-			<div class="serviceInfo color-grey-700">{{service.info}}</div>
-			<div class="serviceLink">
-				<img :src="`/images/menu/${service.img}.svg`" class="me-2">
-				<router-link :to="service.link.url" class="color-grey-800">{{service.link.text}}</router-link>
+			<div>
+				<h3 class="d-block color-grey-800"><b>{{service.title}}</b></h3>
+				<div class="smallText-15 my-3 color-grey-700">{{service.info}}</div>
+				<v-card variant="flat" class="d-flex align-center bg-grey-100 px-2 grayscaleTheme">
+					<img :src="`/images/menu/${service.img}.svg`" class="me-2">
+					<router-link :to="service.link.url" class="color-primary-600">{{service.link.text}}</router-link>
+				</v-card>
 			</div>
-			<img :src="`/images/menu/${service.img}.svg`" class="serviceBgImg">
+			<img :src="`/images/menu/${service.img}.svg`" class="serviceBgImg grayscaleTheme">
 		</v-card>
 	</div>
 </template>
@@ -38,29 +40,6 @@
 		padding: 20px 20px 120px;
 		position: relative;
 	}
-
-	.serviceTitle{
-		font-size: 18px;
-		font-weight: 700;
-		line-height: 24px;
-	}
-	.serviceInfo{
-		font-size: 15px;
-		line-height: 20px;
-		margin: 8px 0;
-	}
-	.serviceLink{
-		display: flex;
-		align-items: center;
-	}
-	.serviceInfo img{
-		margin-right: 8px;
-	}
-	.serviceLink a{
-		text-decoration: none;
-		color: rgb(var(--v-theme-primary-600));
-		font-size: 15px;
-	}
 	.serviceCard .serviceBgImg{
 		position: absolute;
 		width: 140px;
@@ -68,5 +47,23 @@
 		left: 13px;
 		bottom: -13%;
 		opacity: 0.2;
+	}
+	@media(max-width: 840px){
+		.services{
+			flex-wrap: wrap;
+		}
+		.serviceCard{
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			padding: 20px 80px 20px 20px;
+		}
+		.serviceCard .serviceBgImg{
+			width: 120px;
+			height: 120px;
+			bottom: 0;
+			right: -6%;
+			left: auto;
+		}
 	}
 </style>

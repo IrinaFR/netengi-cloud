@@ -3,7 +3,7 @@
 		<div class="mainPage">
 			<h1 class="pageTitle">Account settings</h1>
 		</div>
-		<v-card variant="flat">
+		<v-card variant="text">
 			<div class="container">
 				<v-tabs
 					v-model="tab"
@@ -118,7 +118,7 @@
 									class="flex-grow-0 me-2"
 								></v-switch>
 								<b>
-									<img src="/images/app_bar/profile/dark.svg">
+									<img src="/images/app_bar/profile/dark.svg" class="grayscaleThemeReverse">
 									Dark theme
 								</b>
 								<v-menu open-on-hover>

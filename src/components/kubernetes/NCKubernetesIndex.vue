@@ -2,7 +2,7 @@
 	<div class="mainPage" v-if="$route.name==='kubernetes'">
 		<div class="titleWithBtn">
 			<h1 class="pageTitle">Kubernetes Clusters</h1>
-			<div class="btnHide" @click="hideQuotas=!hideQuotas">
+			<div class="btnHide grayscaleTheme" @click="hideQuotas=!hideQuotas">
 				<v-img src="/images/instances/hide-quotas.svg"></v-img>
 				{{hideQuotas ? 'show' : 'hide'}} quotas
 			</div>
@@ -82,45 +82,7 @@
 		right: 20px;
 		cursor: pointer;
 	}
-	.player{
-		width: 80px;
-		height: 80px;
-		background: white;
-		border-radius: 50%;
-		position: absolute;
-		top: 69px;
-	}
-	.banner{
-		position: absolute;
-		right: 20px;
-		bottom: 0;
-		width: 221px;
-	}
-	.whiteBox{
-		width: 192px;
-	}
-	.lineBlock{
-		height: 70px;
-		bottom: 100px;
-		right: 17px;
-		z-index: 1;
-		position: absolute;
-		width: 221px;
-	}
-	.textBanner{
-		z-index: 2;
-		position: absolute;
-		bottom: 25px;
-		left: 20px;
-	}
-	.greyTitle{
-		font-weight: 400;
-		font-size: 12px;
-		line-height: 15px;
-		text-transform: uppercase;
-		color: rgb(var(--v-theme-grey-600));
-		margin-bottom: 6px;
-	}
+
 	.request{
 		font-weight: 500;
 		font-size: 18px;

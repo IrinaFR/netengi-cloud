@@ -20,7 +20,7 @@
 			<v-list density="compact">
 				<v-list-item density="compact" title="Dark mode">
 					<template v-slot:prepend>
-						<img src="/images/app_bar/profile/dark.svg" class="me-2">
+						<img src="/images/app_bar/profile/dark.svg" class="me-2 grayscaleThemeReverse">
 					</template>
 					<template v-slot:append>
 						<v-switch

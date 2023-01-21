@@ -13,7 +13,7 @@
 				<p class="smallText-15 color-grey-800 my-4">Are you sure want to delete this instance. This action cannot be undone.</p>
 				<div class="d-flex justify-center">
 					<v-card variant="flat" color="grey-200" class="d-flex align-center width-fit-content mt-2 pa-1">
-						<img src="/images/menu/instances.svg" class="me-2 greyscale-1">
+						<img src="/images/menu/instances.svg" class="me-2 grayscale-1">
 						<span class="smallText-15 flex-grow-1">netengi-instance-1</span>
 					</v-card>
 				</div>

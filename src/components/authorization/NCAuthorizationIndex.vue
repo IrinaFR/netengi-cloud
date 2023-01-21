@@ -1,9 +1,9 @@
 <template>
 	<div class="authMain" v-if="$route.name==='auth'">
 		<div class="authLeft">
-			<v-card to="/" class="authLogo d-flex align-center" variant="flat">
+			<v-card to="/" class="authLogo d-flex align-center" variant="text">
 				<img src="/images/logo.svg" alt="Netengi" class="me-3">
-				<img src="/images/netengi.svg" alt="Netengi">
+				<img src="/images/netengi.svg" alt="Netengi" class="invertTheme">
 			</v-card>
 			<div class="authForm">
 				<div class="authFormTitle">Welcome, please sign in.</div>

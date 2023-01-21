@@ -63,7 +63,7 @@
 		<template v-slot:[`item.actions`]="{item}">
 			<v-menu open-on-hover>
 				<template v-slot:activator="{ props }">
-					<img src="/images/instances/more.svg" v-bind="props">
+					<img src="/images/general/more.svg" v-bind="props">
 				</template>
 				<v-list min-width="150" class="listMenu">
 					<v-list-item>
