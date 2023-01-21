@@ -7,12 +7,14 @@
 				<router-view></router-view>
 			</div>
 		</v-main>
+		<NCAdditionalNotifications/>
 	</v-app>
 </template>
 
 <script>
 import NCSideMenu from '@/components/NCSideMenu';
 import NCHeaderIndex from '@/components/header/NCHeaderIndex'
+import {defineAsyncComponent} from "vue";
 export default {
 	name: 'App',
 	data(){
@@ -35,17 +37,21 @@ export default {
 				{ name: 'John Smith', group: 'Group 2', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' },
 				{ name: 'Sandra Williams', group: 'Group 2', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' },
 			],
+			notification: {
+				type: '', title: '', text: ''
+			}
 		}
 	},
 	components: {
-		NCSideMenu, NCHeaderIndex
+		NCSideMenu, NCHeaderIndex,
+		'NCAdditionalNotifications': defineAsyncComponent(() => import('@/components/additional/NCAdditionalNotifications'))
 	},
 	created() {
 		if(localStorage.getItem('theme')){
 			this.theme = localStorage.getItem('theme')
 		}
 		if(localStorage.getItem('rail')){
-			this.rail = localStorage.getItem('rail')
+			this.rail = Boolean(localStorage.getItem('rail'))
 		}
 	},
 	methods: {
@@ -57,7 +63,8 @@ export default {
 				case 'forgot': return false
 				default: return true
 			}
-		}
+		},
+
 	}
 }
 </script>

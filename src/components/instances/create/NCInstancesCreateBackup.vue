@@ -3,7 +3,7 @@
 		<v-switch
 			v-model="backup"
 			inset
-			color="primary-600"
+			color="active"
 			hide-details
 			class="flex-grow-0 me-2"
 		></v-switch>

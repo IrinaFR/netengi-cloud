@@ -33,7 +33,7 @@
 			<div class="form-group d-flex align-center">
 				<v-switch
 					inset
-					color="primary-600"
+					color="active"
 					hide-details
 					class="flex-grow-0 me-2"
 				></v-switch>
@@ -47,7 +47,7 @@
 			<div class="form-group d-flex align-center">
 				<v-switch
 					inset
-					color="primary-600"
+					color="active"
 					hide-details
 					class="flex-grow-0 me-2"
 				></v-switch>

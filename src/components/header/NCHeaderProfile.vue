@@ -28,7 +28,7 @@
 							true-value="dark"
 							false-value="light"
 							v-model="theme"
-							color="info"
+							color="active"
 							@change="changeTheme"
 							hide-details
 						></v-switch>

@@ -145,7 +145,7 @@
 				<div class="form-group d-flex align-center">
 					<v-switch
 						inset
-						color="primary-600"
+						color="active"
 						hide-details
 					></v-switch>
 					<b>Protected</b>

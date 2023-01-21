@@ -1,12 +1,11 @@
 <template>
+	<div class="btnClose invertTheme" @click="changeMenu" :class="{hide:rail}">
+		<img src="/images/arrowLeft.svg">
+	</div>
 	<v-app-bar
 	height="80"
 	flat>
-		<div class="btnClose" @click="changeMenu">
-			<img src="/images/arrowLeft.svg">
-		</div>
 		<NCHeaderSearch/>
-
 		<template v-slot:append>
 			<div class="d-flex justify-lg-space-between align-center">
 				<img src="/images/app_bar/terminal.svg" class="mx-2">
@@ -35,6 +34,11 @@ export default {
 	components: {
 		NCHeaderSearch, NCHeaderProfile, NCHeaderNotification
 	},
+	watch: {
+		'$root.rail'(){
+			this.rail = this.$root.rail
+		}
+	},
 	methods: {
 		changeMenu(){
 			this.rail = !this.rail
@@ -52,6 +56,9 @@ export default {
 
 <style>
 	.btnClose{
+		position: absolute;
+		top: 25px;
+		left: 234px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -62,6 +69,14 @@ export default {
 		border: 1px solid rgb(var(--v-theme-grey-300));;
 		background: rgb(var(--v-theme-background));
 		box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+		cursor: pointer;
+		z-index: 10000;
+		transition: transform .15s ease, left .15s ease;
+	}
+	.btnClose.hide{
+		left: 12px;
+		transform: rotate(180deg);
+		box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.1);
 	}
 	.btnClose img{
 		width: 10px;

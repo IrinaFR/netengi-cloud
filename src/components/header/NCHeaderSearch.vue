@@ -114,6 +114,7 @@
 <style>
 	.search{
 		width: 40%;
+		margin-left: 30px;
 	}
 	.searchLinkImg{
 		filter: grayscale(100%);

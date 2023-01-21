@@ -29,8 +29,8 @@
 						height="32"
 						min-height="32"
 						:title="link.title"
-						:to="link.url"
-						:active="$route.href===link.url">
+						:to="`/${link.url}`"
+						:active="(link.url===''&&$route.name==='home')||($route.fullPath.includes(link.url)&&$route.name!=='home'&&link.url)">
 						<template v-slot:prepend>
 							<img :src="`/images/menu/${link.icon}.svg`" :alt="link.title" class="me-2 menuLinkIcon">
 						</template>
@@ -65,58 +65,58 @@ export default {
 				{
 					title: '',
 					links: [
-						{ title: 'Home', icon: 'home', url: '/'},
+						{ title: 'Home', icon: 'home', url: ''},
 					]
 				},
 				{
 					title: 'Cloud Compute',
 					links: [
-						{ title: 'Instances', icon: 'instances', url: '/instances'},
-						{ title: 'Volumes', icon: 'volumes', url: '/volumes', links: [
+						{ title: 'Instances', icon: 'instances', url: 'instances'},
+						{ title: 'Volumes', icon: 'volumes', url: 'volumes', links: [
 							{
 								title: 'Category',
 								links: [
-									{ title: 'Overviews', url: '/volumes/0/1'},
-									{ title: 'Snapshots', url: '/volumes/0/2'},
-									{ title: 'Backups', url: '/volumes/0/3'},
+									{ title: 'Overviews', url: 'volumes/0/1'},
+									{ title: 'Snapshots', url: 'volumes/0/2'},
+									{ title: 'Backups', url: 'volumes/0/3'},
 								]
 							},
 							{
 								title: 'Category 2',
 								links: [
-									{ title: 'Item 4', url: '/'},
-									{ title: 'Distribute traffic between multiple Instance PHP web application', url: '/'},
-									{ title: 'Item 6', url: '/'},
+									{ title: 'Item 4', url: ''},
+									{ title: 'Distribute traffic between multiple Instance PHP web application', url: ''},
+									{ title: 'Item 6', url: ''},
 								]
 							},]
 						},
-						{ title: 'Images', icon: 'images', url: '/images'},
-						{ title: 'SSH Keys', icon: 'sshKeys', url: '/ssh-keys'},
+						{ title: 'Images', icon: 'images', url: 'images'},
+						{ title: 'SSH Keys', icon: 'sshKeys', url: 'ssh-keys'},
 					]
 				},
 				{
 					title: 'Containers',
 					links: [
-						{ title: 'Kubernetes clusters', icon: 'kubernetes', url: '/kubernetes'},
+						{ title: 'Kubernetes clusters', icon: 'kubernetes', url: 'kubernetes'},
 					]
 				},
 				{
 					title: 'Network',
 					links: [
-						{ title: 'Networks', icon: 'network', url: '/networks'},
-						{ title: 'Subnet pools', icon: 'home', url: '/networks/1'},
-						{ title: 'Ports', icon: 'home', url: '/ports'},
-						{ title: 'Routers', icon: 'home', url: '/routes'},
-						{ title: 'Security Groups', icon: 'security', url: '/security'},
-						{ title: 'Load Balancers', icon: 'loadBalancer', url: '/balancer'},
-						{ title: 'Floating IPs', icon: 'floatingIp', url: '/floating'},
+						{ title: 'Networks', icon: 'network', url: 'networks'},
+						{ title: 'Subnet pools', icon: 'home', url: 'networks/1'},
+						{ title: 'Ports', icon: 'home', url: 'ports'},
+						{ title: 'Routers', icon: 'home', url: 'routes'},
+						{ title: 'Security Groups', icon: 'security', url: 'security'},
+						{ title: 'Load Balancers', icon: 'loadBalancer', url: 'balancer'},
+						{ title: 'Floating IPs', icon: 'floatingIp', url: 'floating'},
 					]
 				},
 				{
 					title: '',
 					links: [
-						{ title: 'Billing', icon: 'billing', url: '/billing'},
-						{ title: 'Support', icon: 'support', url: '/sup'},
+						{ title: 'Billing', icon: 'billing', url: 'billing'},
+						{ title: 'Support', icon: 'support', url: 'sup'},
 					]
 				}
 			],

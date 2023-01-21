@@ -14,7 +14,7 @@
 				<v-switch
 					v-model="admin"
 					inset
-					color="primary-600"
+					color="active"
 					hide-details
 					class="flex-grow-0 mr-2"
 				></v-switch>

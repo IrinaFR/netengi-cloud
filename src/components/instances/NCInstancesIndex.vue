@@ -18,6 +18,13 @@
 		<NCInstancesNone v-else/>
 		<br>
 		<button @click="showTable=!showTable">Сменить дизайн</button>
+
+		<div class="mt-5">
+			<p>Show snackbar</p>
+			<v-btn variant="tonal" @click="showNotifier(0)">Info</v-btn>
+			<v-btn variant="tonal" @click="showNotifier(1)">Warning</v-btn>
+			<v-btn variant="tonal" @click="showNotifier(2)">Error</v-btn>
+		</div>
 	</div>
 	<router-view/>
 </template>
@@ -26,14 +33,25 @@
 import NCAdditionalQuotas from '@/components/additional/NCAdditionalQuotas';
 import NCInstancesNone from '@/components/instances/NCInstancesNone';
 import NCInstancesTable from '@/components/instances/NCInstancesTable';
+// import NCAdditionalNotifications from '@/components/additional/NCAdditionalNotifications';
 export default {
 	data(){
 		return {
 			showTable:false,
-			hideQuotas: true
+			hideQuotas: true,
+			notif: [
+				{type: 'info', title: 'Information', text: 'There is very important information here!'},
+				{type: 'warning', title: 'Warning', text: 'This is an example of really long description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisduje bibendum felis eget congue condimentum.'},
+				{type: 'danger', title: 'Error', text: 'There is very important information here'}
+			]
 		}
 	},
 	components: {NCAdditionalQuotas,NCInstancesNone,NCInstancesTable},
+	methods: {
+		showNotifier(idx){
+			this.$notifier.showMessage({ type: this.notif[idx].type, title: this.notif[idx].title, text: this.notif[idx].text })
+		}
+	}
 }
 </script>
 
