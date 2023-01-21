@@ -58,7 +58,7 @@ export default {
 
 <style>
 	.btnClose{
-		position: absolute;
+		position: fixed;
 		top: 25px;
 		left: 234px;
 		display: flex;
@@ -68,7 +68,7 @@ export default {
 		height: 30px;
 		margin: 0 15px 0 30px;
 		border-radius: 50%;
-		border: 1px solid rgb(var(--v-theme-grey-300));;
+		border: 1px solid rgb(var(--v-theme-grey-300));
 		background: rgb(var(--v-theme-background));
 		box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 		cursor: pointer;

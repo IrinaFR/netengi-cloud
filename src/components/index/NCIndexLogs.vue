@@ -5,8 +5,8 @@
 			<router-link to="/" class="grayscaleTheme">See all activities</router-link>
 		</div>
 		<div class="activitiesDate">Today</div>
-		<v-list density="compact">
-			<v-list-item density="compact">
+		<v-list density="compact" variant="text" bg-color="background">
+			<v-list-item density="compact" variant="text">
 				<div class="d-flex flex-column flex-md-row gap-15">
 					<span class="me-5" style="color:#858A94">10:44 AM</span>
 					<div class="activitiesName">
@@ -18,7 +18,7 @@
 
 			</v-list-item>
 			<v-divider class="my-1"></v-divider>
-			<v-list-item density="compact">
+			<v-list-item density="compact" variant="text">
 				<div class="d-flex flex-column flex-md-row gap-15">
 					<span class="me-5" style="color:#858A94">10:44 AM</span>
 					<div class="activitiesName">
@@ -30,7 +30,7 @@
 
 			</v-list-item>
 			<v-divider class="my-1"></v-divider>
-			<v-list-item density="compact">
+			<v-list-item density="compact" variant="text">
 				<div class="d-flex flex-column flex-md-row gap-15">
 					<span class="me-5" style="color:#858A94">10:52 AM</span>
 					<div class="activitiesName">
