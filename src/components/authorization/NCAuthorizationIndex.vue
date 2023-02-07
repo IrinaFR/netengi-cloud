@@ -31,8 +31,39 @@
 				</v-form>
 			</div>
 		</div>
-		<div class="authRight">
-			<img src="/images/authorization/auth.jpg" alt="authorization">
+		<div class="authRight authInfo">
+			<div class="authInfoTitle d-flex align-center justify-space-between gap-15">
+				<div>We You</div>
+				<v-card variant="flat" color="background" class="authInfoFocus px-2 py-4">
+					<span class="color-primary-600">focus</span>
+				</v-card>
+				<div class="authInfoText">
+					<span>on your
+						<span class="color-primary-600">server</span>
+						.
+					</span>
+					<br>
+					<span>on your
+						<span class="color-primary-600">business</span>
+						.
+					</span>
+				</div>
+			</div>
+			<p class="color-grey-600 smallText-15 my-5">Businesses grow faster when developers can build on the simple, affordable cloud they love. </p>
+			<p class="smallText-15 color-grey-800 mb-2">NetEngi has the cloud computing services you need:</p>
+			<v-card variant="flat" class="width-fit-content background pa-2 mb-2 d-flex align-center">
+				<img src="/images/authorization/statistic.svg" class="grayscaleTheme me-2">
+				<span class="color-grey-800">Scalability to support your growth at any stage</span>
+			</v-card>
+			<v-card variant="flat" class="width-fit-content background pa-2 mb-2 d-flex align-center">
+				<img src="/images/authorization/documentation.svg" class="grayscaleTheme me-2">
+				<span class="color-grey-800">Robust documentation</span>
+			</v-card>
+			<v-card variant="flat" class="width-fit-content background pa-2 d-flex align-center">
+				<img src="/images/authorization/pricing.svg" class="grayscaleTheme me-2">
+				<span class="color-grey-800">Predictable pricing</span>
+			</v-card>
+			<img src="/images/authorization/authBotom.svg" class="authInfoImg">
 		</div>
 	</div>
 	<suspense>
@@ -56,6 +87,7 @@
 		justify-content: space-between;
 		height: 100vh;
 		width: 100vw;
+		overflow: hidden;
 	}
 	.authLeft{
 		padding: 50px;
@@ -84,9 +116,44 @@
 		padding: 20px;
 		text-align: end;
 	}
-	.authRight img{
-		border-radius: 30px;
+	.authInfo{
+		text-align: start;
+		position: relative;
+		flex: 36% 0;
+		padding: 82px;
+		margin: 20px;
 		overflow: hidden;
-		height: 100%;
+		height: calc(100% - 40px);
+		background: #F3F1F1;
+		border-radius: 30px;
+	}
+	.authInfoTitle{
+		font-size: 34px;
+	}
+	.authInfoTitle :first-child{
+		width: 64px;
+		color: rgb(var(--v-theme-color-grey-800));
+	}
+	.authInfoFocus{
+		min-width: fit-content;
+		white-space: nowrap;
+		padding: 21px 18px;
+		border-radius: 10px;
+	}
+	.authInfoText{
+		white-space: nowrap;
+	}
+	.authInfoImg{
+		position: absolute;
+		left: 0;
+		bottom: 0;
+	}
+	@media(max-width: 1366px){
+		.authInfoTitle{
+			flex-wrap: wrap;
+		}
+		.authInfoImg{
+			bottom: -150px;
+		}
 	}
 </style>

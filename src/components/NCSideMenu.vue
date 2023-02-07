@@ -39,13 +39,16 @@
 						</template>
 					</v-list-item>
 				</template>
-				<v-card max-width="280">
+				<v-card max-width="280" v-if="link.links&&link.links.length">
 					<v-list  density="compact" v-for="(innerBlock, innerIndex) in link.links" :key="innerIndex">
 						<v-list-subheader :title="innerBlock.title" v-if="innerBlock.title&&!rail" nav></v-list-subheader>
 						<v-list-item :to="innerLink.url" v-for="innerLink in innerBlock.links" :class="{hoverBorder:rail}" :key="innerLink" :active="false">{{innerLink.title}}</v-list-item>
 						<v-divider></v-divider>
 					</v-list>
 				</v-card>
+				<div class="menuLinks" v-else-if="rail">
+					<div >{{link.title}}</div>
+				</div>
 			</v-menu>
 
 		</v-list>
@@ -149,6 +152,14 @@ export default {
 }
 .logoText img{
 	width: 85px;
+}
+.menuLinks{
+	padding: 6px 8px;
+	color: #fff;
+	background: #474B53;
+	border-radius: 4px;
+	font-size: 12px;
+	margin-left: 10px;
 }
 .v-list-item--active > .v-list-item__overlay{
 	background: #BDCEEE;

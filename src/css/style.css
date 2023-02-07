@@ -157,7 +157,7 @@ a.v-btn--variant-outlined:active .v-ripple__container{
     color: rgb(var(--v-theme-grey-800));
 }
 .color-primary-600{
-    color: rgb(var(--v-theme-primary-600));
+    color: rgb(var(--v-theme-primary-600)) !important;
 }
 h1{
     font-weight: 700;
