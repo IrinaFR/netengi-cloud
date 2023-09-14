@@ -1,5 +1,5 @@
 # Netengi-cloud
-![Дизайн figma](https://www.figma.com/file/D85DrqCFlbW6kRe6iBvyhs/Netengi-Cloud-Panel-Design--Dashboard?type=design&node-id=0%3A1&mode=design&t=b4jtBlbN2BL7pPGS-1)
+[Дизайн figma](https://www.figma.com/file/D85DrqCFlbW6kRe6iBvyhs/Netengi-Cloud-Panel-Design--Dashboard?type=design&node-id=0%3A1&mode=design&t=b4jtBlbN2BL7pPGS-1)
 
 Вёрстка панели администрирования VPS серверами. Сделана только вёрстка. JS используется только для оживления какой-то статики.
 
